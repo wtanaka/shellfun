@@ -69,6 +69,7 @@ preclasspath()
       if [ -d "$i" -o -f "$i" ]; then
          OIFS="$IFS"; IFS=":"; for pathpart in $CLASSPATH; do
             if [[ "$pathpart" -ef "$i" ]]; then
+               IFS="$OIFS"
                continue 2
             fi
          done; IFS="$OIFS"
