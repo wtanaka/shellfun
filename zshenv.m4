@@ -48,7 +48,7 @@ edclasspath()
       "$VISUAL" "$FILENAME"
    fi
    export CLASSPATH=""
-   { while read LINE; do
+   while read LINE; do
       if [ -d "$LINE" -o -f "$LINE" ]; then
          if [ -z "${CLASSPATH}" ]; then
             export CLASSPATH="${LINE}"
@@ -56,7 +56,7 @@ edclasspath()
             export CLASSPATH="${CLASSPATH}:${LINE}"
          fi
       fi
-   done } < "$FILENAME"
+   done < "$FILENAME"
    rm -f "$FILENAME"
 }
 
