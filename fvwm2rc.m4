@@ -161,7 +161,7 @@ Style "RealPlay*"     Icon rndreal.xpm
 Style "Mozilla-bin"   Icon rndmozilla.xpm
 Style "Dia"           Icon rnddia.xpm
 Style "Gtk_gnutella"  Icon rndgnut.xpm
-Style "MpegTV *"      Icon rndmtv.xpm
+Style "*MpegTV *"      Icon rndmtv.xpm
 
 define({{MAGIC}},
    ifelse(
