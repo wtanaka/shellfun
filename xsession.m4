@@ -9,7 +9,7 @@ eval `xdpyinfo | \
    /resolution:/ { split($2,a,"x");print "XRES="a[1]";YRES="a[2] }
    /depth of root window:/ { print "DEPTH="$5;exit }'` 
 
-if [ -n "`ssh-add -l 2>&1 | grep -i \"could not connect\"`" ]; then
+if [ -n "`ssh-add -l 2>&1 | grep -i \"could not.*connect\"`" ]; then
   TMPFILE="/tmp/ssh-agent-list$$"
   eval `ssh-agent` 2>&1 > "$TMPFILE"
   cat "$TMPFILE" 2>&1 | cut -d\  -f3 | sed -e "s/$/ $$/" \
