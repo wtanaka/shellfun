@@ -69,7 +69,91 @@ case $QUERY_STRING in
 esac
 
 case "${KEYWORD}" in
+   #################################################################
+   # Direct Links
+   #################################################################
+
+   # BART stations
+   bart*station*) forwardto http://bart.gov./riding/stations/ ;;
+   bart*schedule*) forwardto http://bart.gov./riding/planning/ ;;
+   powell*bart*) forwardto http://bart.gov./riding/stations/POWEL/ ;;
+   12*bart*) forwardto http://bart.gov./riding/stations/12ST/ ;;
+   16*bart*) forwardto http://bart.gov./riding/stations/16ST/ ;;
+   19*bart*) forwardto http://bart.gov./riding/stations/19ST/ ;;
+   24*bart*) forwardto http://bart.gov./riding/stations/24ST/ ;;
+   montgomery*bart*) forwardto http://bart.gov./riding/stations/MONTG/ ;;
+   embarcadero*bart*) forwardto http://bart.gov./riding/stations/EMBAR/ ;;
+   civic*center*bart*) forwardto http://bart.gov./riding/stations/CIVIC/ ;;
+   union*city*bart*) forwardto http://bart.gov./riding/stations/UCITY/ ;;
+   ashby*bart*) forwardto http://bart.gov./riding/stations/ASHBY/ ;;
+   fruitvale*bart*) forwardto http://bart.gov./riding/stations/FRTVL/ ;;
+   coliseum*bart*) forwardto http://bart.gov./riding/stations/COLIS/ ;;
+   rockridge*bart*) forwardto http://bart.gov./riding/stations/ROCKR/ ;;
+
+   # Yahoo
+   yahoo%20inbox) forwardto 'http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
+   maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
+   yahoo%20mail|email|mail) forwardto http://mail.yahoo.com/ ;;
+   yahoo|my|myyahoo|my%20yahoo) forwardto http://my.yahoo.com/ ;;
+   calendar) forwardto http://calendar.yahoo.com/ ;;
+
+   # Caltech stuff
+   caltech*credit*union) forwardto http://www.caltech.edu/~cefcu/ ;;
+   caltech%20postal%20service|caltech%20post%20office|mail%20services|caltech%20mail%20services) forwardto http://www.caltech.edu/departmentdirectory/Mail_Services.html ;;
+   academic%20calendar|caltech%20academic%20calendar) forwardto http://www.caltech.edu/acalendar ;;
+   cs1%20grades|cs%201%20grades) forwardto http://www.ugcs.caltech.edu/~cs1/status ;;
+   cs1status|cs%201%20status|cs1%20status|cs%201status) forwardto http://www.ugcs.caltech.edu/~cs1/status ;;
+   cs1%20section|cs%201%20section) forwardto http://www.ugcs.caltech.edu/~cs1/sections#8b ;;
+   cs141|cs%20141) forwardto http://www.cs.caltech.edu./~cs141/ ;;
+   cs1|cs%201) forwardto http://www.ugcs.caltech.edu/~cs1/ ;;
+   cs2|cs%202) forwardto http://www.ugcs.caltech.edu/~cs2/ ;;
+   cs3|cs%203) forwardto http://www.ugcs.caltech.edu/~cs3/ ;;
+   cs286|cs%20286) forwardto http://www.vision.caltech.edu./bond/coursegs.html ;;
+   me115|me115a|me%20115a|me%20115) forwardto http://robby.caltech.edu./~jwb/courses/ME115/ME115.html ;;
+
+   ###################################################################
+   # Other Direct Links
+   ###################################################################
+   kernel*traffic) forwardto http://www.kt.linuxcare.com/kernel-traffic/latest.epl ;;
+   freshmeat) forwardto http://www.freshmeat.net./ ;;
+   swing%20tutorial) forwardto 'http://java.sun.com./docs/books/tutorial/ui/swing/index.html' ;;
+   html%20spefi*|html%20reference|html%20spec*|html%204%20spec|html%204%20specification) forwardto http://www.w3.org/TR/REC-html40/ ;;
+   swing%20connection) forwardto http://java.sun.com./products/jfc/tsc/ ;;
+   xscreensaver) forwardto http://www.jwz.org/xscreensaver/ ;;
+   rpmfind) forwardto http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
+   my%20netscape) forwardto http://my.netscape.com/ ;;
+   soar) forwardto http://soar.berkeley.edu/recipes/ ;;
+   c%2b%2bstandard) forwardto http://www.cygnus.com/misc/wp/nov97/ ;;
+   md5%20rfc) forwardto http://www.cis.ohio-state.edu/htbin/rfc/rfc1321.html ;;
+   musixtex|mutex|musictex) forwardto http://www.gmd.de/Misc/Music/ ;;
+   altima) forwardto http://www.altima.org./ ;;
+   cdnow) forwardto http://www.cdnow.com./ ;;
+   esound) forwardto http://www.tux.org/~ricdude/EsounD.html ;;
+   eterm) forwardto http://www.tcserv.com./Eterm/ ;;
+   gale%20log) forwardto http://www.ugcs.caltech.edu./~jtr/gale/log/ ;;
+   gale) forwardto http://www.gale.org./ ;;
+   gimp) forwardto http://www.gimp.org./ ;;
+   gnome) forwardto http://www.gnome.org./ ;;
+   mediafind) forwardto http://194.95.209.6/ ;;
+   netwatch) forwardto ftp://ftp.slctech.org./pub/ ;;
+   nautilus) forwardto http://www.lila.com/nautilus/ ;;
+   praya) forwardto http://praya.sourceforge.net./ ;;
+   qmail) forwardto http://www.qmail.org./top.html ;;
+   replay) forwardto http://replay.linuxpower.org./ ;;
+   robocup) forwardto http://www.csl.sony.co.jp./RoboCup/New/ ;;
+   scour) forwardto http://www.scour.net/ ;;
+   snarf) forwardto http://xach.dorknet.com./snarf/ ;;
+   soccer%20server) forwardto http://ci.etl.go.jp./~noda/soccer/server/index.html ;;
+   spk) forwardto ftp://screech.alfred.edu./pub/spk/ ;;
+   vim) forwardto http://www.vim.org./ ;;
+   webster) forwardto http://www.m-w.com./ ;;
+   wm2) forwardto http://www.all-day-breakfast.com/wm2/ ;;
+   wmx) forwardto http://www.all-day-breakfast.com/wmx/ ;;
+   x11amp) forwardto http://x11amp.org/ ;;
+
+   ###################################################################
    # re-search / fake command line
+   ###################################################################
    google%20*) forwardto "http://www.google.com./search?q=`echo ${ORIGKEYWORD} | cut -c10-`" ;;
    dict%20*) forwardto "http://m-w.com./cgi-bin/dictionary?book=Dictionary&va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    thes%20*) forwardto "http://m-w.com./cgi-bin/thesaurus?book=Thesaurus&va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
@@ -147,86 +231,6 @@ case "${KEYWORD}" in
    #################################################################
    cvs) forwardto http://www.loria.fr/~molli/cvs-index.html ;;
    cvs%20bubbles) forwardto http://www.loria.fr/%7Emolli/cvs-index.html ;;
-
-   #################################################################
-   # Other stuff
-   #################################################################
-
-   # BART stations
-   bart*station*) forwardto http://bart.gov./riding/stations/ ;;
-   bart*schedule*) forwardto http://bart.gov./riding/planning/ ;;
-   powell*bart*) forwardto http://bart.gov./riding/stations/POWEL/ ;;
-   12*bart*) forwardto http://bart.gov./riding/stations/12ST/ ;;
-   16*bart*) forwardto http://bart.gov./riding/stations/16ST/ ;;
-   19*bart*) forwardto http://bart.gov./riding/stations/19ST/ ;;
-   24*bart*) forwardto http://bart.gov./riding/stations/24ST/ ;;
-   montgomery*bart*) forwardto http://bart.gov./riding/stations/MONTG/ ;;
-   embarcadero*bart*) forwardto http://bart.gov./riding/stations/EMBAR/ ;;
-   civic*center*bart*) forwardto http://bart.gov./riding/stations/CIVIC/ ;;
-   union*city*bart*) forwardto http://bart.gov./riding/stations/UCITY/ ;;
-   ashby*bart*) forwardto http://bart.gov./riding/stations/ASHBY/ ;;
-   fruitvale*bart*) forwardto http://bart.gov./riding/stations/FRTVL/ ;;
-   coliseum*bart*) forwardto http://bart.gov./riding/stations/COLIS/ ;;
-   rockridge*bart*) forwardto http://bart.gov./riding/stations/ROCKR/ ;;
-
-   # Yahoo
-   yahoo%20inbox) forwardto 'http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
-   maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
-   yahoo%20mail|email|mail) forwardto http://mail.yahoo.com/ ;;
-   yahoo|my|myyahoo|my%20yahoo) forwardto http://my.yahoo.com/ ;;
-   calendar) forwardto http://calendar.yahoo.com/ ;;
-
-   # Other
-   kernel*traffic) forwardto http://www.kt.linuxcare.com/kernel-traffic/latest.epl ;;
-   freshmeat) forwardto http://www.freshmeat.net./ ;;
-   swing%20tutorial) forwardto 'http://java.sun.com./docs/books/tutorial/ui/swing/index.html' ;;
-   html%20spefi*|html%20reference|html%20spec*|html%204%20spec|html%204%20specification) forwardto http://www.w3.org/TR/REC-html40/ ;;
-   swing%20connection) forwardto http://java.sun.com./products/jfc/tsc/ ;;
-   xscreensaver) forwardto http://www.jwz.org/xscreensaver/ ;;
-   caltech*credit*union) forwardto http://www.caltech.edu/~cefcu/ ;;
-   rpmfind) forwardto http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
-   my%20netscape) forwardto http://my.netscape.com/ ;;
-   soar) forwardto http://soar.berkeley.edu/recipes/ ;;
-   c%2b%2bstandard) forwardto http://www.cygnus.com/misc/wp/nov97/ ;;
-   md5%20rfc) forwardto http://www.cis.ohio-state.edu/htbin/rfc/rfc1321.html ;;
-   musixtex|mutex|musictex) forwardto http://www.gmd.de/Misc/Music/ ;;
-   altima) forwardto http://www.altima.org./ ;;
-   cdnow) forwardto http://www.cdnow.com./ ;;
-   esound) forwardto http://www.tux.org/~ricdude/EsounD.html ;;
-   eterm) forwardto http://www.tcserv.com./Eterm/ ;;
-   gale%20log) forwardto http://www.ugcs.caltech.edu./~jtr/gale/log/ ;;
-   gale) forwardto http://www.gale.org./ ;;
-   gimp) forwardto http://www.gimp.org./ ;;
-   gnome) forwardto http://www.gnome.org./ ;;
-   mediafind) forwardto http://194.95.209.6/ ;;
-   netwatch) forwardto ftp://ftp.slctech.org./pub/ ;;
-   nautilus) forwardto http://www.lila.com/nautilus/ ;;
-   praya) forwardto http://praya.sourceforge.net./ ;;
-   qmail) forwardto http://www.qmail.org./top.html ;;
-   replay) forwardto http://replay.linuxpower.org./ ;;
-   robocup) forwardto http://www.csl.sony.co.jp./RoboCup/New/ ;;
-   scour) forwardto http://www.scour.net/ ;;
-   snarf) forwardto http://xach.dorknet.com./snarf/ ;;
-   soccer%20server) forwardto http://ci.etl.go.jp./~noda/soccer/server/index.html ;;
-   spk) forwardto ftp://screech.alfred.edu./pub/spk/ ;;
-   vim) forwardto http://www.vim.org./ ;;
-   webster) forwardto http://www.m-w.com./ ;;
-   wm2) forwardto http://www.all-day-breakfast.com/wm2/ ;;
-   wmx) forwardto http://www.all-day-breakfast.com/wmx/ ;;
-   x11amp) forwardto http://x11amp.org/ ;;
-
-   # Caltech stuff
-   caltech%20postal%20service|caltech%20post%20office|mail%20services|caltech%20mail%20services) forwardto http://www.caltech.edu/departmentdirectory/Mail_Services.html ;;
-   academic%20calendar|caltech%20academic%20calendar) forwardto http://www.caltech.edu/acalendar ;;
-   cs1%20grades|cs%201%20grades) forwardto http://www.ugcs.caltech.edu/~cs1/status ;;
-   cs1status|cs%201%20status|cs1%20status|cs%201status) forwardto http://www.ugcs.caltech.edu/~cs1/status ;;
-   cs1%20section|cs%201%20section) forwardto http://www.ugcs.caltech.edu/~cs1/sections#8b ;;
-   cs141|cs%20141) forwardto http://www.cs.caltech.edu./~cs141/ ;;
-   cs1|cs%201) forwardto http://www.ugcs.caltech.edu/~cs1/ ;;
-   cs2|cs%202) forwardto http://www.ugcs.caltech.edu/~cs2/ ;;
-   cs3|cs%203) forwardto http://www.ugcs.caltech.edu/~cs3/ ;;
-   cs286|cs%20286) forwardto http://www.vision.caltech.edu./bond/coursegs.html ;;
-   me115|me115a|me%20115a|me%20115) forwardto http://robby.caltech.edu./~jwb/courses/ME115/ME115.html ;;
 
    %2b*)
       #forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
