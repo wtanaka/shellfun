@@ -171,7 +171,7 @@ xmailbox*mailapp:          echo 'LINES=25; COLUMNS=80; export LINES; export COLU
 *fontfamily.times.large.italic: *adobe-times-medium-i-*-240-*-p-*
 *fontfamily.times.large.bolditalic: *adobe-times-bold-i-*-240-*-p-*
 
-*ttyModes: intr ^C erase ^H susp ^Z kill ^U
+*ttyModes: intr ^C erase ^? susp ^Z kill ^U
 
 *VT100.Translations:	#override <Key>Delete: string(0x1b) string("[3~")\n\
 	<Key>Home: string(0x1b) string("[1~")\n\
