@@ -151,7 +151,7 @@ xscreensavercommandflags=( -demo -prefs -activate -deactivate -cycle -next -prev
 compctl -k "($xscreensavercommandflags)" xscreensaver-command
 unset xscreensavercommandflags
 
-hosts=(freebsd.compile.sourceforge.net. linux.compile.sourceforge.net. sourceforge.net. shell1.sourceforge.net. altair.mili.eu.org. slashdot.org. dragontail.infospheres.com. viceroy.infospheres.com. anglewing.infospheres.com. greenlantern.hero.catori.com. snout.infospheres.com. queen.infospheres.com. moth.infospheres.com. lenin.dabney.caltech.edu. dabney.caltech.edu. hulk.hero.catori.com. mili.eu.org. spica.mili.eu.org. intel.ugcs.caltech.edu. dazzler.hero.catori.com.)
+hosts=(darkhorse.ispheres.com. freebsd.compile.sourceforge.net. linux.compile.sourceforge.net. sourceforge.net. shell1.sourceforge.net. altair.mili.eu.org. slashdot.org. dragontail.infospheres.com. viceroy.infospheres.com. anglewing.infospheres.com. greenlantern.hero.catori.com. snout.infospheres.com. queen.infospheres.com. moth.infospheres.com. lenin.dabney.caltech.edu. dabney.caltech.edu. hulk.hero.catori.com. mili.eu.org. spica.mili.eu.org. intel.ugcs.caltech.edu. dazzler.hero.catori.com.)
 
 sshflags=(-l -n -a  -x -i -t -v -V -q -f -e -c -p -P -L -R -C -g -o)
 compctl -k "($sshflags $hosts)" \
