@@ -117,73 +117,74 @@ Style "*(Linux*"     Icon rndpeng.xpm
 Style "*SunOS*"      Icon rndsun.xpm
 Style "*(Paragon*"   Icon rndintel.xpm
 
-Style "*Oberon *"       Icon rndoberon.xpm
-Style "Gimp"         Icon rndwilb.xpm
-Style "GnomeHelpBrowser"  Icon rndgnome.xpm
-Style "XMathematica"  Icon rndmath.xpm
-Style "soccermonitor" Icon rndsoccer.xpm
-Style "Netscape"      Icon rndscape.xpm
-Style "Calendar"          Icon rndical.xpm
-Style "Reminder"          Icon rndical.xpm
-Style "Gnomecal"      Icon rndcal.xpm
-Style "aumix"         Icon rndmix.xpm
-Style "GV"            Icon rndghost.xpm
-Style "x11amp"        Icon rndxamp.xpm
-Style "Icq"           Icon rndicq.xpm
-Style "Gtkicq"        Icon rndicq.xpm
-Style "LinPopUp"      Icon rndlinpop.xpm
-Style "Gmem"          Icon rndgmem.xpm
-Style "XDvi"          Icon rndxdvi.xpm
-Style "ee"            Icon rndee.xpm
-Style "MapleV*"       Icon rndmaple.xpm
-Style "AcroRead"      Icon rndpdf.xpm
-Style "Tkquerypr*"    Icon rndgnatq.xpm
-Style "Tkgnats*"      Icon rndgnats.xpm
-Style "Tksendpr*"     Icon rndgnatspr.xpm
-Style "gnp+"          Icon rndnote.xpm
-Style "soffice"       Icon rndstar.xpm
-Style "gtcd"          Icon rndgtcd.xpm
-Style GnomeCard       Icon rndcard.xpm
-Style xmms            Icon rndxmms.xpm
-Style ugh             Icon rndflow.xpm
-Style "gnome-napster" Icon rndnapster.xpm
-Style "Gnapster"      Icon rndnapster.xpm
-Style "xmame*"         Icon rndmame.xpm
-Style "pine"          Icon rndpine.xpm
-Style "*Snes9X*"      Icon rndsnes.xpm
-Style "*Snes9x*"      Icon rndsnes.xpm
-Style "Fugu"          Icon rndfugu.xpm
-Style "lyX"           Icon rndlyx.xpm
-Style "xclipboard"    Icon rndclip.xpm
-Style "Xcb"           Icon rndclip.xpm
-Style "*colorsel"     Icon rndcolor.xpm
-Style "Vmw"           Icon rndvmware.xpm
-Style "RealPlay*"     Icon rndreal.xpm
-Style "Mozilla-bin"   Icon rndmozilla.xpm
-Style "Dia"           Icon rnddia.xpm
-Style "Gtk_gnutella"  Icon rndgnut.xpm
-Style "*MpegTV *"      Icon rndmtv.xpm
-Style "XEphem"        Icon rndxephem.xpm
-Style "wo3 hen3 chan2" Icon rndchan.xpm
-Style "gmc"           Icon rndgnome.xpm
-Style "XTalkback"     Icon rndfcirc.xpm
-Style "Galeon*"      Icon rndgaleon.xpm
-Style "YMessenger"    Icon rndyahoo.xpm
-Style "AbiWord*"      Icon rndabi.xpm
-Style "Jpilot"       Icon rndpalm.xpm
-Style "Ethereal"     Icon rndethereal.xpm
-Style "TeamCenter*"  Icon rndteamctr.xpm
-Style "*Workplace"   Icon rndteamctr.xpm
-Style "Gnumeric"     Icon rndgnum.xpm
-Style "Cabal*"       Icon rndcabal.xpm
-Style "OptimizeIt *" Icon rndoptit.xpm
-Style "gedit"        Icon rndgedit.xpm
-Style "gEdit"        Icon rndgedit.xpm
-Style "Fpm"          Icon rndfpm.xpm
-Style "Nautilus"     Icon rndnaut.xpm
+Style "*Oberon *"           Icon rndoberon.xpm
+Style "Gimp"                Icon rndwilb.xpm
+Style "GnomeHelpBrowser"    Icon rndgnome.xpm
+Style "XMathematica"        Icon rndmath.xpm
+Style "soccermonitor"       Icon rndsoccer.xpm
+Style "Netscape"            Icon rndscape.xpm
+Style "Calendar"            Icon rndical.xpm
+Style "Reminder"            Icon rndical.xpm
+Style "Gnomecal"            Icon rndcal.xpm
+Style "aumix"               Icon rndmix.xpm
+Style "GV"                  Icon rndghost.xpm
+Style "x11amp"              Icon rndxamp.xpm
+Style "Icq"                 Icon rndicq.xpm
+Style "Gtkicq"              Icon rndicq.xpm
+Style "LinPopUp"            Icon rndlinpop.xpm
+Style "Gmem"                Icon rndgmem.xpm
+Style "XDvi"                Icon rndxdvi.xpm
+Style "ee"                  Icon rndee.xpm
+Style "MapleV*"             Icon rndmaple.xpm
+Style "AcroRead"            Icon rndpdf.xpm
+Style "Tkquerypr*"          Icon rndgnatq.xpm
+Style "Tkgnats*"            Icon rndgnats.xpm
+Style "Tksendpr*"           Icon rndgnatspr.xpm
+Style "gnp+"                Icon rndnote.xpm
+Style "soffice"             Icon rndstar.xpm
+Style "gtcd"                Icon rndgtcd.xpm
+Style GnomeCard             Icon rndcard.xpm
+Style xmms                  Icon rndxmms.xpm
+Style ugh                   Icon rndflow.xpm
+Style "gnome-napster"       Icon rndnapster.xpm
+Style "Gnapster"            Icon rndnapster.xpm
+Style "xmame*"              Icon rndmame.xpm
+Style "pine"                Icon rndpine.xpm
+Style "*Snes9X*"            Icon rndsnes.xpm
+Style "*Snes9x*"            Icon rndsnes.xpm
+Style "Fugu"                Icon rndfugu.xpm
+Style "lyX"                 Icon rndlyx.xpm
+Style "xclipboard"          Icon rndclip.xpm
+Style "Xcb"                 Icon rndclip.xpm
+Style "*colorsel"           Icon rndcolor.xpm
+Style "Vmw"                 Icon rndvmware.xpm
+Style "RealPlay*"           Icon rndreal.xpm
+Style "Mozilla-bin"         Icon rndmozilla.xpm
+Style "Dia"                 Icon rnddia.xpm
+Style "Gtk_gnutella"        Icon rndgnut.xpm
+Style "*MpegTV *"           Icon rndmtv.xpm
+Style "XEphem"              Icon rndxephem.xpm
+Style "wo3 hen3 chan2"      Icon rndchan.xpm
+Style "gmc"                 Icon rndgnome.xpm
+Style "XTalkback"           Icon rndfcirc.xpm
+Style "Galeon*"             Icon rndgaleon.xpm
+Style "YMessenger"          Icon rndyahoo.xpm
+Style "AbiWord*"            Icon rndabi.xpm
+Style "Jpilot"              Icon rndpalm.xpm
+Style "Ethereal"            Icon rndethereal.xpm
+Style "TeamCenter*"         Icon rndteamctr.xpm
+Style "*Workplace"          Icon rndteamctr.xpm
+Style "Gnumeric"            Icon rndgnum.xpm
+Style "Cabal*"              Icon rndcabal.xpm
+Style "OptimizeIt *"        Icon rndoptit.xpm
+Style "gedit"               Icon rndgedit.xpm
+Style "gEdit"               Icon rndgedit.xpm
+Style "Fpm"                 Icon rndfpm.xpm
+Style "Nautilus"            Icon rndnaut.xpm
 Style "Java Web Start*"     Icon rndjnlp.xpm
-Style "LimeWire*"     Icon rndlime.xpm
-Style "Loki_*"       Icon rndloki.xpm
+Style "LimeWire*"           Icon rndlime.xpm
+Style "Loki_*"              Icon rndloki.xpm
+Style "Soundtracker"        Icon rndsndtrk.xpm
 
 define({{MAGIC}},
    ifelse(
