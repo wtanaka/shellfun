@@ -101,6 +101,7 @@ case "${KEYWORD}" in
    kernel*traffic) forwardto http://www.kt.linuxcare.com/kernel-traffic/latest.epl ;;
    freshmeat) forwardto http://www.freshmeat.net./ ;;
    maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
+   swing%20tutorial) forwardto 'http://java.sun.com./docs/books/tutorial/ui/swing/index.html' ;;
 #   yahoo%20inbox) echo 'Location: http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
 #   caltech*credit*union) echo Location: http://www.caltech.edu/~cefcu/ ;;
 #   rpmfind) echo Location: http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
@@ -177,8 +178,6 @@ case "${KEYWORD}" in
 #                       swing%20api) echo Location: 
 #                    http://java.sun.com./products/jfc/swingdoc-api/index.html ;;
 #                       swing%20connection) echo Location: http://java.sun.com./products/jfc/tsc/ ;;
-#                       swing%20tutorial) echo Location: 
-#                    http://java.sun.com./docs/books/tutorial/ui/swing/index.html ;;
 #                       vim) echo Location: http://www.vim.org./ ;;
 #                       webster) echo Location: http://www.m-w.com./ ;;
 #                       wm2) echo Location: http://www.all-day-breakfast.com/wm2/ ;;
