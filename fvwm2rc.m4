@@ -155,6 +155,7 @@ Style "*Snes9x*"      Icon rndsnes.xpm
 Style "Fugu"          Icon rndfugu.xpm
 Style "lyX"           Icon rndlyx.xpm
 Style "xclipboard"    Icon rndclip.xpm
+Style "Xcb"           Icon rndclip.xpm
 Style "*colorsel"     Icon rndcolor.xpm
 Style "Vmw"           Icon rndvmware.xpm
 Style "RealPlay*"     Icon rndreal.xpm
