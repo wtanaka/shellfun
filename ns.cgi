@@ -172,7 +172,7 @@ case "${KEYWORD}" in
       YP=`echo ${ORIGKEYWORD} | cut -c6-`
       forwardto "http://yp.yahoo.com/py/ypResults.py?stx=${YP}"
       ;;
-   mail%20*) forwardto "http://f1.mail.yahoo.com/py/ymTo.py?&To=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
+   mail%20*) forwardto "http://f139.mail.yahoo.com/ym/Compose?&To=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    rfc%20*) forwardto http://www.cis.ohio-state.edu./htbin/rfc/${KEYWORD}.html | sed -e 's/%20//' ;;
    rfc*) forwardto http://www.cis.ohio-state.edu./htbin/rfc/${KEYWORD}.html ;;
    caltech%20*) forwardto "http://www.search.caltech.edu./CIT_Search/action.lasso?-database=CIT_Search&-noResults=/CIT_Search/No_Result_Found.html&-response=/CIT_Search/Hit_List_CIT_Search.html&-layout=Search_Layout&-maxRecords=100&Search_Field=`echo ${ORIGKEYWORD} | cut -c11-`&-search" ;;
