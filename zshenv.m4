@@ -34,6 +34,49 @@ s()
    export MANPATH="$OLDMANPATH"
 }
 
+edclasspath()
+{
+   FILENAME="`mktemp /tmp/edclasspath.XXXXXX`"
+   rm -f "$FILENAME"
+   OIFS="$IFS"; IFS=":"; for pathpart in $CLASSPATH; do
+      echo "$pathpart" >>! "$FILENAME"
+   done; IFS="$OIFS"
+   if [ -z "$VISUAL" ]; then
+      vi "$FILENAME"
+   else
+      "$VISUAL" "$FILENAME"
+   fi
+   export CLASSPATH=""
+   { while read LINE; do
+      if [ -d "$LINE" -o -f "$LINE" ]; then
+         if [[ -z "${CLASSPATH}" ]]; then
+            export CLASSPATH="${LINE}"
+         else
+            export CLASSPATH="${CLASSPATH}:${LINE}"
+         fi
+      fi
+   done } < "$FILENAME"
+   rm -f "$FILENAME"
+}
+
+preclasspath()
+{
+   for i; do
+      if [ -d "$i" -o -f "$i" ]; then
+         OIFS="$IFS"; IFS=":"; for pathpart in $CLASSPATH; do
+            if [[ "$pathpart" -ef "$i" ]]; then
+               continue 2
+            fi
+         done; IFS="$OIFS"
+         if [[ -z "${CLASSPATH}" ]]; then
+            export CLASSPATH="${i}"
+         else
+            export CLASSPATH="${i}:${CLASSPATH}"
+         fi
+      fi
+   done
+}
+
 edpath()
 {
    FILENAME="`mktemp /tmp/edpath.XXXXXX`"
