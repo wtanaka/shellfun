@@ -168,6 +168,7 @@ Style "gmc"           Icon rndgnome.xpm
 Style "XTalkback"     Icon rndfcirc.xpm
 Style "Galeon*"      Icon rndgaleon.xpm
 Style "YMessenger"    Icon rndyahoo.xpm
+Style "AbiWord*"      Icon rndabi.xpm
 
 define({{MAGIC}},
    ifelse(
