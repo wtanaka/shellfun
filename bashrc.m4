@@ -50,11 +50,26 @@ addclasspath()
    unset OIFS
 }
 
-terminalname() { echo -ne "\033]1;$*\007" }
-terminalnametitle() { echo -ne "\033]0;$*\007" }
-terminaltitlename() { echo -ne "\033]0;$*\007" }
-terminaltitle() { echo -ne "\033]2;$*\007" }
-netscape-newwindow() { netscape -noraise -remote "openURL($*,new-window)" }
+terminalname()
+{
+   echo -ne "\033]1;$*\007" 
+}
+terminalnametitle() 
+{ 
+   echo -ne "\033]0;$*\007" 
+}
+terminaltitlename() 
+{ 
+   echo -ne "\033]0;$*\007" 
+}
+terminaltitle() 
+{
+   echo -ne "\033]2;$*\007" 
+}
+netscape-newwindow() 
+{ 
+   netscape -noraise -remote "openURL($*,new-window)" 
+}
 urlfor() 
 {  
    hostname=`uname -n`
@@ -96,9 +111,9 @@ alias gzip="gzip -9"
 alias U="cvs update -dP"
 alias C="cvs commit"
 
-{{eval 'resetterminaltitle() { if [ -z "$NOSETTERMINALNAME" -a -n "$PS1" ]; then terminalname "'`uname -n`!`whoami`'"; terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')"; fi }'}}
+#{{eval 'resetterminaltitle() { if [ -z "$NOSETTERMINALNAME" -a -n "$PS1" ]; then terminalname "'`uname -n`!`whoami`'"; terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')"; fi }'}}
 
-resetterminaltitle
+#resetterminaltitle
 
 set show-all-if-ambiguous On
 
