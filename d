@@ -41,6 +41,11 @@ urlfor()
    URLFOR="`echo $URLFOR | urlencode`"
 }
 
+hasprog()
+{
+   which $1 2>&1 > /dev/null
+}
+
 screensaveroff()
 {
    xset s off
@@ -298,9 +303,11 @@ for i in "$@"; do
             fi
          ;;
          *.ps)
-            if which gv 2>&1 > /dev/null; then
+            if hasprog ggv; then
+               ggv "$i"
+            elif hasprog gv; then
                gv "$i"
-            elif which ghostview 2>&1 > /dev/null; then
+            elif hasprog ghostview; then
                ghostview "$i"
             fi
          ;;
@@ -309,9 +316,9 @@ for i in "$@"; do
          ;;
          # mpg, mpeg
          *.[Mm][Pp][Gg]|*.[Mm][Pp][Ee][Gg])
-            if which mtv 2>&1 > /dev/null && grep REGISTRATION $HOME/.mtvrc 2>&1 > /dev/null ; then
+            if hasprog mtv && grep REGISTRATION $HOME/.mtvrc 2>&1 > /dev/null ; then
                MTVP_AUDIO_OSS_DELAY_METHOD=2 mtv -ac0 "$i"
-            elif which mtvp 2>&1 > /dev/null; then
+            elif hasprog mtvp; then
                MTVP_AUDIO_OSS_DELAY_METHOD=2 mtvp -ac0 "$i"
             else
                xanim +Ae +Ak +B +f +Sr +l0 "$i" 
@@ -319,10 +326,16 @@ for i in "$@"; do
          ;;
          # .asf, .avi
          *.[Aa][Ss][Ff]|*.[Aa][Vv][Ii])
-            xmms "$i" || if which aviplay 2>&1 > /dev/null; then
+            if hasprog mplayer; then
+               mplayer "$i"
+            elif hasprog aviplay; then
                aviplay "$i"
-            else
+            elif hasprog xmms; then
+               xmms "$i"
+            elif hasprog xanim; then
                xanim +Ae +Ak +B +f +Sr +l0 "$i" 
+            else
+               1>&2 echo no player available
             fi
          ;;
          *.qt|*.mov)
@@ -393,7 +406,7 @@ for i in "$@"; do
    else
       case "$i" in
          file://*|https://*|http://*|ftp://*|www.*|*.com|*.org|*.net)
-            if which gnome-moz-remote; then
+            if hasprog gnome-moz-remote; then
                gnome-moz-remote "$i"
             else
                netscape -noraise -remote "openURL($i)" || \
