@@ -1,6 +1,9 @@
 preclasspath /usr/local/jdk117_v3/lib/classes.zip
+addclasspath /etc/alternatives/java_sdk/jre/lib/rt.jar
 addclasspath /usr/local/java/lib/classes.zip
 addclasspath /usr/lib/j2sdk1.3/jre/lib/rt.jar
+addclasspath /usr/lib/jvm/java-1.3.1-sun-1.3.1.08/jre/lib/rt.jar
+addclasspath /usr/lib/jvm/java-1.4.2-sun-1.4.2.01/jre/lib/rt.jar
 
 ### try swing 1.1.1
 addclasspath /opt/swing-1.1.1fcs/swing.jar
