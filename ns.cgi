@@ -150,6 +150,7 @@ case "${KEYWORD}" in
    wmx) forwardto http://www.all-day-breakfast.com/wmx/ ;;
    x11amp) forwardto http://x11amp.org/ ;;
    dynamic*java) forwardto http://www-sop.inria.fr/koala/djava/ ;;
+   rpm*howto) forwardto http://www.rpm.org/RPM-HOWTO/ ;;
 
    ###################################################################
    # re-search / fake command line
