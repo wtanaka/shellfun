@@ -188,6 +188,7 @@ Style "Soundtracker"        Icon rndsndtrk.xpm
 Style "Audacity"            Icon rndaudac.xpm
 Style "Gdam-launcher"       Icon rndgdam.xpm
 Style "Gnomecc"             Icon rndcontrctr.xpm
+Style "Opera *"             Icon rndopera.xpm
 
 define({{MAGIC}},
    ifelse(
