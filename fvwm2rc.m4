@@ -23,7 +23,7 @@ OpaqueMoveSize 10
 # make sure these fonts exist on your system:
 WindowFont ifelse(SYS_HOST, {{castor.mili.eu.org}},
 {{"-*-fixed-*-*-*-*-7-*-*-*-*-*-*-*"}},
-{{"-*-comicscartoon-*-*-*-*-14-*-*-*-*-*-*-*"}})
+{{"-*-luxi sans-medium-r-*-*-12-*-*-*-*-*-*-*"}})
 IconFont -*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
 
 HilightColor black lightSteelBlue
@@ -631,8 +631,8 @@ ifelse(SYS_LAB,{{DABNEY}},{{Module FvwmAudio}},
 *FvwmPagerFore #484048
 *FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPagerHilight #cab3ca
-#*FvwmPagerGeometry 120x80-0+20
-*FvwmPagerGeometry 90x80-0+20
+*FvwmPagerGeometry 120x80-0+20
+#*FvwmPagerGeometry 90x80-0+20
 *FvwmPagerLabel 0 wtanaka
 *FvwmPagerLabel 1 Maker
 *FvwmPagerLabel 2 Mail
