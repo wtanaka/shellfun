@@ -100,6 +100,7 @@ makewin()
     CASEHOST(agni, agni.i., LightSteelBlue, black)
     CASEHOST(isis, isis.i., LightSteelBlue, black)
     CASEHOST(ra, ra.i., LightSteelBlue, black)
+    CASEHOST(shiva, shiva.i., LightSteelBlue, black)
 
     CASEHOST(spica, spica.mili.eu.org., thistle2, black)
     CASEHOST(altair, altair.mili.eu.org., thistle2, black)
