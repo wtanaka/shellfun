@@ -10,7 +10,7 @@ define({{MENUFONT}},
    ifelse(SYS_LAB, {{UGCS}}, {{-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}},
                              {{-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}}))dnl
 # Samples at ftp://ftp.best.com/pub/tdgilman/Fvwmrcs
-ModulePath /usr/libexec/fvwm/2.2:/usr/lib/X11/fvwm2:/usr/X11/lib/X11/fvwm2:/usr/ug/arch/fvwm-2.2/libexec/fvwm/2.2
+ModulePath /usr/libexec/fvwm/2.2:/usr/lib/X11/fvwm2:/usr/X11/lib/X11/fvwm2:/usr/ug/arch/fvwm-2.2/libexec/fvwm/2.2:/usr/X11R6/lib/X11/fvwm/2.2.5
 PixmapPath PIXMAPPATH
 IconPath ICONPATH 
 
