@@ -199,6 +199,7 @@ case "${KEYWORD}" in
    java%20util) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.util.html ;;
    java%20util%20zip) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.util.zip.html ;;
    java%20rmi) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.rmi.html ;;
+   java%20rmi%20server) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.rmi.server.html ;;
    java%20net) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.net.html ;;
    java%20lang%20reflect) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.lang.reflect.html ;;
    javax%20swing) forwardto http://java.sun.com./products/jfc/swingdoc-api-1.1/javax/swing/package-summary.html ;;
