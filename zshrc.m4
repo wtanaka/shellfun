@@ -198,6 +198,7 @@ hork.ugcs.caltech.edu. \
 hulk.hero.catori.com. \
 insanity.bitfield.org. \
 intel.ugcs.caltech.edu. \
+kind.cs.kun.nl \
 krishna.i. \
 krone.ugcs.caltech.edu. \
 lek.ugcs.caltech.edu. \
