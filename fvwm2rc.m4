@@ -110,12 +110,13 @@ Style "xmosaic"     Color Green/Yellow, ClickToFocus
 Style "*atori*"       Icon rndcatori.xpm
 Style "*Praya*"         Icon rndpraya.xpm
 
-Style "*BSD*"        Icon rndaemon.xpm
-Style "*HP-UX*"      Icon HPMonitor.xpm
-Style "*IRIX*"       Icon rndsgi.xpm
-Style "*(Linux*"     Icon rndpeng.xpm
-Style "*SunOS*"      Icon rndsun.xpm
-Style "*(Paragon*"   Icon rndintel.xpm
+Style "*BSD*"               Icon rndaemon.xpm
+Style "*HP-UX*"             Icon HPMonitor.xpm
+Style "*IRIX*"              Icon rndsgi.xpm
+Style "*(Linux*"            Icon rndpeng.xpm
+Style "*SunOS*"             Icon rndsun.xpm
+Style "*(Paragon*"          Icon rndintel.xpm
+Style "*(Darwin*"           Icon rnddarwin.xpm
 
 Style "*Oberon *"           Icon rndoberon.xpm
 Style "Gimp"                Icon rndwilb.xpm
