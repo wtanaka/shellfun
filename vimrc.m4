@@ -52,7 +52,11 @@ autocmd BufNewFile *.cc $r!cat $HOME/.skel/blah.cc | sed -e 's/{blah}/<afile>:r/
 
 " autocmd BufNewFile *.html 1,$!cat $HOME/.skel/blah.html | sed -e 's/{blah}/<afile>:r/g'
 autocmd BufNewFile *.html 1,1!echo "<HTML><HEAD><TITLE>"<afile>:t:r"</TITLE></HEAD>"
-autocmd BufNewFile *.html normal Go<BODY></BODY></HTML>
+autocmd BufNewFile *.html normal Go<BODY bgcolor="white" text="black"><DIV ALIGN="center">
+autocmd BufNewFile *.html $!echo "<H1>"<afile>:t:r"</H1>"
+autocmd BufNewFile *.html normal Go<H4>Prepared By: Wesley Tanaka</H4>
+autocmd BufNewFile *.html $!echo "<H4>"`date +"\%Y \%B \%e"`"</H4>"
+autocmd BufNewFile *.html normal Go<H4>$Date$ $Revision$</H4></DIV></BODY></HTML>
 
 " autocmd BufNewFile *.latex 1,$!cat $HOME/.skel/blah.latex | sed -e 's/{blah}/<afile>:r/g' -e "s/{date}/`date`/g"
 autocmd BufNewFile *.latex set comments=
