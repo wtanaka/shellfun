@@ -31,5 +31,8 @@ else
    fi
 fi
 
+addclasspath "$HOME/wohenchan/src"
+addclasspath "$HOME/herdme/src"
+
 addclasspath "$HOME/beanos/src"
 addclasspath /usr/local/JSDK2.0/lib/jsdk.jar
