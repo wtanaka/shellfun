@@ -17,7 +17,8 @@ ImagePath PIXMAPPATH:ICONPATH
 
 EdgeResistance 0 10
 EdgeScroll 100 100
-ClickTime 100
+ClickTime 50
+DoubleClickTime 200
 OpaqueMoveSize 10
 
 # make sure these fonts exist on your system:
@@ -261,16 +262,25 @@ Mouse 1     R        M           Menu RootMenu Nop
 Mouse 3     R        N           Menu Logins Nop
 Mouse 1     R        C           Menu Logins Nop
 
-#Mouse 0     1        A           Menu Window-Ops2 Close
-#Mouse 0     3        A          Maximize-Func
 Mouse 1     T        A           Main-Titlebar-Click
+Mouse 1     FS       A           Resize-or-Raise
+Mouse 1     I        N           Iconify
 Mouse 1     ITWFS    MAGIC       Main-Titlebar-Click
 Mouse 2     FST      A           Menu Window-Ops2 Close
 Mouse 2     ITWFS    MAGIC       Menu Window-Ops2 Close
 Mouse 3     FST      A           Iconify
 Mouse 3     ITWFS    MAGIC       Iconify
-Mouse 1     FS       A           Resize-or-Raise
-Mouse 1     I        N           Iconify
+
+AddToFunc Main-Titlebar-Click    "M" Move
++                                "M" Raise
++                                "C" RaiseLower
++                                "D" WindowShade
+
+AddToFunc Resize-or-Raise	"I" Raise
++                          "M" Resize
++                          "D" Lower
+
+
 
 #   for other parts of the window/borders/icons:
 
@@ -484,11 +494,6 @@ AddToFunc UtilityFunction "I" Next [iconic Utility?xterm] Iconify -1
 +           "I" Next [Utility?xterm] FocusRaise
 +           "I" None [Utility?xterm] Exec env XTERMTYPE=utility xterm -ls -geometry 80x15-0-0 -n "Utility xterm" -T "Utility xterm"
 
-AddToFunc Main-Titlebar-Click    "M" Move
-+                                "M" Raise
-+                                "C" RaiseLower
-+                                "D" WindowShade
-
 AddToFunc Move-or-Raise-or-Shade "I" Raise
 +                                "I" Move
 +                                "D" WindowShade
@@ -504,10 +509,6 @@ AddToFunc Maximize-Func		"M" Maximize	 0 100
 AddToFunc Move-or-Iconify	"I" Raise
 +				"M" Move
 +				"D" Iconify
-
-AddToFunc Resize-or-Raise	"I" Raise
-+				"M" Resize
-+				"D" Lower
 
 AddToFunc Resize-or-Raise2	"M" Raise
 +				"M" Resize
