@@ -32,27 +32,6 @@ MenuStyle black grey60 grey40 MENUFONT win anim
 
 ColormapFocus FollowsFocus
 
-# small up triangle
-# ButtonStyle 2 4 50x35@1 65x65@0 35x65@0 50x35@1
-# small down triangle
-# ButtonStyle 4 4 50x65@1 35x35@1 65x35@1 50x65@0
-# large up triangle
-# ButtonStyle 2 4 50x25@1 75x75@0 25x75@0 50x25@1
-# large down triangle
-# ButtonStyle 4 4 50x75@1 25x25@1 75x25@1 50x75@0
-# big box
-# ButtonStyle 2 5 25x25@1 25x75@1 75x75@0 75x25@0 25x25@1
-# little box
-# ButtonStyle 8 5 40x40@1 60x40@1 60x60@0 40x60@0 40x40@1
-# tall box
-# ButtonStyle 6 5 40x25@1 60x25@1 60x75@0 40x75@0 40x25@1
-# dot
-# ButtonStyle 4 5 45x45@1 55x45@1 55x55@0 45x55@0 45x45@1
-# an up arrow:
-# ButtonStyle 2 8 40x80@1 40x50@1 20x50@1 50x20@1 80x50@0 60x50@0 60x80@0 40x80@0
-# an X
-# ButtonStyle 3 13 26x29@1 34x21@1 50x35@1 70x21@1 79x29@1 63x48@0 79x65@1 70x75@
-
 # default Styles:
 Style "*"           BorderWidth 0, HandleWidth ifelse(
 SYS_HOST, {{castor.mili.eu.org}}, {{3}}, 
@@ -760,47 +739,3 @@ ifelse(SYS_LAB,{{DABNEY}},{{Module FvwmAudio}},
 *QuitVerifyButton   quit      "Cancel"
 *QuitVerifyCommand  Nop
 
-## MyTalk & MyFvwmTalk from Dave Goldberg
-## MyTalk Form - dissappears after use
-#*MyTalkWarpPointer
-#*MyTalkFont *helvetica*m*r*n*14*
-#*MyTalkButtonFont *helvetica*m*o*n*14*
-#*MyTalkInputFont *cour*m*r*n*14*
-#*MyTalkFore Red
-#*MyTalkBack Gray
-#*MyTalkItemFore Blue
-#*MyTalkItemBack Gray
-#*MyTalkLine center
-#*MyTalkText "Fvwm Function"
-#*MyTalkInput Func 40 ""
-#*MyTalkLine expand
-#*MyTalkButton quit "Run" ^M
-#*MyTalkCommand $(Func)
-#*MyTalkButton restart "Clear" ^R
-#*MyTalkButton quit "Cancel" ^C
-#*MyTalkCommand Nop
-## MyFvwmTalk Form - sticks around
-#*MyFvwmTalkWarpPointer
-#*MyFvwmTalkFont *helvetica*m*r*n*14*
-#*MyFvwmTalkButtonFont *helvetica*m*o*n*14*
-#*MyFvwmTalkInputFont *cour*m*r*n*14*
-#*MyFvwmTalkFore Red
-#*MyFvwmTalkBack Gray
-#*MyFvwmTalkItemFore Blue
-#*MyFvwmTalkItemBack Gray
-#*MyFvwmTalkLine center
-#*MyFvwmTalkText "Fvwm Function"
-#*MyFvwmTalkInput Func 40 ""
-#*MyFvwmTalkLine expand
-#*MyFvwmTalkButton restart "Run" ^M
-#*MyFvwmTalkCommand $(Func)
-#*MyFvwmTalkButton restart "Clear" ^R
-#*MyFvwmTalkCommand Nop
-#*MyFvwmTalkButton restart "Iconify" ^Z
-#*MyFvwmTalkCommand Next [MyFvwmTalk] Iconify
-#*MyFvwmTalkButton quit "Quit" ^C
-#*MyFvwmTalkCommand Nop
-
-# to change banner pixmap
-#*FvwmBannerPixmap fvwm3.xpm
-#*FvwmBannerTimeout 2
