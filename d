@@ -141,8 +141,8 @@ for i in "$@"; do
          *.[Rr][Aa]|*.[Rr][Mm]|*.[Rr][Aa][Mm])
             realplay "$i" || rvplayer "$i"
          ;;
-         # xwd, bmp, png, jpg, jpeg, gif, xpm
-         *.[Xx][Ww][Dd]|*.[xX][pP][mM]|*.[bB][mM][pP]|*.[pP][nN][gG]|*.[jJ][pP][eE][gG]|*.[jJ][pP][gG]|*.[gG][iI][fF])
+         # xwd, bmp, png, jpg, jpeg, gif, xpm, tga
+         *.[Xx][Ww][Dd]|*.[xX][pP][mM]|*.[bB][mM][pP]|*.[pP][nN][gG]|*.[jJ][pP][eE][gG]|*.[jJ][pP][gG]|*.[gG][iI][fF]|*.[Tt][Gg][Aa])
             if [ -n "$DISPLAY" ]; then
                ee "$i"  || xv "$i"
             elif [ "$TERM" = "linux" ]; then
