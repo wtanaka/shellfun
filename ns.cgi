@@ -143,7 +143,8 @@ case "${KEYWORD}" in
    #################################################################
 
    # BART stations
-   bart*station*) forwardto http://bart.gov./riding/stations/index.htm ;;
+   bart*station*) forwardto http://bart.gov./riding/stations/ ;;
+   bart*schedule*) forwardto http://bart.gov./riding/planning/ ;;
    powell*bart*) forwardto http://bart.gov./riding/stations/POWEL/ ;;
    12*bart*) forwardto http://bart.gov./riding/stations/12ST/ ;;
    16*bart*) forwardto http://bart.gov./riding/stations/16ST/ ;;
