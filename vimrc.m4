@@ -52,6 +52,7 @@ autocmd BufNewFile *.cc $r!cat $HOME/.skel/blah.cc | sed -e 's/{blah}/<afile>:r/
 
 " autocmd BufNewFile *.html 1,$!cat $HOME/.skel/blah.html | sed -e 's/{blah}/<afile>:r/g'
 autocmd BufNewFile *.html 1,1!echo "<HTML><HEAD><TITLE>"<afile>:t:r"</TITLE></HEAD>"
+autocmd BufNewFile *.html normal Go<STYLE type="text/css">OL.upperroman { list-style-type: upper-roman }OL.upperalpha { list-style-type: upper-alpha }</STYLE>
 autocmd BufNewFile *.html normal Go<BODY bgcolor="white" text="black"><DIV ALIGN="center">
 autocmd BufNewFile *.html $!echo "<H1>"<afile>:t:r"</H1>"
 autocmd BufNewFile *.html normal Go<H4><a href="wtanaka@ispheres.com">Wesley Tanaka</a></H4>
