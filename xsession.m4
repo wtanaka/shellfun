@@ -66,7 +66,8 @@ ifelse(SYS_LAB, {{UGCS}}, {{fvwm & 4va -s50 `fortune 4vafiles` -geometry150x150+
 {{fvwm2 &}}
 )
 
-xscreensaver &
+ifelse(SYS_HOST, {{altair.mili.eu.org}}, {{xset s on}},
+       {{xscreensaver &}})
 
 if [ "`uname`" = "Linux" ]; then
   xset m 4 4
