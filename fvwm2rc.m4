@@ -177,6 +177,7 @@ Style "Gnumeric"     Icon rndgnum.xpm
 Style "Cabal*"       Icon rndcabal.xpm
 Style "OptimizeIt *" Icon rndoptit.xpm
 Style "gedit"        Icon rndgedit.xpm
+Style "Fpm"          Icon rndfpm.xpm
 
 define({{MAGIC}},
    ifelse(
