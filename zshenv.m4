@@ -38,8 +38,9 @@ edclasspath()
 {
    FILENAME="`mktemp /tmp/edclasspath.XXXXXX`"
    rm -f "$FILENAME"
+   :>"$FILENAME"
    OIFS="$IFS"; IFS=":"; for pathpart in $CLASSPATH; do
-      echo "$pathpart" >>! "$FILENAME"
+      echo "$pathpart" >> "$FILENAME"
    done; IFS="$OIFS"
    if [ -z "$VISUAL" ]; then
       vi "$FILENAME"
