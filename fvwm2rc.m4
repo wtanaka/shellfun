@@ -167,6 +167,7 @@ Style "wo3 hen3 chan2" Icon rndchan.xpm
 Style "gmc"           Icon rndgnome.xpm
 Style "XTalkback"     Icon rndfcirc.xpm
 Style "Galeon*"      Icon rndgaleon.xpm
+Style "YMessenger"    Icon rndyahoo.xpm
 
 define({{MAGIC}},
    ifelse(
