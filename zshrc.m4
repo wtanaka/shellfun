@@ -13,6 +13,7 @@ GALE_SYS_DIR=ifelse(SYS_LAB,{{UGCS}},{{/home/egnor/etc/gale}},
                     SYS_HOST,{{dragontail.i}},{{/home/gale/etc/gale}},
                              {{/usr/local/etc/gale}})
 
+{{
 precmd()
 {
    EXIT_STATUS=$?
@@ -54,6 +55,7 @@ precmd()
       RPROMPT="${RPROMPT} $signal_names[$EXIT_STATUS]"
    fi
 }
+}}
 
 ifelse(SYS_HOST,{{usw-pr-shell1}},praya=/home/groups/p/pr/praya
 )dnl
