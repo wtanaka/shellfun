@@ -198,7 +198,7 @@ for i in $@; do
          if [ "$SERVER" = "HERE" ]; then
             CMD=""
             if [ -n "$HOST" ]; then
-               CMD="$CMD -e ssh $COMPRESS -c blowfish $HOST"
+               CMD="$CMD -e ssh -X $COMPRESS -c blowfish $HOST"
                "$TERM" -fg "$FG" -bg "$BG" $CMD &
             fi
          else
