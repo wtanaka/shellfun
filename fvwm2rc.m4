@@ -166,7 +166,7 @@ Style "Dia"                 Icon rnddia.xpm
 Style "Gtk_gnutella"        Icon rndgnut.xpm
 Style "*MpegTV *"           Icon rndmtv.xpm
 Style "XEphem"              Icon rndxephem.xpm
-Style "wo3 hen3 chan2"      Icon rndchan.xpm
+Style "wo*hen*chan*"        Icon rndchan.xpm
 Style "gmc"                 Icon rndgnome.xpm
 Style "XTalkback"           Icon rndfcirc.xpm
 Style "Galeon*"             Icon rndgaleon.xpm
