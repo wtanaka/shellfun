@@ -41,7 +41,11 @@ edpath()
    for pathpart in $path; do
       echo "$pathpart" >>! "$FILENAME"
    done
-   "$VISUAL" "$FILENAME"
+   if [ -z "$VISUAL" ]; then
+      vi "$FILENAME"
+   else
+      "$VISUAL" "$FILENAME"
+   fi
    export PATH=""
    { while read LINE; do
       if [[ -d "$LINE" ]]; then
