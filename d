@@ -181,6 +181,10 @@ for i in "$@"; do
          *.pdf|*.[Pp][Dd][Ff]) # pdf files
             acroread "$i" || xpdf "$i" 
          ;;
+         # .asf, .avi
+         *.[Aa][Ss][Ff]|*.[Aa][Vv][Ii])
+            xmms "$i" || aviplay "$i"
+         ;;
          # .mp2 .mp3
          *.[mM][pP]2|*.[mM][pP]3)
             if [ -n "$DISPLAY" ]; then
