@@ -203,7 +203,7 @@ for i in $@; do
             fi
          else
             if [ -n "$HOST" ]; then
-               ssh -f "$HOST" $COMPRESS -c blowfish "$TERM" -ls -fg $FG -bg $BG
+               ssh -X -f "$HOST" $COMPRESS -c blowfish "$TERM" -ls -fg $FG -bg $BG
             fi
          fi
          ;;
