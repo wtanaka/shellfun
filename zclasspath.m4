@@ -39,5 +39,8 @@ addclasspath "$HOME/herdme/src"
 addclasspath "$HOME/cabal/src"
 addclasspath "$HOME/praya"
 
+addclasspath "$HOME/ecgs/classes"
+addclasspath "$HOME/ecgs/source"
+
 addclasspath "$HOME/beanos/src"
 addclasspath /usr/local/JSDK2.0/lib/jsdk.jar
