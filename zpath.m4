@@ -50,6 +50,7 @@ if [ -x /usr/local/bin/ccoarch ]; then
 fi
 addpath "/ufs/info/bin/`uname -s``uname -r`/jdk1.1.3/bin"
 addpath /ofb/bin
+addpath /home/contrib/bin
 
 addpath ~/infospheres/src/scripts
 
