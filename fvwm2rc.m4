@@ -186,6 +186,7 @@ Style "LimeWire*"           Icon rndlime.xpm
 Style "Loki_*"              Icon rndloki.xpm
 Style "Soundtracker"        Icon rndsndtrk.xpm
 Style "Audacity"            Icon rndaudac.xpm
+Style "Gdam-launcher"       Icon rndgdam.xpm
 
 define({{MAGIC}},
    ifelse(
