@@ -292,10 +292,11 @@ alias dir="ls -Flstr"
 export ARCH=`uname -m`
 )dnl
 
+{{
 make_commands_reset_terminal_title()
 {
    for i in "$@"; do
-      {{eval "$i() { command $i \"\$@\" ; resetterminaltitle }"}}
+      eval "$i() { command $i \"\$@\" ; resetterminaltitle }"
    done
 }
 if [ ! "$TERM" = "linux" -a ! "$XTERMTYPE" = "utility" ]; then
@@ -304,4 +305,4 @@ fi
 
 unfunction make_commands_reset_terminal_title
 
-{{eval 'resetterminaltitle() { if [[ -z "$NOSETTERMINALNAME" && -o interactive ]]; then terminalname "'`uname -n`!`whoami`'"; terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')"; fi }'}}
+eval 'resetterminaltitle() { if [[ -z "$NOSETTERMINALNAME" && -o interactive ]]; then terminalname "'`uname -n`!`whoami`'"; terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')"; fi }'}}
