@@ -110,6 +110,13 @@ if [ -d "$FPATH" ]; then
    cd "$OWD"
 fi
 
+if [ -n "`which arch | grep -v not\ found`" ]; then
+   export ARCH=`arch`
+fi
+if [ -n "`which uname | grep -v not\ found`" ]; then
+   export OSNAME=`uname -s`
+fi
+
 alias pu="pushd"
 alias po="popd"
 alias cp="cp -i"
@@ -118,11 +125,11 @@ alias rm="rm -i"
 alias z="zwrite wtanaka"
 alias less="less -ieXw"
 alias cvs="cvs -q -z6"
+alias dir="ls -lstr"
+if [ "$OSNAME" = "Linux" ]; then
+   alias dir="ls --color=tty -lstr"
+fi
 }}
-ifelse(SYS_HOST, {{lugh}}, {{alias dir="ls -lstr"}},
-SYS_LAB, {{CCO}}, {{alias dir="ls -lstr"}},
-{{alias dir="ls --color=tty -lstr"}}
-)dnl
 {{
 alias who="who -iHw"
 alias gzip="gzip -9"
@@ -130,9 +137,6 @@ alias U="cvs update -dP"
 alias C="cvs commit"
 Rd() { cvs -d `cat $@/CVS/Root` release -d $@ }
 
-if [ -n "`which arch | grep -v not\ found`" ]; then
-   export ARCH=`arch`
-fi
 READNULLCMD=""
 }}
 
