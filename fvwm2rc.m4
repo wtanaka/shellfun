@@ -190,6 +190,7 @@ Style "Audacity"            Icon rndaudac.xpm
 Style "Gdam-launcher"       Icon rndgdam.xpm
 Style "Gnomecc"             Icon rndcontrctr.xpm
 Style "Opera *"             Icon rndopera.xpm
+Style "xpdf"                Icon rndxpdf.xpm
 
 define({{MAGIC}},
    ifelse(
