@@ -179,6 +179,7 @@ case "${KEYWORD}" in
    gale%20bug%20*) forwardto "http://bugs.gale.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c14-`" ;;
    mozilla%20bug%20*) forwardto "http://bugzilla.mozilla.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c17-`" ;;
    unity%20*) forwardto "http://unity.i/twiki/bin/view/Unity/`echo ${ORIGKEYWORD} | cut -c9-`" ;;
+   us%20patent%20*) forwardto "http://164.195.100.11/netacgi/nph-Parser?TERM1=`echo ${ORIGKEYWORD} | cut -c15-`&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2Fsrchnum.htm&r=0&f=S&l=50" ;;
 
    ###################################################################
    # Programming: Languages
