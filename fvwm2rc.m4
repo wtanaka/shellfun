@@ -194,6 +194,7 @@ Style "Opera *"             Icon rndopera.xpm
 Style "xpdf"                Icon rndxpdf.xpm
 Style "aviplay"             Icon rndaviplay.xpm
 Style "Usage dialog is yo*" Icon rndaviplay.xpm
+Style "GnuCash"             Icon rndmoney.xpm
 
 define({{MAGIC}},
    ifelse(
