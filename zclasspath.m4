@@ -1,4 +1,5 @@
 addclasspath /usr/local/java/lib/classes.zip
+addclasspath /usr/lib/j2sdk1.3/jre/lib/rt.jar
 
 ### try swing 1.1.1
 addclasspath /opt/swing-1.1.1fcs/swing.jar
