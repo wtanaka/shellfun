@@ -167,9 +167,9 @@ for i in "$@"; do
                xanim +Ae +Ak +B +f +Sr +l0 "$i" 
             fi
          ;;
-         # avi
-         *.[aA][vV][iI])
-            if which aviplay 2>&1 > /dev/null; then
+         # .asf, .avi
+         *.[Aa][Ss][Ff]|*.[Aa][Vv][Ii])
+            xmms "$i" || if which aviplay 2>&1 > /dev/null; then
                aviplay "$i"
             else
                xanim +Ae +Ak +B +f +Sr +l0 "$i" 
@@ -180,10 +180,6 @@ for i in "$@"; do
          ;;
          *.pdf|*.[Pp][Dd][Ff]) # pdf files
             acroread "$i" || xpdf "$i" 
-         ;;
-         # .asf, .avi
-         *.[Aa][Ss][Ff]|*.[Aa][Vv][Ii])
-            xmms "$i" || aviplay "$i"
          ;;
          # .mp2 .mp3
          *.[mM][pP]2|*.[mM][pP]3)
