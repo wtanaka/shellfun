@@ -211,6 +211,7 @@ altair.mili.eu.org. \
 slashdot.org. \
 dragontail.i. \
 viceroy.i. \
+satyr.i. \
 anglewing.i. \
 greenlantern.hero.catori.com. \
 snout.i. \
