@@ -124,9 +124,7 @@ makewin()
     CASEHOST(fmonger, fmonger.mili.eu.org., thistle2, black)
     CASEHOST(castor, castor.mili.eu.org., thistle2, black)
 
-    CASEHOST(info, info.cs.caltech.edu., PaleGoldenrod, black)
-    CASEHOST(sphere, sphere.cs.caltech.edu., PaleGoldenrod, black)
-    CASEHOST(socrates, socrates.cs.caltech.edu., PaleGoldenrod, black)
+    CASEHOST(ofb, ofb.net., PaleGoldenrod, black)
 
     CASEHOST(maestro, maestro.cs.caltech.edu., GoldenRod1, black)
     CASEHOST(cezanne, cezanne.cs.caltech.edu., GoldenRod1, black)
