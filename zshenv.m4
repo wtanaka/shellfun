@@ -207,7 +207,6 @@ which jikes >& /dev/null && export JAVAC=jikes\ +P
 #export ESPEAKER="mili.eu.org:5001"
 export CVSROOT="$HOME/cvsroot"
 export CVS_RSH="ssh"
-export IRCNAME="BoXo D Clown"
 export PAGER="less -ieXw"
 export VISUAL=vim
 export WWW_HOME="http://mili.eu.org/~wtanaka/"

@@ -159,7 +159,6 @@ umask 022
 HISTSIZE=1000
 export CVSROOT="$HOME/cvsroot"
 export CVS_RSH="ssh"
-export IRCNAME="BoXo D Clown"
 export PAGER="less -ieXw"
 export VISUAL=vi
 if which vim > /dev/null 2>&1; then
