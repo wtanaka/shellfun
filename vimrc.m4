@@ -19,6 +19,7 @@ set nowrap
 set showmatch
 set visualbell
 set ttyscroll=3
+set nohlsearch
 set suffixes=".bak,~,.o,.h,.info,.swp,.class"
 
 :if version >= 500
