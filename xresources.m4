@@ -10,6 +10,7 @@ XTerm*foreground: white
 XTerm.VT100.geometry: 80x25
 XTerm.VT100.scrollBar: False
 XTerm.VT100.font: -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
+XTerm.VT100.colorBDMode: false
 XTerm*VT100*translations: #override \
         Shift           <Btn4Down>: scroll-back(1,line)         \n\
         Ctrl            <Btn4Down>: scroll-back(1,halfpage)     \n\
