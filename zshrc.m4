@@ -9,7 +9,7 @@ RRPROMPT="(%m) %B%T%b%(0?,, [exit %?])")
 ifelse(SYS_HOST,{{castor.mongers.ml.org}},setopt NO_BEEP NO_HIST_BEEP NO_LIST_BEEP)
 GALE_SYS_DIR=ifelse(SYS_LAB,{{UGCS}},{{/home/egnor/etc/gale}},
                     SYS_LAB,{{CS}},{{/home/jtr/etc/gale}},
-                    SYS_HOST,{{altair.mili.eu.org}},{{/opt/gale-0.90c/etc/gale}},
+                    SYS_HOST,{{altair.mili.eu.org}},{{/usr/etc/gale}},
                     SYS_HOST,{{dragontail.i}},{{/home/gale/etc/gale}},
                              {{/usr/local/etc/gale}})
 
