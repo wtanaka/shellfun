@@ -137,4 +137,14 @@ if [ -f "$HOME/.mozilla/wtanaka/"*"/prefs.js" ]; then
     done
   fi
 fi
+
+if [ -f "$HOME/.mozilla/wtanaka/"*"/prefs.js" ]; then
+  if 2>&1 grep dom.disable_open_during_load "$HOME/.mozilla/wtanaka/"*"/prefs.js" >/dev/null; then
+    :
+  else
+    for i in $HOME/.mozilla/wtanaka/*/prefs.js; do
+       echo 'user_pref("dom.disable_open_during_load", true);' >> "$i"
+    done
+  fi
+fi
 #exec rm gen
