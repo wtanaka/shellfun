@@ -29,7 +29,8 @@ precmd()
       {
          read LINE
          while [ -n "$LINE" ]; do
-            TODOLINES="$[ $TODOLINES + 1 ]"
+            #TODOLINES="$[ $TODOLINES + 1 ]"
+            (( TODOLINES++ ))
             read LINE
          done
       } < "$TODOFILE"
