@@ -116,4 +116,9 @@ ifrm x~
 ifrm shells.m4
 ifrm shells.m4~
 ifrm zpath.m4~
+
+if [ -f "$HOME/.netscape/preferences.js" ] && \
+   ! 2>&1 grep network.search.url "$HOME/.netscape/preferences.js" >/dev/null ; then
+   echo 'user_pref("network.search.url", "http://shellfun.sourceforge.net./cgi-bin/ns?");' >> $HOME/.netscape/preferences.js
+fi
 #exec rm gen
