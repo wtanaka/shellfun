@@ -196,7 +196,11 @@ for i in "$@"; do
             fi
          ;;
          *.ps)
-            ghostview $i
+            if which gv 2>&1 > /dev/null; then
+               gv "$i"
+            elif which ghostview 2>&1 > /dev/null; then
+               ghostview "$i"
+            fi
          ;;
          *.xcf|*.xcf.bz2|*.xcf.gz)
             gimp $i 
