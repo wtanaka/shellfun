@@ -61,11 +61,9 @@ case $QUERY_STRING in
 esac
 
 case "${KEYWORD}" in
-   # re-search
-   caltech%20*) forwardto "http://www.search.caltech.edu/CIT_Search/action.lasso?-database=CIT_Search&-noResults=/CIT_Search/No_Result_Found.html&-response=/CIT_Search/Hit_List_CIT_Search.html&-layout=Search_Layout&-maxRecords=100&Search_Field=`echo ${ORIGKEYWORD} | cut -c11-`&-search" ;;
-   # cmd line
-   dict%20*) forwardto "http://m-w.com./cgi-bin/dictionary?va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
-   thes%20*) forwardto "http://m-w.com./cgi-bin/thesaurus?va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
+   # re-search / fake command line
+   dict%20*) forwardto "http://m-w.com./cgi-bin/dictionary?book=Dictionary&va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
+   thes%20*) forwardto "http://m-w.com./cgi-bin/thesaurus?book=Thesaurus&va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    map%20*) %2F
       ARG=`echo ${ORIGKEYWORD} | cut -c7- | urldecode`
       ADDR=`echo ${ARG} | cut -d\/ -f1`
@@ -73,12 +71,18 @@ case "${KEYWORD}" in
       forwardto "http://maps.yahoo.com/py/maps.py?Pyt=Tmap&addr=$ADDR&csz=$CSZ&country=us&Get%A0Map=Get+Map"
       ;;
    mail%20*) forwardto "http://f1.mail.yahoo.com/py/ymTo.py?&To=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
+   rfc%20*) forwardto http://www.cis.ohio-state.edu/htbin/rfc/${KEYWORD}.html | sed -e 's/%20//' ;;
+   rfc*) forwardto http://www.cis.ohio-state.edu/htbin/rfc/${KEYWORD}.html ;;
+   caltech%20*) forwardto "http://www.search.caltech.edu/CIT_Search/action.lasso?-database=CIT_Search&-noResults=/CIT_Search/No_Result_Found.html&-response=/CIT_Search/Hit_List_CIT_Search.html&-layout=Search_Layout&-maxRecords=100&Search_Field=`echo ${ORIGKEYWORD} | cut -c11-`&-search" ;;
 
+   ###################################################################
+   # Programming: Languages
+   ###################################################################
    # java stuff: hardcoded
+   swing%20api) forwardto http://java.sun.com./products/jfc/swingdoc-api/index.html ;;
    servlet%20api) forwardto http://www.javasoft.com/products/servlet/2.1/api/packages.html ;;
    java%20lang*%20spec*) forwardto http://java.sun.com./docs/books/jls/html/index.html ;;
-   jtextarea) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JTextArea.html ;;
-   joptionpane) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JOptionPane.html ;;
+
    # java APIs
    java%20lang) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.lang.html ;;
    java%202%20api) forwardto http://java.sun.com./products/jdk/1.2/docs/api/index.html ;;
@@ -96,95 +100,110 @@ case "${KEYWORD}" in
    java%20applet%20*|java%20awt%20*|java%20awt%20datatransfer%20*|java%20awt%20event%20*|java%20awt%20image%20*|java%20beans%20*|java%20io%20*|java%20lang%20*|java%20lang%20reflect%20*|java%20math%20*|java%20net%20*|java%20rmi%20*|java%20rmi%20dgc%20*|java%20rmi%20registry%20*|java%20rmi%20server%20*|java%20security%20*|java%20security%20acl%20*|java%20security%20interfaces%20*|java%20sql%20*|java%20text%20*|java%20util%20*|java%20util%20zip%20*) forwardto http://java.sun.com./products/jdk/1.1/docs/api/${ORIGKEYWORD}.html#_top_ | sed -e 's/%20/./g' ;;
    javax%20swing*) forwardto http://java.sun.com./products/jfc/swingdoc-api-1.1/${ORIGKEYWORD}.html | sed -e 's/%20/\//g' ;;
    javax%20servlet*) forwardto http://jserv.javasoft.com/products/java-server/documentation/webserver1.0.2/apidoc/${ORIGKEYWORD}.html | sed -e 's/%20/./g' ;;
+   # Java: Special cases
+   gridlayout) forwardto http://java.sun.com./products/jdk/1.2/docs/api/java/awt/GridLayout.html ;;
+   gridbaglayout) forwardto http://java.sun.com./products/jdk/1.2/docs/api/java/awt/GridBagLayout.html ;;
+   jtextcomponent) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/text/JTextComponent.html ;;
+   jcomponent) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JComponent.html ;;
+   jtable%20tutorial) forwardto http://java.sun.com./docs/books/tutorial/ui/swing/table.html ;;
+   jtextarea) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JTextArea.html ;;
+   joptionpane) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JOptionPane.html ;;
+
+
+   # Java compilers
+   guavac) forwardto ftp://ftp.yggdrasil.com/pub/dist/devel/compilers/guavac ;;
+
+   # Pike
+   pike) forwardto http://pike.idonex.se/ ;;
+
+   # MPI
+   mpi_recv) forwardto http://www.mcs.anl.gov/Projects/mpi/www/www3/MPI_Recv.html ;;
+   mpi_send) forwardto http://www.idiap.ch./~bornet/docs/mpiwww/www3/MPI_Send.html ;;
+
+   # Python
+   python) forwardto http://www.python.org./ ;;
+
+   #################################################################
+   # Programming: Source Control
+   #################################################################
+   cvs) forwardto http://www.loria.fr/~molli/cvs-index.html ;;
+   cvs%20bubbles) forwardto http://www.loria.fr/%7Emolli/cvs-index.html ;;
+
+   #################################################################
+   # Other stuff
+   #################################################################
+
+   # BART stations
+   powell*bart*) forwardto http://bart.gov./riding/stations/POWEL/ ;;
+   12*bart*) forwardto http://bart.gov./riding/stations/12ST/ ;;
+   16*bart*) forwardto http://bart.gov./riding/stations/16ST/ ;;
+   19*bart*) forwardto http://bart.gov./riding/stations/19ST/ ;;
+   24*bart*) forwardto http://bart.gov./riding/stations/24ST/ ;;
+   montgomery*bart*) forwardto http://bart.gov./riding/stations/MONTG/ ;;
+   embarcadero*bart*) forwardto http://bart.gov./riding/stations/EMBAR/ ;;
+   civic*center*bart*) forwardto http://bart.gov./riding/stations/CIVIC/ ;;
+   union*city*bart*) forwardto http://bart.gov./riding/stations/UCITY/ ;;
+   ashby*bart*) forwardto http://bart.gov./riding/stations/ASHBY/ ;;
+
+   # Yahoo
+   yahoo%20inbox) forwardto 'http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
+   maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
+   yahoo%20mail|email|mail) forwardto http://mail.yahoo.com/ ;;
+   yahoo|my|myyahoo|my%20yahoo) forwardto http://my.yahoo.com/ ;;
+   calendar) forwardto http://calendar.yahoo.com/ ;;
 
    # Other
    kernel*traffic) forwardto http://www.kt.linuxcare.com/kernel-traffic/latest.epl ;;
    freshmeat) forwardto http://www.freshmeat.net./ ;;
-   maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
    swing%20tutorial) forwardto 'http://java.sun.com./docs/books/tutorial/ui/swing/index.html' ;;
    html%20spefi*|html%20reference|html%20spec*|html%204%20spec|html%204%20specification) forwardto http://www.w3.org/TR/REC-html40/ ;;
    swing%20connection) forwardto http://java.sun.com./products/jfc/tsc/ ;;
-#   yahoo%20inbox) echo 'Location: http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
-#   caltech*credit*union) echo Location: http://www.caltech.edu/~cefcu/ ;;
-#   rpmfind) echo Location: http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
-#   my%20netscape) echo Location: http://my.netscape.com/ ;;
-#   cvs%20bubbles) echo Location: http://www.loria.fr/%7Emolli/cvs-index.html ;;
-#   pike) echo Location: http://pike.idonex.se/ ;;
-#   soar) echo Location: http://soar.berkeley.edu/recipes/ ;;
-#   c%2b%2bstandard) echo Location: http://www.cygnus.com/misc/wp/nov97/ ;;
-#   md5%20rfc) echo Location: http://www.cis.ohio-state.edu/htbin/rfc/rfc1321.html ;;
-#   yahoo%20mail|email|mail) echo Location: http://mail.yahoo.com/ ;;
-#                       xscreensaver) echo Location: http://www.jwz.org/xscreensaver/ ;;
-#                       cvs) echo Location: http://www.loria.fr/~molli/cvs-index.html ;;
-#                       musixtex|mutex|musictex) echo Location: http://www.gmd.de/Misc/Music/ ;;
-#                       rfc%20*) echo Location: http://www.cis.ohio-state.edu/htbin/rfc/${KEYWORD}.html | sed -e 's/%20//' ;;
-#                       rfc*) echo Location: http://www.cis.ohio-state.edu/htbin/rfc/${KEYWORD}.html ;;
-#                       altima) echo Location: http://www.altima.org./ ;;
-#                       calendar) echo Location: http://calendar.yahoo.com/ ;;
-#                    caltech%20postal%20service|caltech%20post%20office|mail%20services|caltech%20mail%20services) echo Location: http://www.caltech.edu/departmentdirectory/Mail_Services.html ;;
-#                       academic%20calendar|caltech%20academic%20calendar) echo Location: 
-#                    http://www.caltech.edu/acalendar ;;
-#                       cdnow) echo Location: http://www.cdnow.com./ ;;
-#                       cs1%20grades|cs%201%20grades) echo Location: 
-#                    http://www.ugcs.caltech.edu/~cs1/status ;;
-#                       cs1status|cs%201%20status|cs1%20status|cs%201status) echo Location: 
-#                    http://www.ugcs.caltech.edu/~cs1/status ;;
-#                       cs1%20section|cs%201%20section) echo Location: 
-#                    http://www.ugcs.caltech.edu/~cs1/sections#8b ;;
-#                       cs141|cs%20141) echo Location: http://www.cs.caltech.edu./~cs141/ ;;
-#                       cs1|cs%201) echo Location: http://www.ugcs.caltech.edu/~cs1/ ;;
-#                       cs2|cs%202) echo Location: http://www.ugcs.caltech.edu/~cs2/ ;;
-#                       cs3|cs%203) echo Location: http://www.ugcs.caltech.edu/~cs3/ ;;
-#                       cs286|cs%20286) echo Location: 
-#                    http://www.vision.caltech.edu./bond/coursegs.html ;;
-#                       esound) echo Location: http://www.tux.org/~ricdude/EsounD.html ;;
-#                       eterm) echo Location: http://www.tcserv.com./Eterm/ ;;
-#                       gale%20log) echo Location: http://www.ugcs.caltech.edu./~jtr/gale/log/ ;;
-#                       gale) echo Location: http://www.gale.org./ ;;
-#                       gimp) echo Location: http://www.gimp.org./ ;;
-#                       gnome) echo Location: http://www.gnome.org./ ;;
-#                       guavac) echo Location: 
-#                    ftp://ftp.yggdrasil.com/pub/dist/devel/compilers/guavac ;;
-#                       gridlayout) echo Location: 
-#                    http://java.sun.com./products/jdk/1.2/docs/api/java/awt/GridLayout.html ;;
-#                       gridbaglayout) echo Location: 
-#                    http://java.sun.com./products/jdk/1.2/docs/api/java/awt/GridBagLayout.html ;;
-#                       jtextcomponent) echo Location: 
-#                    http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/text/JTextComponent.html 
-#                    ;;
-#                       jcomponent) echo Location: 
-#                    http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JComponent.html 
-#                    ;;
-#                       jtable%20tutorial) echo Location: 
-#                    http://java.sun.com./docs/books/tutorial/ui/swing/table.html ;;
-#                       me115|me115a|me%20115a|me%20115) echo Location: 
-#                    http://robby.caltech.edu./~jwb/courses/ME115/ME115.html ;;
-#                       mediafind) echo Location: http://194.95.209.6/ ;;
-#                       mpi_recv) echo Location: 
-#                    http://www.mcs.anl.gov/Projects/mpi/www/www3/MPI_Recv.html ;;
-#                       mpi_send) echo Location: 
-#                    http://www.idiap.ch./~bornet/docs/mpiwww/www3/MPI_Send.html ;;
-#                       netwatch) echo Location: ftp://ftp.slctech.org./pub/ ;;
-#                       nautilus) echo Location: http://www.lila.com/nautilus/ ;;
-#                       praya) echo Location: http://praya.netpedia.net./ ;;
-#                       python) echo Location: http://www.python.org./ ;;
-#                       qmail) echo Location: http://www.qmail.org./top.html ;;
-#                       replay) echo Location: http://replay.linuxpower.org./ ;;
-#                       robocup) echo Location: http://www.csl.sony.co.jp./RoboCup/New/ ;;
-#                       scour) echo Location: http://www.scour.net/ ;;
-#                       snarf) echo Location: http://xach.dorknet.com./snarf/ ;;
-#                       soccer%20server) echo Location: 
-#                    http://ci.etl.go.jp./~noda/soccer/server/index.html ;;
-#                       spk) echo Location: ftp://screech.alfred.edu./pub/spk/ ;;
-#                       swing%20api) echo Location: 
-#                    http://java.sun.com./products/jfc/swingdoc-api/index.html ;;
-#                       vim) echo Location: http://www.vim.org./ ;;
-#                       webster) echo Location: http://www.m-w.com./ ;;
-#                       wm2) echo Location: http://www.all-day-breakfast.com/wm2/ ;;
-#                       wmx) echo Location: http://www.all-day-breakfast.com/wmx/ ;;
-#                       #imdbc%20*) echo Location: http:
-#                       x11amp) echo Location: http://x11amp.org/ ;;
-#                       yahoo|my|myyahoo|my%20yahoo) echo Location: http://my.yahoo.com/ ;;
+   xscreensaver) forwardto http://www.jwz.org/xscreensaver/ ;;
+   caltech*credit*union) forwardto http://www.caltech.edu/~cefcu/ ;;
+   rpmfind) forwardto http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
+   my%20netscape) forwardto http://my.netscape.com/ ;;
+   soar) forwardto http://soar.berkeley.edu/recipes/ ;;
+   c%2b%2bstandard) forwardto http://www.cygnus.com/misc/wp/nov97/ ;;
+   md5%20rfc) forwardto http://www.cis.ohio-state.edu/htbin/rfc/rfc1321.html ;;
+   musixtex|mutex|musictex) forwardto http://www.gmd.de/Misc/Music/ ;;
+   altima) forwardto http://www.altima.org./ ;;
+   cdnow) forwardto http://www.cdnow.com./ ;;
+   esound) forwardto http://www.tux.org/~ricdude/EsounD.html ;;
+   eterm) forwardto http://www.tcserv.com./Eterm/ ;;
+   gale%20log) forwardto http://www.ugcs.caltech.edu./~jtr/gale/log/ ;;
+   gale) forwardto http://www.gale.org./ ;;
+   gimp) forwardto http://www.gimp.org./ ;;
+   gnome) forwardto http://www.gnome.org./ ;;
+   mediafind) forwardto http://194.95.209.6/ ;;
+   netwatch) forwardto ftp://ftp.slctech.org./pub/ ;;
+   nautilus) forwardto http://www.lila.com/nautilus/ ;;
+   praya) forwardto http://praya.sourceforge.net./ ;;
+   qmail) forwardto http://www.qmail.org./top.html ;;
+   replay) forwardto http://replay.linuxpower.org./ ;;
+   robocup) forwardto http://www.csl.sony.co.jp./RoboCup/New/ ;;
+   scour) forwardto http://www.scour.net/ ;;
+   snarf) forwardto http://xach.dorknet.com./snarf/ ;;
+   soccer%20server) forwardto http://ci.etl.go.jp./~noda/soccer/server/index.html ;;
+   spk) forwardto ftp://screech.alfred.edu./pub/spk/ ;;
+   vim) forwardto http://www.vim.org./ ;;
+   webster) forwardto http://www.m-w.com./ ;;
+   wm2) forwardto http://www.all-day-breakfast.com/wm2/ ;;
+   wmx) forwardto http://www.all-day-breakfast.com/wmx/ ;;
+   x11amp) forwardto http://x11amp.org/ ;;
+
+   # Caltech stuff
+   caltech%20postal%20service|caltech%20post%20office|mail%20services|caltech%20mail%20services) forwardto http://www.caltech.edu/departmentdirectory/Mail_Services.html ;;
+   academic%20calendar|caltech%20academic%20calendar) forwardto http://www.caltech.edu/acalendar ;;
+   cs1%20grades|cs%201%20grades) forwardto http://www.ugcs.caltech.edu/~cs1/status ;;
+   cs1status|cs%201%20status|cs1%20status|cs%201status) forwardto http://www.ugcs.caltech.edu/~cs1/status ;;
+   cs1%20section|cs%201%20section) forwardto http://www.ugcs.caltech.edu/~cs1/sections#8b ;;
+   cs141|cs%20141) forwardto http://www.cs.caltech.edu./~cs141/ ;;
+   cs1|cs%201) forwardto http://www.ugcs.caltech.edu/~cs1/ ;;
+   cs2|cs%202) forwardto http://www.ugcs.caltech.edu/~cs2/ ;;
+   cs3|cs%203) forwardto http://www.ugcs.caltech.edu/~cs3/ ;;
+   cs286|cs%20286) forwardto http://www.vision.caltech.edu./bond/coursegs.html ;;
+   me115|me115a|me%20115a|me%20115) forwardto http://robby.caltech.edu./~jwb/courses/ME115/ME115.html ;;
+
    %2b*)
       #forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
       forwardto "http://infoseek.go.com/Titles?qt=$ORIGKEYWORD"
