@@ -149,6 +149,7 @@ case "${KEYWORD}" in
    wm2) forwardto http://www.all-day-breakfast.com/wm2/ ;;
    wmx) forwardto http://www.all-day-breakfast.com/wmx/ ;;
    x11amp) forwardto http://x11amp.org/ ;;
+   dynamic*java) forwardto http://www-sop.inria.fr/koala/djava/ ;;
 
    ###################################################################
    # re-search / fake command line
