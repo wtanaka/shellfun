@@ -188,8 +188,8 @@ setopt HIST_NO_STORE
 setopt SH_WORD_SPLIT
 
 #export JAVA_COMPILER=NONE
-2>&1 > /dev/null which fastjar && export JAR=fastjar
-2>&1 > /dev/null which jikes && export JAVAC=jikes\ +P
+which fastjar >& /dev/null && export JAR=fastjar
+which jikes >& /dev/null && export JAVAC=jikes\ +P
 #export ESPEAKER="mili.eu.org:5001"
 export CVSROOT="$HOME/cvsroot"
 export CVS_RSH="ssh"
