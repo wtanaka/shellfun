@@ -103,6 +103,7 @@ case "${KEYWORD}" in
    maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
    swing%20tutorial) forwardto 'http://java.sun.com./docs/books/tutorial/ui/swing/index.html' ;;
    html%20spefi*|html%20reference|html%20spec*|html%204%20spec|html%204%20specification) forwardto http://www.w3.org/TR/REC-html40/ ;;
+   swing%20connection) forwardto http://java.sun.com./products/jfc/tsc/ ;;
 #   yahoo%20inbox) echo 'Location: http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
 #   caltech*credit*union) echo Location: http://www.caltech.edu/~cefcu/ ;;
 #   rpmfind) echo Location: http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
@@ -177,7 +178,6 @@ case "${KEYWORD}" in
 #                       spk) echo Location: ftp://screech.alfred.edu./pub/spk/ ;;
 #                       swing%20api) echo Location: 
 #                    http://java.sun.com./products/jfc/swingdoc-api/index.html ;;
-#                       swing%20connection) echo Location: http://java.sun.com./products/jfc/tsc/ ;;
 #                       vim) echo Location: http://www.vim.org./ ;;
 #                       webster) echo Location: http://www.m-w.com./ ;;
 #                       wm2) echo Location: http://www.all-day-breakfast.com/wm2/ ;;
