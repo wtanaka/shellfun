@@ -128,11 +128,11 @@ if [ -f "$HOME/.netscape/preferences.js" ]; then
 fi
 
 
-if [ -f "$HOME/.mozilla/wtanaka/"*"/prefs.js" ]; then
-  if 2>&1 grep keyword.URL "$HOME/.mozilla/wtanaka/"*"/prefs.js" >/dev/null; then
+if [ -f "$HOME"/.mozilla/*/*/prefs.js ]; then
+  if 2>&1 grep keyword.URL "$HOME"/.mozilla/*/*/prefs.js >/dev/null; then
     :
   else
-    for i in $HOME/.mozilla/wtanaka/*/prefs.js; do
+    for i in "$HOME"/.mozilla/*/*/prefs.js; do
        echo 'user_pref("keyword.URL", "http://shellfun.sourceforge.net./cgi-bin/ns?keyword=");' >> "$i"
     done
   fi
