@@ -161,7 +161,7 @@ Style "Xcb"                 Icon rndclip.xpm
 Style "*colorsel"           Icon rndcolor.xpm
 Style "Vmw"                 Icon rndvmware.xpm
 Style "RealPlay*"           Icon rndreal.xpm
-Style "Mozilla-bin"         Icon rndmozilla.xpm
+Style "Mozilla*"            Icon rndmozilla.xpm
 Style "Dia"                 Icon rnddia.xpm
 Style "Gtk_gnutella"        Icon rndgnut.xpm
 Style "*MpegTV *"           Icon rndmtv.xpm
