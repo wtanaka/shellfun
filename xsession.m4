@@ -75,5 +75,7 @@ if [ "`uname`" = "Linux" ]; then
   xset m 4 4
 fi
 
+xset r rate 400 60
+
 xdaliclock -geometry 119x20-0+0
 kill "$SSH_AGENT_PID"
