@@ -50,6 +50,7 @@ if [ ! -d "$HOME/etc" ]; then
 fi
 catkill dalifonts "$HOME/etc/dalifonts"
 catkill quotes "$HOME/etc/quotes"
+catkill d "$HOME/bin/d"
 (cd $HOME/etc ; 2>&1 strfile -r dalifonts dalifonts.dat) > /dev/null
 (cd $HOME/etc ; 2>&1 strfile -r quotes quotes.dat) > /dev/null
 
