@@ -170,6 +170,7 @@ Style "Galeon*"      Icon rndgaleon.xpm
 Style "YMessenger"    Icon rndyahoo.xpm
 Style "AbiWord*"      Icon rndabi.xpm
 Style "Jpilot"       Icon rndpalm.xpm
+Style "Ethereal"     Icon rndethereal.xpm
 Style "TeamCenter*"   Icon rndteamctr.xpm
 
 define({{MAGIC}},
