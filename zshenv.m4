@@ -169,14 +169,28 @@ urlfor()
 {
    hostname=`uname -n`
    for i ; do
-      dirname=`dirname $i`
-      filename=`basename $i`
+      dirname=`dirname "$i"`
+      filename=`basename "$i"`
       if [[ $dirname == /* ]]; then
          echo "file://${hostname}$dirname/$filename"
       else
          echo "file://${hostname}`pwd`/$dirname/$filename"
       fi
    done
+}
+
+scpfor()
+{
+   hostname=`uname -n`
+   for i ; do
+      dirname=`dirname "$i"`
+      filename=`basename "$i"`
+      if [[ $dirname == /* ]]; then
+         echo "${hostname}:$dirname/$filename"
+      else
+         echo "${hostname}:`pwd`/$dirname/$filename"
+      fi
+   done | sed -e 's/[^A-Za-z0-9/.:]/\\&/g'
 }
 
 umask 022

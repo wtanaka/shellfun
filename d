@@ -41,25 +41,91 @@ urlfor()
    URLFOR="`echo $URLFOR | urlencode`"
 }
 
-snes()
+screensaveroff()
 {
    xset s off
    xset -dpms
-   zsnes "$1"
-   #|| gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$1"
+}
+
+screensaveron()
+{
    xset s 120
    xset +dpms
 }
 
+snes()
+{
+   screensaveroff
+   zsnes "$1"
+   #|| gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$1"
+   screensaveron
+}
+
 nes()
 {
-   xset s off
-   xset -dpms
+   screensaveroff
    xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
       -sound -x11-mode 0 -volume -16 \
       -cart "$1"
-   xset s 120
-   xset +dpms
+   screensaveron
+}
+
+gamegear()
+{
+   screensaveroff
+   xmess gg -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
+      -sound -x11-mode 0 -volume -16 \
+      -cart "$1"
+   screensaveron
+}
+
+a2600()
+{
+   screensaveroff
+   stella "$1"
+   screensaveron
+}
+
+a5200()
+{
+   screensaveroff
+   xmess a5200 -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
+      -sound -x11-mode 0 -volume -16 \
+      -cart "$1"
+   screensaveron
+}
+
+a7800()
+{
+   screensaveroff
+   xmess a7800 -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
+      -sound -x11-mode 0 -volume -16 \
+      -cart "$1"
+   screensaveron
+}
+
+gba()
+{
+   screensaveroff
+   DIRECTORY=`pwd`
+   ( cd /opt/VisualBoyAdvance-1.0a
+     case "$1" in
+        /*)
+        ./VisualBoyAdvance -F "$1"
+        ;;
+        *)
+        ./VisualBoyAdvance -F "$DIRECTORY/$1"
+        ;;
+     esac
+   )
+   screensaveron
+}
+
+gb()
+{
+   screensaveroff
+   xgnuboy "$i"
+   screensaveron
 }
 
 # netscape seems to set this, acroread is unhappy with it.
@@ -92,6 +158,12 @@ for i in "$@"; do
                snes "$i"
             elif unzip -l "$i" | grep -i '\.nes$' > /dev/null 2>&1 ; then
                nes "$i"
+            elif unzip -l "$i" | grep -i '\.gba$' > /dev/null 2>&1 ; then
+               gba "$i"
+            elif unzip -l "$i" | grep -i '\.gb$' > /dev/null 2>&1 ; then
+               gb "$i"
+            elif unzip -l "$i" | grep -i '\.gbc$' > /dev/null 2>&1 ; then
+               gb "$i"
             else
                unzip -l "$i"
             fi
@@ -118,14 +190,40 @@ for i in "$@"; do
          *.[Nn][Ee][Ss]|*.[Nn][Ee][Ss].[Gg][Zz])
             nes "$i"
          ;;
+         # gba
+         *.[Gg][Bb][Aa])
+            gba "$i"
+         ;;
          # gb/gbc
          *.[Gg][Bb]|*.[Gg][Bb][Cc])
+            gb "$i"
+         ;;
+         # a78
+         *.[Aa]78)
+            a7800 "$i"
+            ;;
+         # a52
+         *.[Aa]52)
+            a5200 "$i"
+            ;;
+         # a26
+         *.[Aa]26)
+            a2600 "$i"
+            ;;
+         # gg
+         *.[Gg][Gg])
+            gamegear "$i"
+            ;;
+         # sms
+         *.[Ss][Mm][Ss])
             xset s off
             xset -dpms
-            xgnuboy "$i"
+            xmess sms -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
+               -sound -x11-mode 0 -volume -16 \
+               -cart "$1"
             xset s 120
             xset +dpms
-         ;;
+            ;;
          # smd
          *.[Ss][Mm][Dd])
             xset s off
@@ -159,7 +257,11 @@ for i in "$@"; do
          ;;
          # mid, midi
          *.[mM][iI][dD]|*.[mM][iI][dD][iI])
-            timidity "$i" || playmidi "$i"
+            if [ -n "$DISPLAY" ]; then
+               timidity -ig "$i"
+            else
+               timidity "$i" || playmidi "$i"
+            fi
          ;;
          *.mod)
             s3mod $i
