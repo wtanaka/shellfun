@@ -36,7 +36,8 @@ fi
 
 ifelse(SYS_LAB, {{UGCS}}, {{eval "`fortune $HOME/bin/rootwindows`"}},
        SYS_LAB, {{CS}}, {{xearth -pos 34.08 -118.08}},
-{{xearth}}) &
+       SYS_HOST, {{altair.mili.eu.org}}, {{nice -20 xplanetbg -nice 19 -wait 300 -fuzz 20 -image day_clouds.png  -labelpos +15+15 -latitude 34.08 -longitude -118.08 -night_image night_clouds.png -projection orthographic}},
+       {{xearth}}) &
 
 ifelse(SYS_LAB, {{UGCS}}, {{}},
        SYS_HOST, {{smonger}}, {{xmailbox & xload -geometry 30x40+60+20 &}},
