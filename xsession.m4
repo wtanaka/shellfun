@@ -44,12 +44,21 @@ ifelse(SYS_LAB, {{UGCS}}, {{}},
 
 ifelse(SYS_LAB, {{UGCS}}, 
 {{xterm -fg "#77aaee" -bg black -geometry 80x50+0+0 & 
+}},
+SYS_HOST, {{altair.mili.eu.org}}, 
+{{xterm -fg "#77aaee" -bg black -geometry 80x50+0+0 & 
 }})dnl
 ifelse(SYS_LAB, {{UGCS}}, 
 {{xterm -fg "#88eeaa" -bg black -geometry 80x43+490+100 & 
+}},
+SYS_HOST, {{altair.mili.eu.org}}, 
+{{xterm -fg "#88eeaa" -bg black -geometry 80x50+490+0 & 
 }})dnl
 ifelse(SYS_LAB, {{UGCS}}, 
 {{xterm -fg "#ee88aa" -bg black -geometry 80x25+0-0 & 
+}},
+SYS_HOST, {{altair.mili.eu.org}}, 
+{{xterm -fg "#ee88aa" -bg black -geometry 80x45+0-0 & 
 }})dnl
 
 ifelse(SYS_LAB, {{UGCS}}, {{fvwm & 4va -s50 `fortune 4vafiles` -geometry150x150+`expr $XSIZE - 150`+`expr $YSIZE - 150` &}},
