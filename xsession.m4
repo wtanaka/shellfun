@@ -2,7 +2,7 @@ include(functions.m4)dnl
 include(init.m4)dnl
 changequote({{, }})dnl
 #!/bin/sh
-
+{{
 eval `xdpyinfo | \
    awk '/vendor string:/ { print "VENDOR="$3 }
    /dimensions:/ { split($2,a,"x");print "XSIZE="a[1]";YSIZE="a[2] }
@@ -19,6 +19,7 @@ if [ -n "`ssh-add -l 2>&1 | grep -i \"could not.*connect\"`" ]; then
 fi
 
 xset +dpms
+}}
 ifelse(SYS_LAB, {{UGCS}}, {{xset m 10 3}},
        SYS_HOST, {{spica.mili.eu.org}}, {{xset m 6 4}},
        SYS_LAB, {{CS}}, {{xset m 8 4}},
