@@ -199,6 +199,7 @@ Style "Gnucash"             Icon rndmoney.xpm
 Style "vncviewer"           Icon rndvnc.xpm
 Style "Gaim"                Icon rndgaim.xpm
 Style "Gvim"                Icon rndvim.xpm
+Style "Eclipse"             Icon rndeclipse.xpm
 
 define({{MAGIC}},
    ifelse(
