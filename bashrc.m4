@@ -37,6 +37,9 @@ addpath()
 edpath()
 {
    FILENAME="`mktemp /tmp/edpath.XXXXXX`"
+   if [ -z "$FILENAME" ]; then
+      FILENAME="/tmp/edpath.$$"
+   fi
    rm -f "$FILENAME"
    :>"$FILENAME"
    OIFS="$IFS"; IFS=":"; for pathpart in $PATH; do
@@ -91,6 +94,9 @@ addclasspath()
 edclasspath()
 {
    FILENAME="`mktemp /tmp/edclasspath.XXXXXX`"
+   if [ -z "$FILENAME" ]; then
+      FILENAME="/tmp/edclasspath.$$"
+   fi
    rm -f "$FILENAME"
    :>"$FILENAME"
    OIFS="$IFS"; IFS=":"; for pathpart in $CLASSPATH; do
