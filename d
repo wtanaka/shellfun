@@ -90,6 +90,10 @@ for i in "$@"; do
             xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
                -sound -x11-mode 1 "$i"
          ;;
+         # smd
+         *.[Ss][Mm][Dd])
+            dgen -f -j "$i"
+         ;;
          *.tex)
             cp "$i" /tmp/"$date".tex
             pushd /tmp > /dev/null
