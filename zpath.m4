@@ -7,6 +7,7 @@ addpath /usr/ug/bin
 addpath /dei/share/bin
 
 ## java
+addpath /usr/java/jdk1.3.1/bin
 addpath /usr/local/jdk117_v3/bin
 addpath /usr/local/jdk1.1.7/bin
 addpath /usr/local/jdk117/bin

@@ -1,3 +1,4 @@
+preclasspath /usr/local/jdk117_v3/lib/classes.zip
 addclasspath /usr/local/java/lib/classes.zip
 addclasspath /usr/lib/j2sdk1.3/jre/lib/rt.jar
 
@@ -35,6 +36,7 @@ fi
 addclasspath "$HOME/wohenchan/src"
 addclasspath "$HOME/herdme/src"
 addclasspath "$HOME/cabal/src"
+addclasspath "$HOME/praya"
 
 addclasspath "$HOME/beanos/src"
 addclasspath /usr/local/JSDK2.0/lib/jsdk.jar
