@@ -164,6 +164,12 @@ case "${KEYWORD}" in
       CSZ=`echo ${ARG} | cut -d\/ -f2`
       forwardto "http://maps.yahoo.com/py/maps.py?Pyt=Tmap&addr=$ADDR&csz=$CSZ&country=us&Get%A0Map=Get+Map"
       ;;
+   nearestbart%20*|bartnearest%20*) %2F
+      ARG=`echo ${ORIGKEYWORD} | cut -c15- | urldecode`
+      ADDR=`echo ${ARG} | cut -d\/ -f1`
+      CSZ=`echo ${ARG} | cut -d\/ -f2`
+      forwardto "http://yp.yahoo.com/py/yploc.py?Pyt=Typ&mode=addr&desc=bart&clr=ypResults&ycat=&stp=a&stx=bart&tab=B2C&partner=&submit=1&newFL=NONE&addr_in=${ADDR}&csz_in=${CSZ}&country_in=us"
+      ;;
    address%20*)
       ADDR=`echo ${ORIGKEYWORD} | cut -c11-`
       forwardto "http://address.yahoo.com/yab/?v=SA&A=search&search=${ADDR}"
