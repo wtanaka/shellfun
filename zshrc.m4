@@ -58,12 +58,16 @@ precmd()
 }}
 
 ifelse(SYS_HOST,{{usw-pr-shell1}},praya=/home/groups/p/pr/praya
+wohenchan=/home/groups/w/wo/wohenchan
+cabal=/home/groups/c/ca/cabal
+shellfun=/home/groups/s/sh/shellfun
+bleepie=/home/groups/b/bl/bleepie
 )dnl
-ifelse(SYS_HOST,{{usw-pr-shell1}},wohenchan=/home/groups/w/wo/wohenchan
-)dnl
-ifelse(SYS_HOST,{{usw-pr-shell1}},cabal=/home/groups/c/ca/cabal
-)dnl
-ifelse(SYS_HOST,{{usw-pr-shell1}},shellfun=/home/groups/s/sh/shellfun
+ifelse(SYS_HOST,{{usw-pr-shell2}},praya=/home/groups/p/pr/praya
+wohenchan=/home/groups/w/wo/wohenchan
+cabal=/home/groups/c/ca/cabal
+shellfun=/home/groups/s/sh/shellfun
+bleepie=/home/groups/b/bl/bleepie
 )dnl
 
 # use compctl to override?
