@@ -167,7 +167,15 @@ for i in "$@"; do
                xanim +Ae +Ak +B +f +Sr +l0 "$i" 
             fi
          ;;
-         *.qt|*.mov|*.[aA][vV][iI])
+         # avi
+         *.[aA][vV][iI])
+            if which aviplay 2>&1 > /dev/null; then
+               aviplay "$i"
+            else
+               xanim +Ae +Ak +B +f +Sr +l0 "$i" 
+            fi
+         ;;
+         *.qt|*.mov)
             xanim +Ae +Ak +B +f +Sr +l0 "$i" 
          ;;
          *.pdf|*.[Pp][Dd][Ff]) # pdf files
