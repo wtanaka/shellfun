@@ -45,7 +45,8 @@ snes()
 {
    xset s off
    xset -dpms
-   zsnes "$1" || gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$1"
+   zsnes "$1"
+   #|| gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$1"
    xset s 120
    xset +dpms
 }
@@ -96,16 +97,32 @@ for i in "$@"; do
          ;;
          # smc
          *.[Ss][Mm][Cc])
-            gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$i"
+            snes "$i"
          ;;
          # nes
          *.[Nn][Ee][Ss])
+            xset s off
+            xset -dpms
             xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
-               -sound -x11-mode 1 "$i"
+               -sound -x11-mode 0 "$i"
+            xset s 120
+            xset +dpms
+         ;;
+         # gb/gbc
+         *.[Gg][Bb]|*.[Gg][Bb][Cc])
+            xset s off
+            xset -dpms
+            xgnuboy "$i"
+            xset s 120
+            xset +dpms
          ;;
          # smd
          *.[Ss][Mm][Dd])
-            dgen -f -j "$i"
+            xset s off
+            xset -dpms
+            dgen -n 1 -f -j "$i"
+            xset s 120
+            xset +dpms
          ;;
          *.tex)
             cp "$i" /tmp/"$date".tex
