@@ -61,8 +61,10 @@ for i in "$@"; do
          ;;
          # zip
          *.[Zz][Ii][Pp])
-            if unzip -l "$i" | grep '\.smc$' > /dev/null 2>&1 ; then
-               gsnes9x -joymap1 2 1 5 4 6 7 8 10 -hires "$i"
+            if unzip -l "$i" | grep -i '\.smc$' > /dev/null 2>&1 ; then
+               gsnes9x -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$i"
+            elif unzip -l "$i" | grep -i '\.sfc$' > /dev/null 2>&1 ; then
+               gsnes9x -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$i"
             else
                unzip -l "$i"
             fi
@@ -80,6 +82,11 @@ for i in "$@"; do
                rm -f ${date}.${preext}
             fi
             popd > /dev/null
+         ;;
+         # nes
+         *.[Nn][Ee][Ss])
+            xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
+               -sound -x11-mode 1 "$i"
          ;;
          *.tex)
             cp "$i" /tmp/"$date".tex
