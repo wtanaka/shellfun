@@ -171,6 +171,6 @@ CompctlXDisplays()
    reply=(`xauth list | cut -d\  -f 1` $DISPLAY)
 }
 
-if [ -x `which biff` ]; then
+if which biff > /dev/null 2>&1; then
    biff y
 fi
