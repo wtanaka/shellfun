@@ -21,13 +21,15 @@ addclasspath "$HOME/gale.jar"
 addclasspath "$HOME/wtanaka/gale.jar"
 
 addclasspath "$HOME/infospheres/src"
-if [ -d "$HOME"/infospheres/external/jars/ ]; then
-   if [ -n "${HOME}"/infospheres/external/jars/*.jar ]; then
-     addclasspath "$HOME"/infospheres/external/jars/*.jar 
-   fi
-   if [ -n "${HOME}"/infospheres/external/jars/*.zip ]; then
-     addclasspath "$HOME"/infospheres/external/jars/*.zip 
+if [ -r "$HOME"/infospheres/src/classpath ]; then
+   addclasspath `sed -e 's/:/ /g' "$HOME"/infospheres/src/classpath`
+else
+   if [ -x "$HOME"/infospheres/src/scripts/make_classpath ]; then
+      "$HOME"/infospheres/src/sciprts/make_classpath \
+         > "$HOME"/infospheres/src/classpath
+      addclasspath `sed -e 's/:/ /g' "$HOME"/infospheres/src/classpath`
    fi
 fi
+
 addclasspath "$HOME/beanos/src"
 addclasspath /usr/local/JSDK2.0/lib/jsdk.jar
