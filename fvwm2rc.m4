@@ -172,9 +172,10 @@ Style "YMessenger"    Icon rndyahoo.xpm
 Style "AbiWord*"      Icon rndabi.xpm
 Style "Jpilot"       Icon rndpalm.xpm
 Style "Ethereal"     Icon rndethereal.xpm
-Style "TeamCenter*"   Icon rndteamctr.xpm
-Style "Gnumeric"      Icon rndgnum.xpm
+Style "TeamCenter*"  Icon rndteamctr.xpm
+Style "Gnumeric"     Icon rndgnum.xpm
 Style "Cabal*"       Icon rndcabal.xpm
+Style "OptimizeIt *" Icon rndoptit.xpm
 
 define({{MAGIC}},
    ifelse(
