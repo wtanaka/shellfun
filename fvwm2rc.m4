@@ -185,6 +185,7 @@ Style "Java Web Start*"     Icon rndjnlp.xpm
 Style "LimeWire*"           Icon rndlime.xpm
 Style "Loki_*"              Icon rndloki.xpm
 Style "Soundtracker"        Icon rndsndtrk.xpm
+Style "Audacity"            Icon rndaudac.xpm
 
 define({{MAGIC}},
    ifelse(
