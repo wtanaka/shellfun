@@ -17,15 +17,13 @@ GALE_SYS_DIR=ifelse(SYS_LAB,{{UGCS}},{{/home/egnor/etc/gale}},
 precmd()
 {
    EXIT_STATUS=$?
-   if [ -r "todo" ]; then
-      TODOFILE="todo"
-   else 
-      if [ -r "$HOME/todo" ]; then
-         TODOFILE="$HOME/todo"
-      else
-         TODOFILE=""
-      fi
-   fi
+
+   TODOFILE=
+   for f in todo ~/todo; do
+      [ -r "$f" ] && TODOFILE="$f"
+      break
+   done
+
    if [ -n "$TODOFILE" ]; then
       TODOLINES="0"
       {
@@ -35,15 +33,13 @@ precmd()
             read LINE
          done
       } < "$TODOFILE"
-      if [ "$[ $TODOLINES > 0 ]" = "1" ]; then
-         echo "$RANDOM" > /dev/null
+      if [ $TODOLINES -gt 0 ]; then
+         : "$RANDOM"
          NLINE="$[ $RANDOM % $TODOLINES + 1 ]"
-         {
          while [ ! "$NLINE" = "0" ]; do
             read PRE
             NLINE="$[ $NLINE - 1 ]"
-         done
-         } < "$TODOFILE"
+         done < "$TODOFILE"
          RPROMPT="${PRE%%[ ]} ${RRPROMPT}"
       else
          RPROMPT="${RRPROMPT}"
