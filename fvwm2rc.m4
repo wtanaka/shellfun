@@ -179,6 +179,7 @@ Style "OptimizeIt *" Icon rndoptit.xpm
 Style "gedit"        Icon rndgedit.xpm
 Style "gEdit"        Icon rndgedit.xpm
 Style "Fpm"          Icon rndfpm.xpm
+Style "Nautilus"     Icon rndnaut.xpm
 
 define({{MAGIC}},
    ifelse(
