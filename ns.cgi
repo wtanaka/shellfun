@@ -176,6 +176,7 @@ case "${KEYWORD}" in
    rpmfind%20*) forwardto "http://rpmfind.net./linux/rpm2html/search.php?query=`echo ${ORIGKEYWORD} | cut -c11-`" ;;
    cddb%20*) forwardto "http://www.cddb.com/xm/search?q=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    bug%20*) forwardto "http://bugz.i./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c7-`" ;;
+   gale%20bug%20*) forwardto "http://bugs.gale.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c14-`" ;;
 
    ###################################################################
    # Programming: Languages
