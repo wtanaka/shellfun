@@ -18,13 +18,12 @@ ifelse(SYS_LAB, {{UGCS}}, {{if [[ -o interactive ]]; then
    gsub 
 fi}})
 
-TMOUT=60
 {{
+TMOUT=60
 TRAPALRM()
 {
    echo -n '\e[0m'
 }
-}}
 
 if [[ -o interactive ]]; then
    if [[ $SETTERMINALNAME == true ]]; then
@@ -47,3 +46,4 @@ if [[ -o interactive ]]; then
    fi
 fi
 :
+}}
