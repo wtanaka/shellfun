@@ -202,6 +202,7 @@ Style "Eclipse"             Icon rndeclipse.xpm
 Style "Mozilla*"            Icon rndmozilla.xpm
 Style "LimeWire*"           Icon rndlime.xpm
 Style "Up2date"             Icon rndredhat.xpm
+Style "Evolution"           Icon rndevol.xpm
 
 define({{MAGIC}},
    ifelse(
