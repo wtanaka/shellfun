@@ -98,6 +98,7 @@ case "${KEYWORD}" in
    java%20net) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.net.html ;;
    # Java: any class
    java%20applet%20*|java%20awt%20*|java%20awt%20datatransfer%20*|java%20awt%20event%20*|java%20awt%20image%20*|java%20beans%20*|java%20io%20*|java%20lang%20*|java%20lang%20reflect%20*|java%20math%20*|java%20net%20*|java%20rmi%20*|java%20rmi%20dgc%20*|java%20rmi%20registry%20*|java%20rmi%20server%20*|java%20security%20*|java%20security%20acl%20*|java%20security%20interfaces%20*|java%20sql%20*|java%20text%20*|java%20util%20*|java%20util%20zip%20*) forwardto http://java.sun.com./products/jdk/1.1/docs/api/${ORIGKEYWORD}.html#_top_ | sed -e 's/%20/./g' ;;
+   javax%20swing) forwardto http://java.sun.com./products/jfc/swingdoc-api-1.1/javax/swing/package-summary.html ;;
    javax%20swing*) forwardto http://java.sun.com./products/jfc/swingdoc-api-1.1/${ORIGKEYWORD}.html | sed -e 's/%20/\//g' ;;
    javax%20servlet*) forwardto http://jserv.javasoft.com/products/java-server/documentation/webserver1.0.2/apidoc/${ORIGKEYWORD}.html | sed -e 's/%20/./g' ;;
    # Java: Special cases
