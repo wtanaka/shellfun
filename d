@@ -59,6 +59,14 @@ for i in "$@"; do
                *) zcat "$i" | sox -t wav - -t sw -r 11025 - | esdcat -r 11025 ;;
             esac
          ;;
+         # zip
+         *.[Zz][Ii][Pp])
+            if unzip -l "$i" | grep '\.smc$' > /dev/null 2>&1 ; then
+               gsnes9x -joymap1 2 1 5 4 6 7 8 10 -hires "$i"
+            else
+               unzip -l "$i"
+            fi
+         ;;
          *.gz)
             len=`echo ${#ext}-3 | bc`
             preext=`echo $ext | cut -c-$len`
