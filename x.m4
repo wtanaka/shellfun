@@ -147,7 +147,7 @@ makewin()
     CASEHOST(harp, harp.cs.caltech.edu., GoldenRod2, black)
 
     CASEHOST(shell1, shell1.sourceforge.net., lavender, black)
-    CASEHOST(linux, linux.compile.sourceforge.net., lavender, black)
+    CASEHOST(cf, cf.sourceforge.net., lavender, black)
 
     *)
       return 1
