@@ -217,7 +217,7 @@ for i in "$@"; do
       esac
    else
       case "$i" in
-         file://*|http://*|ftp://*|www.*|*.com|*.org|*.net)
+         file://*|https://*|http://*|ftp://*|www.*|*.com|*.org|*.net)
             if which gnome-moz-remote; then
                gnome-moz-remote "$i"
             else
