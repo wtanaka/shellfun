@@ -49,7 +49,7 @@ edclasspath()
    export CLASSPATH=""
    { while read LINE; do
       if [ -d "$LINE" -o -f "$LINE" ]; then
-         if [[ -z "${CLASSPATH}" ]]; then
+         if [ -z "${CLASSPATH}" ]; then
             export CLASSPATH="${LINE}"
          else
             export CLASSPATH="${CLASSPATH}:${LINE}"
