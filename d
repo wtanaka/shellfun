@@ -51,6 +51,16 @@ snes()
    xset +dpms
 }
 
+nes()
+{
+   xset s off
+   xset -dpms
+   xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
+      -sound -x11-mode 0 "$1"
+   xset s 120
+   xset +dpms
+}
+
 # netscape seems to set this, acroread is unhappy with it.
 LD_PRELOAD=""
 export LD_PRELOAD
@@ -77,6 +87,8 @@ for i in "$@"; do
                snes "$i"
             elif unzip -l "$i" | grep -i '\.fig$' > /dev/null 2>&1 ; then
                snes "$i"
+            elif unzip -l "$i" | grep -i '\.nes$' > /dev/null 2>&1 ; then
+               nes "$i"
             else
                unzip -l "$i"
             fi
@@ -101,12 +113,7 @@ for i in "$@"; do
          ;;
          # nes
          *.[Nn][Ee][Ss])
-            xset s off
-            xset -dpms
-            xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
-               -sound -x11-mode 0 "$i"
-            xset s 120
-            xset +dpms
+            nes "$i"
          ;;
          # gb/gbc
          *.[Gg][Bb]|*.[Gg][Bb][Cc])
