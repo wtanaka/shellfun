@@ -81,6 +81,9 @@ makewin()
     CASEHOST(girgle, girgle.dabney.caltech.edu., MistyRose, black)
     CASEHOST(quantum, quantum.caltech.edu., MistyRose, black)
 
+    CASEHOST(icsi, login.icsi.berkeley.edu., LightSteelBlue, black)
+    CASEHOST(icsi2, login2.icsi.berkeley.edu., LightSteelBlue, black)
+
     CASEHOST(admiral, admiral.i., LightSteelBlue, black)
     CASEHOST(agama, agama.i., LightSteelBlue, black)
     CASEHOST(agni, agni.i., LightSteelBlue, black)
