@@ -142,6 +142,7 @@ Style "Tkquerypr*"          Icon rndgnatq.xpm
 Style "Tkgnats*"            Icon rndgnats.xpm
 Style "Tksendpr*"           Icon rndgnatspr.xpm
 Style "gnp+"                Icon rndnote.xpm
+Style "Notepad"             Icon rndnotepad.xpm
 Style "soffice"             Icon rndstar.xpm
 Style "gtcd"                Icon rndgtcd.xpm
 Style GnomeCard             Icon rndcard.xpm
