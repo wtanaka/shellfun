@@ -80,7 +80,8 @@ case "${KEYWORD}" in
       forwardto "http://maps.yahoo.com/py/maps.py?Pyt=Tmap&addr=$ADDR&csz=$CSZ&country=us&Get%A0Map=Get+Map"
       ;;
    address%20*)
-      forwardto "http://address.yahoo.com/yab/?v=SA&A=search&search=${ORIGKEYWORD}"
+      ADDR=`echo ${ORIGKEYWORD} | cut -c11-`
+      forwardto "http://address.yahoo.com/yab/?v=SA&A=search&search=${ADDR}"
       ;;
    mail%20*) forwardto "http://f1.mail.yahoo.com/py/ymTo.py?&To=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    rfc%20*) forwardto http://www.cis.ohio-state.edu/htbin/rfc/${KEYWORD}.html | sed -e 's/%20//' ;;
