@@ -48,6 +48,7 @@ if [ -x /usr/local/bin/ccoarch ]; then
    addpath /ccovol/X11R5/bin.`/usr/local/bin/ccoarch`
 fi
 addpath "/ufs/info/bin/`uname -s``uname -r`/jdk1.1.3/bin"
+addpath /ofb/bin
 
 addpath ~/infospheres/src/scripts
 
