@@ -162,6 +162,7 @@ Style "Mozilla-bin"   Icon rndmozilla.xpm
 Style "Dia"           Icon rnddia.xpm
 Style "Gtk_gnutella"  Icon rndgnut.xpm
 Style "*MpegTV *"      Icon rndmtv.xpm
+Style "XEphem"        Icon rndxephem.xpm
 
 define({{MAGIC}},
    ifelse(
