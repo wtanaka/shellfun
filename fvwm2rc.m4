@@ -176,6 +176,7 @@ Style "TeamCenter*"  Icon rndteamctr.xpm
 Style "Gnumeric"     Icon rndgnum.xpm
 Style "Cabal*"       Icon rndcabal.xpm
 Style "OptimizeIt *" Icon rndoptit.xpm
+Style "gedit"        Icon rndgedit.xpm
 
 define({{MAGIC}},
    ifelse(
