@@ -102,6 +102,7 @@ case "${KEYWORD}" in
    freshmeat) forwardto http://www.freshmeat.net./ ;;
    maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
    swing%20tutorial) forwardto 'http://java.sun.com./docs/books/tutorial/ui/swing/index.html' ;;
+   html%20spefi*|html%20reference|html%20spec*|html%204%20spec|html%204%20specification) forwardto http://www.w3.org/TR/REC-html40/ ;;
 #   yahoo%20inbox) echo 'Location: http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
 #   caltech*credit*union) echo Location: http://www.caltech.edu/~cefcu/ ;;
 #   rpmfind) echo Location: http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
@@ -112,7 +113,6 @@ case "${KEYWORD}" in
 #   c%2b%2bstandard) echo Location: http://www.cygnus.com/misc/wp/nov97/ ;;
 #   md5%20rfc) echo Location: http://www.cis.ohio-state.edu/htbin/rfc/rfc1321.html ;;
 #   yahoo%20mail|email|mail) echo Location: http://mail.yahoo.com/ ;;
-#                    html%20spefi*|html%20reference|html%20spec*|html%204%20spec|html%204%20specification) echo Location: http://www.w3.org/TR/REC-html40/ ;;
 #                       xscreensaver) echo Location: http://www.jwz.org/xscreensaver/ ;;
 #                       cvs) echo Location: http://www.loria.fr/~molli/cvs-index.html ;;
 #                       musixtex|mutex|musictex) echo Location: http://www.gmd.de/Misc/Music/ ;;
