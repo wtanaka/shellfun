@@ -34,6 +34,14 @@ forwardto()
    echo
 }
 
+printwebpage()
+{
+   echo "Content-type: text/plain"
+   echo
+   echo "$@"
+   exit 0
+}
+
 urldecode()
 {
    sed \
