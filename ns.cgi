@@ -143,6 +143,7 @@ case "${KEYWORD}" in
    #################################################################
 
    # BART stations
+   bart*station*) forwardto http://bart.gov./riding/stations/index.htm ;;
    powell*bart*) forwardto http://bart.gov./riding/stations/POWEL/ ;;
    12*bart*) forwardto http://bart.gov./riding/stations/12ST/ ;;
    16*bart*) forwardto http://bart.gov./riding/stations/16ST/ ;;
@@ -154,6 +155,7 @@ case "${KEYWORD}" in
    union*city*bart*) forwardto http://bart.gov./riding/stations/UCITY/ ;;
    ashby*bart*) forwardto http://bart.gov./riding/stations/ASHBY/ ;;
    fruitvale*bart*) forwardto http://bart.gov./riding/stations/FRTVL/ ;;
+   coliseum*bart*) forwardto http://bart.gov./riding/stations/COLIS/ ;;
 
    # Yahoo
    yahoo%20inbox) forwardto 'http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
