@@ -173,6 +173,7 @@ Style "Jpilot"       Icon rndpalm.xpm
 Style "Ethereal"     Icon rndethereal.xpm
 Style "TeamCenter*"   Icon rndteamctr.xpm
 Style "Gnumeric"      Icon rndgnum.xpm
+Style "Cabal*"       Icon rndcabal.xpm
 
 define({{MAGIC}},
    ifelse(
