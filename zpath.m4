@@ -43,7 +43,7 @@ addpath /home/wtanaka/cs2/bin
 addpath /home/app/oracle/product/8.0.5/bin
 addpath /home/oracle/bin
 addpath /usr/rhs/bin
-if [[ -x /usr/local/bin/ccoarch ]]; then
+if [ -x /usr/local/bin/ccoarch ]; then
    addpath /ccovol/gnu/bin.`/usr/local/bin/ccoarch`
    addpath /ccovol/X11R5/bin.`/usr/local/bin/ccoarch`
 fi

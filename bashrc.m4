@@ -8,47 +8,112 @@ unset HISTFILE
 
 addpath()
 {
-   TOADD="$1"
-   ADDME="y"
-   OIFS=$IFS
-   IFS=:
-   for i in $PATH; do
-      if [ "$i" -ef "$TOADD" ]; then
-         ADDME="n"
+   for i; do
+      if [ -d "$i" ]; then
+         TOADD="$i"
+         ADDME="y"
+         OIFS=$IFS
+         IFS=:
+         for pathpart in $PATH; do
+            if [ "$pathpart" = "$TOADD" ]; then
+               ADDME="n"
+            fi
+         done
+         IFS=$OIFS
+         if [ "$ADDME" = "y" ]; then
+            if [ -z "${PATH}" ]; then
+               PATH="${TOADD}"
+            else
+               PATH="${PATH}:${TOADD}"
+            fi
+            export PATH
+         fi
+         unset ADDME
+         unset OIFS
       fi
    done
-   IFS=$OIFS
-   if [ "$ADDME" = "y" ]; then
-      PATH=$PATH:$TOADD
-      export PATH
+}
+
+edpath()
+{
+   FILENAME="`mktemp /tmp/edpath.XXXXXX`"
+   rm -f "$FILENAME"
+   :>"$FILENAME"
+   OIFS="$IFS"; IFS=":"; for pathpart in $PATH; do
+      echo "$pathpart" >> "$FILENAME"
+   done; IFS="$OIFS"
+   if [ -z "$VISUAL" ]; then
+      vi "$FILENAME"
+   else
+      "$VISUAL" "$FILENAME"
    fi
-   unset ADDME
-   unset OIFS
+   export PATH=""
+   while read LINE; do
+      if [ -d "$LINE" -o -f "$LINE" ]; then
+         if [ -z "${PATH}" ]; then
+            export PATH="${LINE}"
+         else
+            export PATH="${PATH}:${LINE}"
+         fi
+      fi
+   done < "$FILENAME"
+   rm -f "$FILENAME"
 }
 
 addclasspath()
 {
-   TOADD="$1"
-   ADDME="y"
-   OIFS=$IFS
-   IFS=:
-   if [ -z "$CLASSPATH" ]; then
-      CLASSPATH=$TOADD
-   else
-      for i in $CLASSPATH; do
-         if [ "$i" -ef "$TOADD" ]; then
-            ADDME="n"
+   for i; do
+      if [ -d "$i" -o -f "$i" ]; then
+         TOADD="$i"
+         ADDME="y"
+         OIFS=$IFS
+         IFS=:
+         for i in $CLASSPATH; do
+            if [ "$i" = "$TOADD" ]; then
+               ADDME="n"
+            fi
+         done
+         IFS=$OIFS
+         if [ "$ADDME" = "y" ]; then
+            if [ -z "${CLASSPATH}" ]; then
+               CLASSPATH="${TOADD}"
+            else
+               CLASSPATH="${CLASSPATH}:${TOADD}"
+            fi
+            export CLASSPATH
          fi
-      done
-      if [ "$ADDME" = "y" ]; then
-         CLASSPATH=$CLASSPATH:$TOADD
+         unset ADDME
+         unset OIFS
       fi
-   fi
-	IFS=$OIFS
-   export CLASSPATH
-   unset ADDME
-   unset OIFS
+   done
 }
+
+edclasspath()
+{
+   FILENAME="`mktemp /tmp/edclasspath.XXXXXX`"
+   rm -f "$FILENAME"
+   :>"$FILENAME"
+   OIFS="$IFS"; IFS=":"; for pathpart in $CLASSPATH; do
+      echo "$pathpart" >> "$FILENAME"
+   done; IFS="$OIFS"
+   if [ -z "$VISUAL" ]; then
+      vi "$FILENAME"
+   else
+      "$VISUAL" "$FILENAME"
+   fi
+   export CLASSPATH=""
+   while read LINE; do
+      if [ -d "$LINE" -o -f "$LINE" ]; then
+         if [ -z "${CLASSPATH}" ]; then
+            export CLASSPATH="${LINE}"
+         else
+            export CLASSPATH="${CLASSPATH}:${LINE}"
+         fi
+      fi
+   done < "$FILENAME"
+   rm -f "$FILENAME"
+}
+
 
 terminalname()
 {
@@ -123,4 +188,5 @@ resetterminaltitle
 
 set show-all-if-ambiguous On
 
-addpath $HOME/bin
+include(zpath.m4)
+include(zclasspath.m4)
