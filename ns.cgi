@@ -177,7 +177,7 @@ case "${KEYWORD}" in
    cddb%20*) forwardto "http://www.cddb.com/xm/search?q=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    bug%20*) forwardto "http://bugz.i./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c7-`" ;;
    gale%20bug%20*) forwardto "http://bugs.gale.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c14-`" ;;
-   mozilla%20bug%20*) forwardto "http://bugzilla.mozilla.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c14-`" ;;
+   mozilla%20bug%20*) forwardto "http://bugzilla.mozilla.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c17-`" ;;
 
    ###################################################################
    # Programming: Languages
