@@ -70,6 +70,7 @@ esac
 
 case "${KEYWORD}" in
    # re-search / fake command line
+   google%20*) forwardto "http://www.google.com./search?q=`echo ${ORIGKEYWORD} | cut -c10-`" ;;
    dict%20*) forwardto "http://m-w.com./cgi-bin/dictionary?book=Dictionary&va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    thes%20*) forwardto "http://m-w.com./cgi-bin/thesaurus?book=Thesaurus&va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    map%20*) %2F
