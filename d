@@ -56,7 +56,8 @@ nes()
    xset s off
    xset -dpms
    xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
-      -sound -x11-mode 0 "$1"
+      -sound -x11-mode 0 -volume -16 \
+      -cart "$1"
    xset s 120
    xset +dpms
 }
@@ -85,6 +86,8 @@ for i in "$@"; do
                snes "$i"
             elif unzip -l "$i" | grep -i '\.sfc$' > /dev/null 2>&1 ; then
                snes "$i"
+            elif unzip -l "$i" | grep -i '\.swc$' > /dev/null 2>&1 ; then
+               snes "$i"
             elif unzip -l "$i" | grep -i '\.fig$' > /dev/null 2>&1 ; then
                snes "$i"
             elif unzip -l "$i" | grep -i '\.nes$' > /dev/null 2>&1 ; then
@@ -112,7 +115,7 @@ for i in "$@"; do
             snes "$i"
          ;;
          # nes
-         *.[Nn][Ee][Ss])
+         *.[Nn][Ee][Ss]|*.[Nn][Ee][Ss].[Gg][Zz])
             nes "$i"
          ;;
          # gb/gbc
