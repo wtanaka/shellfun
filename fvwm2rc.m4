@@ -199,8 +199,9 @@ Style "vncviewer"           Icon rndvnc.xpm
 Style "Gaim"                Icon rndgaim.xpm
 Style "Gvim"                Icon rndvim.xpm
 Style "Eclipse"             Icon rndeclipse.xpm
-Style "LimeWire*"           Icon rndlime.xpm
 Style "Mozilla*"            Icon rndmozilla.xpm
+Style "LimeWire*"           Icon rndlime.xpm
+Style "Up2date"             Icon rndredhat.xpm
 
 define({{MAGIC}},
    ifelse(
@@ -802,4 +803,3 @@ ifelse(SYS_LAB,{{DABNEY}},{{Module FvwmAudio}},
 # to change banner pixmap
 #*FvwmBannerPixmap fvwm3.xpm
 #*FvwmBannerTimeout 2
-
