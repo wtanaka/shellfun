@@ -5,7 +5,7 @@ dnl -----------------------------------------------------------------------
 dnl --------------------   Common functions  ------------------------------
 dnl -----------------------------------------------------------------------
 
-s()
+{{s()
 {
    gsub -K
    screen -A -fn -r `screen -ls | grep Detached | head -1 \
@@ -13,7 +13,7 @@ s()
       || screen -fn "$@"
 }
 
-{{addclasspath()
+addclasspath()
 {
    OLDMANPATH="$MANPATH"
    MANPATH="$CLASSPATH"
