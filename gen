@@ -126,4 +126,15 @@ if [ -f "$HOME/.netscape/preferences.js" ]; then
     echo 'user_pref("network.search.url", "http://shellfun.sourceforge.net./cgi-bin/ns?");' >> $HOME/.netscape/preferences.js
   fi
 fi
+
+
+if [ -f "$HOME/.mozilla/wtanaka/"*"/prefs.js" ]; then
+  if 2>&1 grep keyword.URL "$HOME/.mozilla/wtanaka/"*"/prefs.js" >/dev/null; then
+    :
+  else
+    for i in $HOME/.mozilla/wtanaka/*/prefs.js; do
+       echo 'user_pref("keyword.URL", "http://shellfun.sourceforge.net./cgi-bin/ns?keyword=");' >> "$i"
+    done
+  fi
+fi
 #exec rm gen
