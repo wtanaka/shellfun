@@ -73,6 +73,7 @@ makewin()
 
     CASEHOST(dazzler, dazzler.hero.catori.com., PowderBlue, black)
 
+    CASEHOST(darkhorse, darkhorse.ispheres.com., LightSteelBlue, black)
     CASEHOST(dragontail, dragontail.infospheres.com., LightSteelBlue, black)
     CASEHOST(monarch, monarch.infospheres.com., LightSteelBlue, black)
     CASEHOST(swallowtail, swallowtail.infospheres.com., LightSteelBlue, black)
