@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /tmp
+wget -O - http://ftp.mozilla.org/pub/mozilla/nightly/latest/mozilla-i686-pc-linux-gnu.tar.gz \
+   | gzip -d -c | tar xvf -
