@@ -1,0 +1,2 @@
+0 * * * * $HOME/.ssh/killagents > /dev/null 2>&1
+30 7 * * * if [ -x $HOME/bin/crontab-daily ]; then $HOME/bin/crontab-daily; fi

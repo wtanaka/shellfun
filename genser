@@ -1,0 +1,16 @@
+#!/bin/sh
+cat<<EOF
+  /**
+   * Used as a offset for our version numbers.  This is J. random
+   * number.  It makes it even less likely that we would read this
+   * class in from some random data, and doesn't hurt any.  We could
+   * presumably also use it as the basis for a search for some
+   * serialized object.
+   * Generated with:
+   * <code>
+   * cat /dev/urandom | head -c 1024 | md5sum - | cut -c1-8
+   * </code>
+   **/
+EOF
+echo "  private static final int SERIAL_MAGIC_NUMBER = 0x`\
+cat /dev/urandom | head -c 1024 | md5sum - | cut -c1-8`;"

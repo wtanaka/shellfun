@@ -1,0 +1,28 @@
+#!/bin/sh
+FILE=$HOME/.ssh/agentlist-`hostname`
+TMPFILE=/tmp/killagent$$
+
+mv $FILE $TMPFILE
+touch $FILE
+
+(
+read LINE
+while [ -n "$LINE" ]; do
+   set $LINE
+   AGENT=$1
+   SHELL=$2
+   if [ -r /proc/$AGENT ]; then
+      echo "Agent $AGENT is alive \c"
+      if [ -r /proc/$SHELL ]; then
+         echo "but so is shell $SHELL"
+         echo $AGENT $SHELL >> $FILE
+      else
+         echo "and shell $SHELL is dead.  Killing agent."
+         kill $AGENT
+      fi
+   fi
+   read LINE
+done
+) < $TMPFILE
+
+rm -f -- $TMPFILE
