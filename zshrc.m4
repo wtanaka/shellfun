@@ -55,6 +55,15 @@ precmd()
    fi
 }
 
+ifelse(SYS_HOST,{{usw-pr-shell1}},praya=/home/groups/p/pr/praya
+)dnl
+ifelse(SYS_HOST,{{usw-pr-shell1}},wohenchan=/home/groups/w/wo/wohenchan
+)dnl
+ifelse(SYS_HOST,{{usw-pr-shell1}},cabal=/home/groups/c/ca/cabal
+)dnl
+ifelse(SYS_HOST,{{usw-pr-shell1}},shellfun=/home/groups/s/sh/shellfun
+)dnl
+
 # use compctl to override?
 fignore=(.o .class .u .d \~)
 REPORTTIME=10
