@@ -48,7 +48,6 @@ urldecode()
       -e 's/%2F/\//g'
 }
 
-#echo Infoseek with my own keywords:
 case $QUERY_STRING in
    dnshelp/*)
       DNS=`echo $QUERY_STRING | cut -c9-`
@@ -233,12 +232,12 @@ case "${KEYWORD}" in
    cvs%20bubbles) forwardto http://www.loria.fr/%7Emolli/cvs-index.html ;;
 
    %2b*)
-      #forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
-      forwardto "http://infoseek.go.com/Titles?qt=$ORIGKEYWORD"
+      forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
+      #forwardto "http://infoseek.go.com/Titles?qt=$ORIGKEYWORD"
       ;;
    *%20*)
-      #forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
-      forwardto "http://infoseek.go.com/Titles?qt=$ORIGKEYWORD"
+      forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
+      #forwardto "http://infoseek.go.com/Titles?qt=$ORIGKEYWORD"
       ;;
    *)
       forwardto "http://www.$ORIGKEYWORD.com"
