@@ -215,15 +215,15 @@ dnl Key Tab     A        MAGIC           Next [CurrentScreen CurrentDesk !Sticky
 dnl Key Tab     A        S{{}}MAGIC          Prev [CurrentScreen CurrentDesk !Sticky] Function FocusRaiseWarp
 Key Tab     A        MAGIC           Next [CurrentDesk CurrentScreen] Function FocusRaiseWarp
 Key Tab     A        S{{}}MAGIC          Prev [CurrentDesk CurrentScreen] Function FocusRaiseWarp
-Key c       135ITWFS MAGIC_K     Close
-Key i       135ITWFS MAGIC_K     Iconify
+Key c       ITWFS MAGIC_K     Close
+Key i       ITWFS MAGIC_K     Iconify
 Key h       A        MAGIC_K     CursorMove -1 +0
 Key j       A        MAGIC_K     CursorMove +0 +1
 Key k       A        MAGIC_K     CursorMove +0 -1
 Key l       A        MAGIC_K     CursorMove +1 +0
 Key u       A        MAGIC_K     UtilityFunction
-Key space   135ITWFS MAGIC_K     RaiseLower
-Key Return  135ITWFS MAGIC_K     Function FocusRaiseWarp
+Key space   ITWFS MAGIC_K     RaiseLower
+Key Return  ITWFS MAGIC_K     Function FocusRaiseWarp
 Key r       A        MAGIC_K     Resize
 Key w       A        MAGIC_K     WindowList
 Key n       A        MAGIC_K     Menu Logins
