@@ -167,6 +167,7 @@ case "${KEYWORD}" in
    ashby*bart*) forwardto http://bart.gov./riding/stations/ASHBY/ ;;
    fruitvale*bart*) forwardto http://bart.gov./riding/stations/FRTVL/ ;;
    coliseum*bart*) forwardto http://bart.gov./riding/stations/COLIS/ ;;
+   rockridge*bart*) forwardto http://bart.gov./riding/stations/ROCKR/ ;;
 
    # Yahoo
    yahoo%20inbox) forwardto 'http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
