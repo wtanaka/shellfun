@@ -85,6 +85,10 @@ for i in "$@"; do
             fi
             popd > /dev/null
          ;;
+         # smc
+         *.[Ss][Mm][Cc])
+            gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$i"
+         ;;
          # nes
          *.[Nn][Ee][Ss])
             xmess nes -scale 2 -spooldir ~/.xmess/spool -joytype 4 \
