@@ -156,6 +156,14 @@ compctl -f -k "($netscapeflags)" \
         -- netscape
 unset netscapeflags
 
+vncviewerflags=(-h -listen -via -shared -noshared -viewonly -fullscreen -noraiseonbeep -passwd -encodings -bgr233 -owncmap -truecolour -depth -compresslevel -quality -nocursorshape)
+compctl -f -k "($vncviewerflags)" \
+        -x 'c[-1,-depth]' -k "(8 15 16 24 32)" \
+        - 'c[-1,-compresslevel]' -k "(0 1 2 3 4 5 6 7 8 9)" \
+        - 'c[-1,-quality]' -k "(0 1 2 3 4 5 6 7 8 9)" \
+        -- vncviewer
+unset vncviewerflags
+
 javacflags=(-deprecation -verbose)
 compctl -g "*.java" -k "($javacflags)" javac
 unset javacflags
