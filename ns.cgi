@@ -3,7 +3,7 @@
 # Shell Fun - Shell Tools for UNIX
 # ns.cgi - This script is a handler for netscape's network.search.url
 # 
-# Copyright (C) 2000 Wesley Tanaka
+# Copyright (C) 2000,2001 Wesley Tanaka
 # 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -178,6 +178,7 @@ case "${KEYWORD}" in
    bug%20*) forwardto "http://bugz.i./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c7-`" ;;
    gale%20bug%20*) forwardto "http://bugs.gale.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c14-`" ;;
    mozilla%20bug%20*) forwardto "http://bugzilla.mozilla.org./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c17-`" ;;
+   unity%20*) forwardto "http://unity.i/twiki/bin/view/Unity/`echo ${ORIGKEYWORD} | cut -c9-`" ;;
 
    ###################################################################
    # Programming: Languages
