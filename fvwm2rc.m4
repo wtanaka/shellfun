@@ -165,6 +165,7 @@ Style "*MpegTV *"      Icon rndmtv.xpm
 Style "XEphem"        Icon rndxephem.xpm
 Style "wo3 hen3 chan2" Icon rndchan.xpm
 Style "gmc"           Icon rndgnome.xpm
+Style "XTalkback"     Icon rndfcirc.xpm
 
 define({{MAGIC}},
    ifelse(
