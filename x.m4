@@ -112,6 +112,7 @@ makewin()
     CASEHOST(varuna, varuna.i., LightSteelBlue, black)
     CASEHOST(viceroy, viceroy.i., LightSteelBlue, black)
     CASEHOST(white, white.i., LightSteelBlue, black)
+    CASEHOST(yama, yama.i., LightSteelBlue, black)
 
     CASEHOST(spica, spica.mili.eu.org., thistle2, black)
     CASEHOST(altair, altair.mili.eu.org., thistle2, black)
