@@ -83,6 +83,9 @@ makewin()
 
     CASEHOST(icsi, login.icsi.berkeley.edu., LightSteelBlue, black)
     CASEHOST(icsi2, login2.icsi.berkeley.edu., LightSteelBlue, black)
+    CASEHOST(crawdad, crawdad.icsi.berkeley.edu., LightSteelBlue, black)
+    CASEHOST(fondue, fondue.icsi.berkeley.edu., LightSteelBlue, black)
+    CASEHOST(sausage, sausage.icsi.berkeley.edu., LightSteelBlue, black)
 
     CASEHOST(admiral, admiral.i., LightSteelBlue, black)
     CASEHOST(agama, agama.i., LightSteelBlue, black)
