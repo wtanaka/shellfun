@@ -18,7 +18,7 @@ ImagePath PIXMAPPATH:ICONPATH
 EdgeResistance 0 10
 EdgeScroll 100 100
 ClickTime 50
-DoubleClickTime 200
+#DoubleClickTime 200
 OpaqueMoveSize 10
 
 # make sure these fonts exist on your system:

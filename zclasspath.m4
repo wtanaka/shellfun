@@ -20,6 +20,14 @@ addclasspath /usr/ug/share/swing-1.1.1-beta1/swing.jar
 ### try swing 1.1
 addclasspath /usr/local/swing-1.1/swing.jar
 
+### try swt
+addclasspath /usr/lib/eclipse/plugins/org.eclipse.swt.gtk/ws/gtk/swt.jar
+addclasspath /usr/lib/eclipse/plugins/org.eclipse.swt.gtk/ws/gtk/swt-pi.jar
+addclasspath /usr/lib/eclipse/plugins/org.eclipse.ui.workbench/workbench.jar
+addclasspath /usr/lib/eclipse/plugins/org.eclipse.core.boot/boot.jar
+addclasspath /usr/lib/eclipse/plugins/org.eclipse.jface/jface.jar
+addclasspath /usr/lib/eclipse/plugins/org.eclipse.core.runtime/runtime.jar
+
 addclasspath "$HOME/gale.jar"
 addclasspath "$HOME/wtanaka/gale.jar"
 
