@@ -34,6 +34,45 @@ s()
    export MANPATH="$OLDMANPATH"
 }
 
+edpath()
+{
+   FILENAME="`mktemp /tmp/edpath.XXXXXX`"
+   rm -f "$FILENAME"
+   for pathpart in $path; do
+      echo "$pathpart" >>! "$FILENAME"
+   done
+   "$VISUAL" "$FILENAME"
+   export PATH=""
+   { while read LINE; do
+      if [[ -d "$LINE" ]]; then
+         if [[ -z "${PATH}" ]]; then
+            export PATH="${LINE}"
+         else
+            export PATH="${PATH}:${LINE}"
+         fi
+      fi
+   done } < "$FILENAME"
+   rm -f "$FILENAME"
+}
+
+prepath()
+{
+   for i; do
+      if [[ -d "$i" ]]; then
+         for pathpart in $path; do
+            if [[ "$pathpart" -ef "$i" ]]; then
+               continue 2
+            fi
+         done
+         if [[ -z "${PATH}" ]]; then
+            export PATH="${i}"
+         else
+            export PATH="${i}:${PATH}"
+         fi
+      fi
+   done
+}
+
 addpath()
 {
    for i; do
