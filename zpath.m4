@@ -13,6 +13,7 @@ addpath /usr/local/jdk117/bin
 addpath /usr/local/jdk1.1.5/bin
 addpath /usr/local/java/jdk116_v5/bin
 addpath /usr/local/jdk1.2/bin
+addpath /usr/jdk1.2/bin
 addpath /usr/local/java/bin
 
 ## generic
