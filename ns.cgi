@@ -168,6 +168,10 @@ case "${KEYWORD}" in
       ADDR=`echo ${ORIGKEYWORD} | cut -c11-`
       forwardto "http://address.yahoo.com/yab/?v=SA&A=search&search=${ADDR}"
       ;;
+   yp%20*)
+      YP=`echo ${ORIGKEYWORD} | cut -c6-`
+      forwardto "http://yp.yahoo.com/py/ypResults.py?stx=${YP}"
+      ;;
    mail%20*) forwardto "http://f1.mail.yahoo.com/py/ymTo.py?&To=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    rfc%20*) forwardto http://www.cis.ohio-state.edu./htbin/rfc/${KEYWORD}.html | sed -e 's/%20//' ;;
    rfc*) forwardto http://www.cis.ohio-state.edu./htbin/rfc/${KEYWORD}.html ;;
