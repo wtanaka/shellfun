@@ -197,6 +197,8 @@ Style "Usage dialog is yo*" Icon rndaviplay.xpm
 Style "GnuCash"             Icon rndmoney.xpm
 Style "Gnucash"             Icon rndmoney.xpm
 Style "vncviewer"           Icon rndvnc.xpm
+Style "Gaim"                Icon rndgaim.xpm
+Style "Gvim"                Icon rndvim.xpm
 
 define({{MAGIC}},
    ifelse(
