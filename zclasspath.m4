@@ -28,6 +28,9 @@ addclasspath /usr/lib/eclipse/plugins/org.eclipse.core.boot/boot.jar
 addclasspath /usr/lib/eclipse/plugins/org.eclipse.jface/jface.jar
 addclasspath /usr/lib/eclipse/plugins/org.eclipse.core.runtime/runtime.jar
 
+### try junit
+addclasspath /usr/share/java/junit.jar
+
 addclasspath "$HOME/gale.jar"
 addclasspath "$HOME/wtanaka/gale.jar"
 
