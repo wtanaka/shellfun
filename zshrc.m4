@@ -165,6 +165,7 @@ unset xscreensavercommandflags
 
 
 hosts=(\
+ofb.net. \
 agora.ugcs.caltech.edu. \
 amatho.ugcs.caltech.edu. \
 arachno.ugcs.caltech.edu. \
