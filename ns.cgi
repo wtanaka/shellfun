@@ -88,6 +88,7 @@ case "${KEYWORD}" in
    rfc*) forwardto http://www.cis.ohio-state.edu/htbin/rfc/${KEYWORD}.html ;;
    caltech%20*) forwardto "http://www.search.caltech.edu/CIT_Search/action.lasso?-database=CIT_Search&-noResults=/CIT_Search/No_Result_Found.html&-response=/CIT_Search/Hit_List_CIT_Search.html&-layout=Search_Layout&-maxRecords=100&Search_Field=`echo ${ORIGKEYWORD} | cut -c11-`&-search" ;;
    imdb%20*) forwardto "http://www.imdb.com/Find?select=All&for=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
+   bug%20*) forwardto "http://bugz.i./show_bug.cgi?id=`echo ${ORIGKEYWORD} | cut -c7-`" ;;
 
    ###################################################################
    # Programming: Languages
