@@ -190,11 +190,13 @@ export VISUAL=vim
 export WWW_HOME="http://mili.eu.org/~wtanaka/"
 export TEXEDIT='vim +%d %s'
 export FPATH="$HOME/bin/zshf"
-if [ -d "$FPATH" -a -n "`ls $FPATH`" ]; then
-   OWD="`pwd`"
-   cd "$HOME/bin/zshf"
-   autoload *
-   cd "$OWD"
+if [ -d "$FPATH" ]; then
+   if [ -n "`ls $FPATH`" ]; then
+      OWD="`pwd`"
+      cd "$HOME/bin/zshf"
+      autoload *
+      cd "$OWD"
+   fi
 fi
 
 if [ -n "`which arch | grep -v not\ found`" ]; then
