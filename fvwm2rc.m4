@@ -182,7 +182,7 @@ Style "gEdit"        Icon rndgedit.xpm
 Style "Fpm"          Icon rndfpm.xpm
 Style "Nautilus"     Icon rndnaut.xpm
 Style "Java Web Start*"     Icon rndjnlp.xpm
-Style "LimeWire"     Icon rndlime.xpm
+Style "LimeWire*"     Icon rndlime.xpm
 
 define({{MAGIC}},
    ifelse(
