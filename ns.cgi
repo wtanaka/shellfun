@@ -26,6 +26,7 @@
 
 #echo Default Behavior:
 #echo Location: http://keyword.netscape.com/$QUERY_STRING
+#echo
 
 forwardto()
 {
@@ -61,20 +62,45 @@ esac
 
 case "${KEYWORD}" in
    # re-search
+   caltech%20*) forwardto "http://www.search.caltech.edu/CIT_Search/action.lasso?-database=CIT_Search&-noResults=/CIT_Search/No_Result_Found.html&-response=/CIT_Search/Hit_List_CIT_Search.html&-layout=Search_Layout&-maxRecords=100&Search_Field=`echo ${ORIGKEYWORD} | cut -c11-`&-search" ;;
+   # cmd line
    dict%20*) forwardto "http://m-w.com./cgi-bin/dictionary?va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
    thes%20*) forwardto "http://m-w.com./cgi-bin/thesaurus?va=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
-   caltech%20*) forwardto "http://www.search.caltech.edu/CIT_Search/action.lasso?-database=CIT_Search&-noResults=/CIT_Search/No_Result_Found.html&-response=/CIT_Search/Hit_List_CIT_Search.html&-layout=Search_Layout&-maxRecords=100&Search_Field=`echo ${ORIGKEYWORD} | cut -c11-`&-search" ;;
    map%20*) %2F
       ARG=`echo ${ORIGKEYWORD} | cut -c7- | urldecode`
       ADDR=`echo ${ARG} | cut -d\/ -f1`
       CSZ=`echo ${ARG} | cut -d\/ -f2`
       forwardto "http://maps.yahoo.com/py/maps.py?Pyt=Tmap&addr=$ADDR&csz=$CSZ&country=us&Get%A0Map=Get+Map"
       ;;
-#   java%20lang*%20spec*) echo Location: http://java.sun.com./docs/books/jls/html/index.html ;;
-#   servlet%20api) echo Location: http://www.javasoft.com/products/servlet/2.1/api/packages.html ;;
-#   jtextarea) echo Location: http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JTextArea.html ;;
-#   joptionpane) echo Location: http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JOptionPane.html ;;
-#   maps*yahoo) echo 'Location: http://maps.yahoo.com/' ;;
+   mail%20*) forwardto "http://f1.mail.yahoo.com/py/ymTo.py?&To=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
+
+   # java stuff: hardcoded
+   servlet%20api) forwardto http://www.javasoft.com/products/servlet/2.1/api/packages.html ;;
+   java%20lang*%20spec*) forwardto http://java.sun.com./docs/books/jls/html/index.html ;;
+   jtextarea) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JTextArea.html ;;
+   joptionpane) forwardto http://java.sun.com/products/jfc/swingdoc-api-1.1/javax/swing/JOptionPane.html ;;
+   # java APIs
+   java%20lang) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.lang.html ;;
+   java%202%20api) forwardto http://java.sun.com./products/jdk/1.2/docs/api/index.html ;;
+   java%201.0%20api|java1.0api|"java 1.0 api"|"java 1.0.2 api"|java%201.0.2%20api) forwardto http://java.sun.com./products/jdk/1.0.2/api/ ;;
+   java%201.2%20api) forwardto http://java.sun.com./products/jdk/1.2/docs/api/index.html ;;
+   java%20api) forwardto http://java.sun.com./products/jdk/1.1/docs/api/packages.html ;;
+   java%201.1%20api) forwardto http://java.sun.com./products/jdk/1.1/docs/api/packages.html ;;
+   java%20awt%20event) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.awt.event.html ;;
+   java%20awt) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.awt.html ;;
+   java%20util) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.util.html ;;
+   java%20util%20zip) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.util.zip.html ;;
+   java%20rmi) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.rmi.html ;;
+   java%20net) forwardto http://java.sun.com./products/jdk/1.1/docs/api/Package-java.net.html ;;
+   # Java: any class
+   java%20applet%20*|java%20awt%20*|java%20awt%20datatransfer%20*|java%20awt%20event%20*|java%20awt%20image%20*|java%20beans%20*|java%20io%20*|java%20lang%20*|java%20lang%20reflect%20*|java%20math%20*|java%20net%20*|java%20rmi%20*|java%20rmi%20dgc%20*|java%20rmi%20registry%20*|java%20rmi%20server%20*|java%20security%20*|java%20security%20acl%20*|java%20security%20interfaces%20*|java%20sql%20*|java%20text%20*|java%20util%20*|java%20util%20zip%20*) forwardto http://java.sun.com./products/jdk/1.1/docs/api/${ORIGKEYWORD}.html#_top_ | sed -e 's/%20/./g' ;;
+   javax%20swing*) forwardto http://java.sun.com./products/jfc/swingdoc-api-1.1/${ORIGKEYWORD}.html | sed -e 's/%20/\//g' ;;
+   javax%20servlet*) forwardto http://jserv.javasoft.com/products/java-server/documentation/webserver1.0.2/apidoc/${ORIGKEYWORD}.html | sed -e 's/%20/./g' ;;
+
+   # Other
+   kernel*traffic) forwardto http://www.kt.linuxcare.com/kernel-traffic/latest.epl ;;
+   freshmeat) forwardto http://www.freshmeat.net./ ;;
+   maps*yahoo|yahoo*maps) forwardto 'http://maps.yahoo.com/' ;;
 #   yahoo%20inbox) echo 'Location: http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
 #   caltech*credit*union) echo Location: http://www.caltech.edu/~cefcu/ ;;
 #   rpmfind) echo Location: http://rpmfind.net/linux/rpm2html/rpmfind.html ;;
@@ -82,7 +108,6 @@ case "${KEYWORD}" in
 #   cvs%20bubbles) echo Location: http://www.loria.fr/%7Emolli/cvs-index.html ;;
 #   pike) echo Location: http://pike.idonex.se/ ;;
 #   soar) echo Location: http://soar.berkeley.edu/recipes/ ;;
-   mail%20*) forwardto "http://f1.mail.yahoo.com/py/ymTo.py?&To=`echo ${ORIGKEYWORD} | cut -c8-`" ;;
 #   c%2b%2bstandard) echo Location: http://www.cygnus.com/misc/wp/nov97/ ;;
 #   md5%20rfc) echo Location: http://www.cis.ohio-state.edu/htbin/rfc/rfc1321.html ;;
 #   yahoo%20mail|email|mail) echo Location: http://mail.yahoo.com/ ;;
@@ -112,47 +137,12 @@ case "${KEYWORD}" in
 #                    http://www.vision.caltech.edu./bond/coursegs.html ;;
 #                       esound) echo Location: http://www.tux.org/~ricdude/EsounD.html ;;
 #                       eterm) echo Location: http://www.tcserv.com./Eterm/ ;;
-#                       freshmeat) echo Location: http://www.freshmeat.net./ ;;
 #                       gale%20log) echo Location: http://www.ugcs.caltech.edu./~jtr/gale/log/ ;;
 #                       gale) echo Location: http://www.gale.org./ ;;
 #                       gimp) echo Location: http://www.gimp.org./ ;;
 #                       gnome) echo Location: http://www.gnome.org./ ;;
 #                       guavac) echo Location: 
 #                    ftp://ftp.yggdrasil.com/pub/dist/devel/compilers/guavac ;;
-#                       javax%20swing*) echo Location: 
-#                    http://java.sun.com./products/jdk/1.2/docs/api/${ORIGKEYWORD}.html | sed -e 
-#                    's/%20/\//g' ;;
-#                       javax%20servlet*) echo Location: 
-#                    http://jserv.javasoft.com/products/java-server/documentation/webserver1.0.2/apidoc/${ORIGKEYWORD}.html 
-#                    | sed -e 's/%20/./g' ;;
-#                       java%202%20api) echo Location: 
-#                    http://java.sun.com./products/jdk/1.2/docs/api/index.html ;;
-#                       java%201.0%20api|java1.0api|"java 1.0 api"|"java 1.0.2 
-#                    api"|java%201.0.2%20api) echo Location: http://java.sun.com./products/jdk/1.0.2/api/ ;;
-#                       java%201.2%20api) echo Location: 
-#                    http://java.sun.com./products/jdk/1.2/docs/api/index.html ;;
-#                       java%20api) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/packages.html ;;
-#                       java%201.1%20api) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/packages.html ;;
-#                       java%20awt%20event) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/Package-java.awt.event.html ;;
-#                       java%20awt) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/Package-java.awt.html ;;
-#                       java%20util) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/Package-java.util.html ;;
-#                       java%20util%20zip) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/Package-java.util.zip.html ;;
-#                       java%20rmi) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/Package-java.rmi.html ;;
-#                       java%20lang) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/Package-java.lang.html ;;
-#                       java%20net) echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/Package-java.net.html ;;
-#                       
-#                    java%20applet%20*|java%20awt%20*|java%20awt%20datatransfer%20*|java%20awt%20event%20*|java%20awt%20image%20*|java%20beans%20*|java%20io%20*|java%20lang%20*|java%20lang%20reflect%20*|java%20math%20*|java%20net%20*|java%20rmi%20*|java%20rmi%20dgc%20*|java%20rmi%20registry%20*|java%20rmi%20server%20*|java%20security%20*|java%20security%20acl%20*|java%20security%20interfaces%20*|java%20sql%20*|java%20text%20*|java%20util%20*|java%20util%20zip%20*) 
-#                    echo Location: 
-#                    http://java.sun.com./products/jdk/1.1/docs/api/${ORIGKEYWORD}.html#_top_ | sed -e 's/%20/./g' ;;
 #                       gridlayout) echo Location: 
 #                    http://java.sun.com./products/jdk/1.2/docs/api/java/awt/GridLayout.html ;;
 #                       gridbaglayout) echo Location: 
@@ -197,10 +187,12 @@ case "${KEYWORD}" in
 #                       x11amp) echo Location: http://x11amp.org/ ;;
 #                       yahoo|my|myyahoo|my%20yahoo) echo Location: http://my.yahoo.com/ ;;
    %2b*)
-      forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
+      #forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
+      forwardto "http://infoseek.go.com/Titles?qt=$ORIGKEYWORD"
       ;;
    *%20*)
-      forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
+      #forwardto "http://www.google.com./search?q=$ORIGKEYWORD"
+      forwardto "http://infoseek.go.com/Titles?qt=$ORIGKEYWORD"
       ;;
    *)
       forwardto "http://www.$ORIGKEYWORD.com"
