@@ -67,9 +67,10 @@ makewin()
     CASEHOST(dewinter, dewinter.dabney.caltech.edu., MediumSpringGreen, black)
     CASEHOST(yojackson, yojackson.dabney.caltech.edu., MediumSpringGreen, black)
 
-    CASEHOST(quantum, quantum.caltech.edu., MistyRose, black)
+    CASEHOST(colostomy, colostomy.bitfield.org., MistyRose, black)
     CASEHOST(darbly, darbly.mit.edu, MistyRose, black)
     CASEHOST(girgle, girgle.dabney.caltech.edu., MistyRose, black)
+    CASEHOST(quantum, quantum.caltech.edu., MistyRose, black)
 
     CASEHOST(admiral, admiral.i., LightSteelBlue, black)
     CASEHOST(agama, agama.i., LightSteelBlue, black)
