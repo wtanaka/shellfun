@@ -199,6 +199,7 @@ greenlantern.hero.catori.com. \
 groat.ugcs.caltech.edu. \
 hork.ugcs.caltech.edu. \
 hulk.hero.catori.com. \
+insanity.bitfield.org. \
 intel.ugcs.caltech.edu. \
 krishna.i. \
 krone.ugcs.caltech.edu. \
