@@ -11,8 +11,9 @@ define({{MENUFONT}},
                              {{-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}}))dnl
 # Samples at ftp://ftp.best.com/pub/tdgilman/Fvwmrcs
 ModulePath /usr/libexec/fvwm/2.2:/usr/lib/X11/fvwm2:/usr/X11/lib/X11/fvwm2:/usr/ug/arch/fvwm-2.2/libexec/fvwm/2.2:/usr/X11R6/lib/X11/fvwm/2.2.5
-PixmapPath PIXMAPPATH
-IconPath ICONPATH 
+#PixmapPath PIXMAPPATH
+#IconPath ICONPATH 
+ImagePath PIXMAPPATH:ICONPATH
 
 EdgeResistance 0 10
 EdgeScroll 100 100
@@ -56,7 +57,7 @@ ColormapFocus FollowsFocus
 Style "*"           BorderWidth 0, HandleWidth ifelse(
 SYS_HOST, {{castor.mili.eu.org}}, {{3}}, 
 {{4}})
-Style "*"           Icon Unknown.xpm, Color LightSteelBlue/#002244
+Style "*"           Icon rndunkwn.xpm, Color LightSteelBlue/#002244
 Style "*"           MWMFunctions, MWMDecor, HintOverride
 #Style "*"           NoPPosition
 Style "*"           IconBox -120 120 -1 -1
@@ -161,7 +162,6 @@ Style "Xcb"                 Icon rndclip.xpm
 Style "*colorsel"           Icon rndcolor.xpm
 Style "Vmw"                 Icon rndvmware.xpm
 Style "RealPlay*"           Icon rndreal.xpm
-Style "Mozilla*"            Icon rndmozilla.xpm
 Style "Dia"                 Icon rnddia.xpm
 Style "Gtk_gnutella"        Icon rndgnut.xpm
 Style "*MpegTV *"           Icon rndmtv.xpm
@@ -184,7 +184,6 @@ Style "gEdit"               Icon rndgedit.xpm
 Style "Fpm"                 Icon rndfpm.xpm
 Style "Nautilus"            Icon rndnaut.xpm
 Style "Java Web Start*"     Icon rndjnlp.xpm
-Style "LimeWire*"           Icon rndlime.xpm
 Style "Loki_*"              Icon rndloki.xpm
 Style "Soundtracker"        Icon rndsndtrk.xpm
 Style "Audacity"            Icon rndaudac.xpm
@@ -200,6 +199,8 @@ Style "vncviewer"           Icon rndvnc.xpm
 Style "Gaim"                Icon rndgaim.xpm
 Style "Gvim"                Icon rndvim.xpm
 Style "Eclipse"             Icon rndeclipse.xpm
+Style "LimeWire*"           Icon rndlime.xpm
+Style "Mozilla*"            Icon rndmozilla.xpm
 
 define({{MAGIC}},
    ifelse(
@@ -629,7 +630,8 @@ ifelse(SYS_LAB,{{DABNEY}},{{Module FvwmAudio}},
 *FvwmPagerFore #484048
 *FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPagerHilight #cab3ca
-*FvwmPagerGeometry 120x80-0+20
+#*FvwmPagerGeometry 120x80-0+20
+*FvwmPagerGeometry 90x80-0+20
 *FvwmPagerLabel 0 wtanaka
 *FvwmPagerLabel 1 Maker
 *FvwmPagerLabel 2 Mail
