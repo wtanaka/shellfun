@@ -17,8 +17,6 @@ addclasspath /usr/ug/share/swing-1.1.1-beta1/swing.jar
 ### try swing 1.1
 addclasspath /usr/local/swing-1.1/swing.jar
 
-addclasspath $HOME
-
 addclasspath "$HOME/gale.jar"
 addclasspath "$HOME/wtanaka/gale.jar"
 
