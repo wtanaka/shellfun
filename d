@@ -140,7 +140,8 @@ for i in "$@"; do
          *.xcf|*.xcf.bz2|*.xcf.gz)
             gimp $i 
          ;;
-         *.mpg|*.mpeg)
+         # mpg, mpeg
+         *.[Mm][Pp][Gg]|*.[Mm][Pp][Ee][Gg])
             if which mtv 2>&1 > /dev/null && grep REGISTRATION $HOME/.mtvrc 2>&1 > /dev/null ; then
                MTVP_AUDIO_OSS_DELAY_METHOD=2 mtv -ac0 "$i"
             elif which mtvp 2>&1 > /dev/null; then
