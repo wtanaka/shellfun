@@ -165,9 +165,10 @@ unset xscreensavercommandflags
 
 
 hosts=(\
-ofb.net. \
 agora.ugcs.caltech.edu. \
+altair.mili.eu.org. \
 amatho.ugcs.caltech.edu. \
+anglewing.i. \
 arachno.ugcs.caltech.edu. \
 auto.ugcs.caltech.edu. \
 baht.ugcs.caltech.edu. \
@@ -175,57 +176,58 @@ barf.ugcs.caltech.edu. \
 barter.ugcs.caltech.edu. \
 beg.ugcs.caltech.edu. \
 bolivar.ugcs.caltech.edu. \
+cf.sourceforge.net. \
 chunder.ugcs.caltech.edu. \
 claustro.ugcs.caltech.edu. \
+colostomy.bitfield.org. \
 cruzeiro.ugcs.caltech.edu. \
+dabney.caltech.edu. \
+darkhorse.ispheres.com. \
+dazzler.hero.catori.com. \
 drachma.ugcs.caltech.edu. \
+dragontail.i. \
 euro.ugcs.caltech.edu. \
+greenlantern.hero.catori.com. \
 groat.ugcs.caltech.edu. \
 hork.ugcs.caltech.edu. \
+hulk.hero.catori.com. \
+intel.ugcs.caltech.edu. \
+krishna.i. \
 krone.ugcs.caltech.edu. \
 lek.ugcs.caltech.edu. \
+lenin.dabney.caltech.edu. \
 mark.ugcs.caltech.edu. \
+mili.eu.org. \
 mono.ugcs.caltech.edu. \
+moth.i. \
 myxo.ugcs.caltech.edu. \
 necro.ugcs.caltech.edu. \
 ngwee.ugcs.caltech.edu. \
+ofb.net. \
 pfennig.ugcs.caltech.edu. \
 photo.ugcs.caltech.edu. \
 pride.ugcs.caltech.edu. \
 purchase.ugcs.caltech.edu. \
 pyro.ugcs.caltech.edu. \
+queen.i. \
 regurgitate.ugcs.caltech.edu. \
 retch.ugcs.caltech.edu. \
 riyal.ugcs.caltech.edu. \
+satyr.i. \
 seniti.ugcs.caltech.edu. \
+shell1.sourceforge.net. \
+slashdot.org. \
+snout.i. \
+sourceforge.net. \
 spew.ugcs.caltech.edu. \
+spica.mili.eu.org. \
 steal.ugcs.caltech.edu. \
 triskaideka.ugcs.caltech.edu. \
 upchuck.ugcs.caltech.edu. \
+viceroy.i. \
 yak.ugcs.caltech.edu. \
 zloty.ugcs.caltech.edu. \
-darkhorse.ispheres.com. \
-cf.sourceforge.net. \
-sourceforge.net. \
-shell1.sourceforge.net. \
-altair.mili.eu.org. \
-slashdot.org. \
-dragontail.i. \
-viceroy.i. \
-satyr.i. \
-anglewing.i. \
-greenlantern.hero.catori.com. \
-snout.i. \
-krishna.i. \
-queen.i. \
-moth.i. \
-lenin.dabney.caltech.edu. \
-dabney.caltech.edu. \
-hulk.hero.catori.com. \
-mili.eu.org. \
-spica.mili.eu.org. \
-intel.ugcs.caltech.edu. \
-dazzler.hero.catori.com.)
+)
 
 sshflags=(-l -n -a  -x -i -t -v -V -q -f -e -c -p -P -L -R -C -g -o)
 compctl -k "($sshflags $hosts)" \
