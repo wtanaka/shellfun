@@ -41,6 +41,15 @@ urlfor()
    URLFOR="`echo $URLFOR | urlencode`"
 }
 
+snes()
+{
+   xset s off
+   xset -dpms
+   zsnes "$1" || gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$1"
+   xset s 120
+   xset +dpms
+}
+
 # netscape seems to set this, acroread is unhappy with it.
 LD_PRELOAD=""
 export LD_PRELOAD
@@ -62,11 +71,11 @@ for i in "$@"; do
          # zip
          *.[Zz][Ii][Pp])
             if unzip -l "$i" | grep -i '\.smc$' > /dev/null 2>&1 ; then
-               gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$i"
+               snes "$i"
             elif unzip -l "$i" | grep -i '\.sfc$' > /dev/null 2>&1 ; then
-               gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$i"
+               snes "$i"
             elif unzip -l "$i" | grep -i '\.fig$' > /dev/null 2>&1 ; then
-               gsnes9x -y -fs -joymap1 2 1 5 4 6 7 8 10 -joymap2 2 1 5 4 6 7 8 10 -hires "$i"
+               snes "$i"
             else
                unzip -l "$i"
             fi
