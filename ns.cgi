@@ -153,6 +153,7 @@ case "${KEYWORD}" in
    civic*center*bart*) forwardto http://bart.gov./riding/stations/CIVIC/ ;;
    union*city*bart*) forwardto http://bart.gov./riding/stations/UCITY/ ;;
    ashby*bart*) forwardto http://bart.gov./riding/stations/ASHBY/ ;;
+   fruitvale*bart*) forwardto http://bart.gov./riding/stations/FRTVL/ ;;
 
    # Yahoo
    yahoo%20inbox) forwardto 'http://f1.mail.yahoo.com/ym/us/ShowFolder?rb=Inbox' ;;
