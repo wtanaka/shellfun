@@ -167,6 +167,10 @@ xscreensavercommandflags=( -demo -prefs -activate -deactivate -cycle -next -prev
 compctl -k "($xscreensavercommandflags)" xscreensaver-command
 unset xscreensavercommandflags
 
+gnomemozremoteflags=(--disable-sound --enable-sound --espeaker= --version --help --usage --version --remote= --raise --noraise --local --newwin --display= --id= --sync)
+compctl -k "($gnomemozremoteflags)" gnome-moz-remote
+unset gnomemozremoteflags
+
 
 hosts=(\
 agora.ugcs.caltech.edu. \
