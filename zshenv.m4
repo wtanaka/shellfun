@@ -190,7 +190,7 @@ export VISUAL=vim
 export WWW_HOME="http://mili.eu.org/~wtanaka/"
 export TEXEDIT='vim +%d %s'
 export FPATH="$HOME/bin/zshf"
-if [ -d "$FPATH" ]; then
+if [ -d "$FPATH" -a -n "`ls $FPATH`" ]; then
    OWD="`pwd`"
    cd "$HOME/bin/zshf"
    autoload *
