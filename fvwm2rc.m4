@@ -6,9 +6,7 @@ define({{LOGIN}},
    ifelse(SYS_HOST, {{smonger}}, {{SSHXTERM}},
           SYS_HOST, {{castor.mili.eu.org}}, {{RXVTSSH}},
                                  {{XTERMSSH}}))dnl
-define({{MENUFONT}},
-   ifelse(SYS_LAB, {{UGCS}}, {{-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}},
-                             {{-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}}))dnl
+define({{MENUFONT}}, {{xft:STXihei:size=10:iso10646-1;-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}})dnl
 # Samples at ftp://ftp.best.com/pub/tdgilman/Fvwmrcs
 ModulePath /usr/libexec/fvwm/2.5.21:/usr/libexec/fvwm/2.2:/usr/lib/X11/fvwm2:/usr/X11/lib/X11/fvwm2:/usr/ug/arch/fvwm-2.2/libexec/fvwm/2.2:/usr/X11R6/lib/X11/fvwm/2.2.5
 #PixmapPath PIXMAPPATH
@@ -23,9 +21,9 @@ OpaqueMoveSize 10
 
 # make sure these fonts exist on your system:
 WindowFont ifelse(SYS_HOST, {{castor.mili.eu.org}},
-{{"-*-fixed-*-*-*-*-7-*-*-*-*-*-*-*"}},
-{{"-*-luxi sans-medium-r-*-*-12-*-*-*-*-*-*-*"}})
-IconFont -*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
+{{"xft:STXihei:size=10:iso10646-1;-*-fixed-*-*-*-*-7-*-*-*-*-*-*-*"}},
+{{"xft:STXihei:size=10:iso10646-1;-*-luxi sans-medium-r-*-*-12-*-*-*-*-*-*-*"}})
+IconFont xft:STXihei:size=10:iso10646-1;-*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
 
 HilightColor black lightSteelBlue
 DeskTopSize 4x3
