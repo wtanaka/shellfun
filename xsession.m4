@@ -34,10 +34,21 @@ if [ "`uname`" = "Linux" ]; then
    xmodmap -e "keycode 22 = BackSpace" -e "keycode 107 = Delete"
 fi
 
-ifelse(SYS_LAB, {{UGCS}}, {{eval "`fortune $HOME/bin/rootwindows`"}},
-       SYS_LAB, {{CS}}, {{xearth -pos 34.08 -118.08}},
-       SYS_HOST, {{altair.mili.eu.org}}, {{nice -20 xplanetbg -nice 19 -wait 300 -fuzz 20 -image day_clouds.png  -labelpos +15+15 -latitude 34.08 -longitude -118.08 -night_image night_clouds.png -projection orthographic}},
-       {{xearth}}) &
+if [ -r "$HOME/etc/latlon" ]; then
+  . "$HOME/etc/latlon"
+fi
+
+if [ -r "$HOME/bin/rootwindows" ]; then
+  eval "`fortune $HOME/bin/rootwindows`"
+elif which xplanet 2> /dev/null; then
+  nice xplanet -wait 300 -labelpos +15+15 -latitude "$LATITUDE" -longitude "$LONGITUDE" &
+elif which xearth 2> /dev/null; then
+  xearth -pos 34.08 -118.08 &
+elif which xplanetbg 2> /dev/null; then
+  nice -20 xplanetbg -nice 19 -wait 300 -fuzz 20 -image day_clouds.png  -labelpos +15+15 -latitude 34.08 -longitude -118.08 -night_image night_clouds.png -projection orthographic
+else
+  xearth &
+fi
 
 ifelse(SYS_LAB, {{UGCS}}, {{}},
        SYS_HOST, {{smonger}}, {{xmailbox & xload -geometry 30x40+60+20 &}},
