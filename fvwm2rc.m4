@@ -10,7 +10,7 @@ define({{MENUFONT}},
    ifelse(SYS_LAB, {{UGCS}}, {{-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}},
                              {{-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}}))dnl
 # Samples at ftp://ftp.best.com/pub/tdgilman/Fvwmrcs
-ModulePath /usr/libexec/fvwm/2.2:/usr/lib/X11/fvwm2:/usr/X11/lib/X11/fvwm2:/usr/ug/arch/fvwm-2.2/libexec/fvwm/2.2:/usr/X11R6/lib/X11/fvwm/2.2.5
+ModulePath /usr/libexec/fvwm/2.5.21:/usr/libexec/fvwm/2.2:/usr/lib/X11/fvwm2:/usr/X11/lib/X11/fvwm2:/usr/ug/arch/fvwm-2.2/libexec/fvwm/2.2:/usr/X11R6/lib/X11/fvwm/2.2.5
 #PixmapPath PIXMAPPATH
 #IconPath ICONPATH 
 ImagePath PIXMAPPATH:ICONPATH
@@ -194,6 +194,7 @@ define({{MAGIC}},
       SYS_HOST, {{monarch.infospheres.com}}, {{4}},
       SYS_HOST, {{socrates.cs.caltech.edu}}, {{4}},
       SYS_HOST, {{lenin.dabney.caltech.edu}}, {{4}},
+      SYS_HOST, {{capella}}, {{4}},
                                  {{M}}))dnl
 
 define({{MAGIC_K}},
@@ -206,6 +207,7 @@ define({{MAGIC_K}},
       SYS_HOST, {{monarch.infospheres.com}}, {{4}},
       SYS_HOST, {{socrates.cs.caltech.edu}}, {{4}},
       SYS_HOST, {{lenin.dabney.caltech.edu}}, {{4}},
+      SYS_HOST, {{capella}}, {{4}},
                                  {{CM}}))dnl
 
 #   Key     Context  Modifiers   Function
