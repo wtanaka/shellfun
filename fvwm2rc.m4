@@ -27,7 +27,7 @@ IconFont xft:STXihei:size=10:iso10646-1;-*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
 
 HilightColor black lightSteelBlue
 DeskTopSize 4x3
-MenuStyle black grey60 grey40 MENUFONT win anim
+MenuStyle black grey60 grey40 MENUFONT fvwm anim
 
 ColormapFocus FollowsFocus
 
