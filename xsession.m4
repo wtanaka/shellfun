@@ -41,7 +41,7 @@ fi
 if [ -r "$HOME/bin/rootwindows" ]; then
   eval "`fortune $HOME/bin/rootwindows`"
 elif which xplanet 2> /dev/null; then
-  nice xplanet -wait 300 -labelpos +15+15 -latitude "$LATITUDE" -longitude "$LONGITUDE" &
+  nice xplanet -config $HOME/.xplanet -wait 300 -labelpos +15+15 -latitude "$LATITUDE" -longitude "$LONGITUDE" &
 elif which xearth 2> /dev/null; then
   xearth -pos 34.08 -118.08 &
 elif which xplanetbg 2> /dev/null; then
