@@ -91,6 +91,34 @@ addclasspath()
    done
 }
 
+preclasspath()
+{
+   for i; do
+      if [ -d "$i" -o -f "$i" ]; then
+         TOADD="$i"
+         ADDME="y"
+         OIFS=$IFS
+         IFS=:
+         for i in $CLASSPATH; do
+            if [ "$i" = "$TOADD" ]; then
+               ADDME="n"
+            fi
+         done
+         IFS=$OIFS
+         if [ "$ADDME" = "y" ]; then
+            if [ -z "${CLASSPATH}" ]; then
+               CLASSPATH="${TOADD}"
+            else
+               CLASSPATH="${TOADD}:${CLASSPATH}"
+            fi
+            export CLASSPATH
+         fi
+         unset ADDME
+         unset OIFS
+      fi
+   done
+}
+
 edclasspath()
 {
    FILENAME="`mktemp /tmp/edclasspath.XXXXXX`"
