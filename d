@@ -342,7 +342,7 @@ for i in "$@"; do
             xanim +Ae +Ak +B +f +Sr +l0 "$i" 
          ;;
          *.pdf|*.[Pp][Dd][Ff]) # pdf files
-            acroread "$i" || xpdf "$i" 
+            evince "$i" || acroread "$i" || xpdf "$i" 
          ;;
          # .mp2 .mp3
          *.[mM][pP]2|*.[mM][pP]3)
