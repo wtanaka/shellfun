@@ -165,19 +165,6 @@ terminalnametitle() { builtin print -n -P "\033]0;$*\007" }
 terminaltitlename() { builtin print -n -P "\033]0;$*\007" }
 terminaltitle() { builtin print -n -P "\033]2;$*\007" }
 netscape-newwindow() { netscape -noraise -remote "openURL($*,new-window)" }
-urlfor()
-{
-   hostname=`uname -n`
-   for i ; do
-      dirname=`dirname "$i"`
-      filename=`basename "$i"`
-      if [[ $dirname == /* ]]; then
-         echo "file://${hostname}$dirname/$filename"
-      else
-         echo "file://${hostname}`pwd`/$dirname/$filename"
-      fi
-   done
-}
 
 scpfor()
 {

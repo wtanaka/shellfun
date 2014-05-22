@@ -169,19 +169,6 @@ netscape-newwindow()
 { 
    netscape -noraise -remote "openURL($*,new-window)" 
 }
-urlfor() 
-{  
-   hostname=`uname -n`
-   for i ; do
-      dirname=`dirname $i`
-      filename=`basename $i`
-      if [[ $dirname == /* ]]; then
-         echo "file://${hostname}$dirname/$filename" 
-      else
-         echo "file://${hostname}`pwd`/$dirname/$filename"
-      fi
-   done
-}
 
 umask 022
 HISTSIZE=1000
