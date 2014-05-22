@@ -32,4 +32,4 @@ wget -O - https://github.com/wtanaka/shellfun/archive/master.tar.gz |
    tar xf -
 
 cd shellfun-master
-exec ./gen
+exec ./install.sh
