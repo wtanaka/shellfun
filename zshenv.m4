@@ -240,6 +240,9 @@ READNULLCMD=""
 
 . $HOME/.addpath.sh
 
+# Needed for Ubuntu 9.10
+skip_global_compinit=1
+
 dnl -----------------------------------------------------------------------
 dnl - Host specific stuff
 dnl -----------------------------------------------------------------------
