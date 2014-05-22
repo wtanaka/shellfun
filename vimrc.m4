@@ -28,8 +28,10 @@ set maxmemtot=16384
 :autocmd!
 
 au winenter,bufread,bufnewfile,bufenter * set expandtab nosi noai nocindent formatoptions=tcqr comments=sr:/*,mb:*,el:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-au winenter,bufread,bufnewfile,bufenter *.c,*.h,*.java,*.cc,*.cpp set cindent ai si formatoptions=crtq comments=sr:/*,mb:*,el:*/,://
+au winenter,bufread,bufnewfile,bufenter *.c,*.h,*.java,*.cc,*.cpp,*.php,*.module set cindent ai si formatoptions=crtq comments=sr:/*,mb:*,el:*/,://
 au winenter,bufread,bufnewfile,bufenter makefile*,Makefile* set nocindent noexpandtab formatoptions=tcqr2 comments=n:#
+au winenter,bufread,bufnewfile,bufenter *.rb set comments=b:# si ai
+au winenter,bufread,bufnewfile,bufenter *.info set comments=:; nosi ai
 au winenter,bufread,bufnewfile,bufenter *.latex,*.tex set comments=:% nosi ai
 au winenter,bufread,bufnewfile,bufenter *.latex,*.tex map math mmT i$t a$`m
 au winenter,bufread,bufnewfile,bufenter *.latex,*.tex map unmath mm?\$x/\$x`m
@@ -39,6 +41,7 @@ au winenter,bufread,bufnewfile,bufenter *.latex,*.tex map ite i\begin{itemize}\
 au winenter,bufread,bufnewfile,bufenter *.asm,*.inc set comments=:; nosi nocindent
 au winenter,bufread,bufnewfile,bufenter *.sql set ai si
 au winenter,bufread,bufnewfile,bufenter *.sql set comments=n:--,b:REM,b:REMARK
+au winenter,bufread,bufnewfile,bufenter *.module set filetype=php
 
 autocmd BufNewFile Makefile* normal iJAVAC=javacRMIC=rmicall:%.dvi: %.latex	latex "$<"%.ps: %.dvi	dvips -o "$@" "$<"%.class: %.java	$(JAVAC) "$<"%_Skel.class %_Stub.class: %.class	$(RMIC) `grep "^package" $*.java | cut -d\  -f2- | cut -d\; -f1 \	    | awk '{ if ("$1" == "") { print "" } \	            else { print $1"." } }'`$*%.eps.bb: %.eps.gz	zcat "$<" | grep BoundingBox > "$@"%.eps: %.fig	fig2dev -L ps -p dummy "$<" "$@"%.latex: %.fig	fig2dev -L latex "$<" "$@"%.trans: %.test %.run	cat "$*.test" | ./"$*.run" > "$@"%.al %.sim %.nodes: %.ext %.io	ext2sim "$<"	cat $*.io >> $*.sim%.al %.sim: %.prs %.io	prs2sim "$<"	cat $*.io >> $*.sim%.ntk %.lgc %.run %-l.o %cmd.o: %.sim	cosmos "$<"%.ext: %.mag	echo ":extract" | magic -d NULL "$*" || :# PEG (PLA Equation Generator) Finite State Machine Description# to eqntott input file%.eqn: %.fsm	peg "$<" > "$@"# eqntott file to truth table%.pla: %.eqn	eqntott "$<" > "$@"%.tt: %.pla	espresso "$<" > "$@"%.mag: %.tt	mpla -I -O -t /usr/local/cad/lib/nornortiles -o $* $*.tt1G
 autocmd BufNewFile makefile* normal iJAVAC=javacRMIC=rmicall:%.dvi: %.latex	latex "$<"%.ps: %.dvi	dvips -o "$@" "$<"%.class: %.java	$(JAVAC) "$<"%_Skel.class %_Stub.class: %.class	$(RMIC) `grep "^package" $*.java | cut -d\  -f2- | cut -d\; -f1 \	    | awk '{ if ("$1" == "") { print "" } \	            else { print $1"." } }'`$*%.eps.bb: %.eps.gz	zcat "$<" | grep BoundingBox > "$@"%.eps: %.fig	fig2dev -L ps -p dummy "$<" "$@"%.latex: %.fig	fig2dev -L latex "$<" "$@"%.trans: %.test %.run	cat "$*.test" | ./"$*.run" > "$@"%.al %.sim %.nodes: %.ext %.io	ext2sim "$<"	cat $*.io >> $*.sim%.al %.sim: %.prs %.io	prs2sim "$<"	cat $*.io >> $*.sim%.ntk %.lgc %.run %-l.o %cmd.o: %.sim	cosmos "$<"%.ext: %.mag	echo ":extract" | magic -d NULL "$*" || :# PEG (PLA Equation Generator) Finite State Machine Description# to eqntott input file%.eqn: %.fsm	peg "$<" > "$@"# eqntott file to truth table%.pla: %.eqn	eqntott "$<" > "$@"%.tt: %.pla	espresso "$<" > "$@"%.mag: %.tt	mpla -I -O -t /usr/local/cad/lib/nornortiles -o $* $*.tt1G
@@ -91,6 +94,11 @@ au winenter,bufread,bufnewfile,bufenter *lab?,*hw? set comments=n:### formatopti
 
 :if version >= 500
 :  set smartcase
+:endif
+
+" avoid loading matchparen plugin http://vimdoc.sf.net/htmldoc/pi_paren.html
+:if version >= 700
+:  let loaded_matchparen = 1
 :endif
 
 :if version >= 500
