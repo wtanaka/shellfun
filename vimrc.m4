@@ -4,6 +4,7 @@ include(shells.m4)dnl
 changequote({{, }})dnl
 version 4.0
 " set wrapmargin=4
+set modeline
 set ignorecase
 define({{TAB}},ifelse(SYS_HOST,{{dragontail.infospheres.com}},2,
 SYS_HOST,{{monarch.infospheres.com}},2,
