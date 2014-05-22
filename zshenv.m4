@@ -198,9 +198,9 @@ export PAGER="less -ieXw"
 export VISUAL=vim
 export WWW_HOME="http://wtanaka.com/"
 export TEXEDIT='vim +%d %s'
-export FPATH="$HOME/bin/zshf"
-if [ -d "$FPATH" ]; then
-   if [ -n "`ls $FPATH`" ]; then
+fpath=($fpath $HOME/bin/zshf)
+if [ -d "$HOME/bin/zshf" ]; then
+   if [ -n "`ls $HOME/bin/zshf`" ]; then
       OWD="`pwd`"
       cd "$HOME/bin/zshf"
       autoload *
@@ -239,9 +239,6 @@ READNULLCMD=""
 }}
 
 . $HOME/.addpath.sh
-
-# Needed for Ubuntu 9.10
-skip_global_compinit=1
 
 dnl -----------------------------------------------------------------------
 dnl - Host specific stuff
