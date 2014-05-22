@@ -81,6 +81,8 @@ catkill d "$HOME/bin/d"
 chmod a+x "$HOME/bin/d"
 catkill newmoz "$HOME/bin/newmoz"
 chmod a+x "$HOME/bin/newmoz"
+catkill urlencode "$HOME/bin/urlencode"
+chmod a+x "$HOME/bin/urlencode"
 catkill indent.pro "$HOME/.indent.pro"
 (cd $HOME/etc ; 2>&1 strfile -r dalifonts dalifonts.dat) > /dev/null
 (cd $HOME/etc ; 2>&1 strfile -r quotes quotes.dat) > /dev/null
