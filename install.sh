@@ -58,6 +58,7 @@ if [ ! -d "$HOME/etc" ]; then
   mkdir "$HOME/etc"
 fi
 
+m4kill addpath.sh.m4 "$HOME/.addpath.sh"
 # non-login interactive shells
 m4kill bashrc.m4 "$HOME/.bashrc"
 # login interactive shells
@@ -130,7 +131,6 @@ catkill genser "$HOME/bin/genser"
 chmod a+x "$HOME/bin/genser"
 
 ifrm functions.m4 
-ifrm zpath.m4
 ifrm init.m4 
 ifrm gen~ 
 ifrm functions.m4~ 
@@ -138,7 +138,6 @@ ifrm init.m4~
 ifrm x~
 ifrm shells.m4
 ifrm shells.m4~
-ifrm zpath.m4~
 
 if [ -f "$HOME/.netscape/preferences.js" ]; then
   if 2>&1 grep network.search.url "$HOME/.netscape/preferences.js" >/dev/null; then

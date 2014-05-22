@@ -221,5 +221,4 @@ resetterminaltitle
 
 set show-all-if-ambiguous On
 
-include(zpath.m4)
-include(zclasspath.m4)
+. $HOME/.addpath.sh

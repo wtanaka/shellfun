@@ -61,8 +61,6 @@ if [ -n "`which arch | grep -v not\ found`" ]; then
 fi
 READNULLCMD=""
 
-include(zpath.m4)
-
 dnl -----------------------------------------------------------------------
 dnl - Host specific stuff
 dnl -----------------------------------------------------------------------

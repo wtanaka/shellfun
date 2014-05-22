@@ -209,7 +209,7 @@ export CVSROOT="$HOME/cvsroot"
 export CVS_RSH="ssh"
 export PAGER="less -ieXw"
 export VISUAL=vim
-export WWW_HOME="http://mili.eu.org/~wtanaka/"
+export WWW_HOME="http://wtanaka.com/"
 export TEXEDIT='vim +%d %s'
 export FPATH="$HOME/bin/zshf"
 if [ -d "$FPATH" ]; then
@@ -251,8 +251,7 @@ Rd() { cvs -d `cat $@/CVS/Root` release -d $@ }
 READNULLCMD=""
 }}
 
-include(zpath.m4)
-include(zclasspath.m4)
+. $HOME/.addpath.sh
 
 dnl -----------------------------------------------------------------------
 dnl - Host specific stuff
@@ -322,7 +321,7 @@ make_commands_reset_terminal_title()
    done
 }
 if [ ! "$TERM" = "linux" -a ! "$XTERMTYPE" = "utility" ]; then
-   make_commands_reset_terminal_title ssh telnet rlogin pine vim screen su
+   make_commands_reset_terminal_title ssh telnet rlogin pine vim screen su torify
 fi
 
 unfunction make_commands_reset_terminal_title
