@@ -3,9 +3,9 @@ include(init.m4)dnl
 changequote({{,}})dnl
 PROMPT="%B%3c %#%b "
 signal_names[129]=(`kill -l`)
-ifelse(SYS_LAB,{{UGCS}},RRPROMPT="(%m) ugcs %B%T%b%(0?,, [exit %?])",
-SYS_LAB,{{DABNEY}},RRPROMPT="(%m) dabney %B%T%b%(0?,, [exit %?])",
-RRPROMPT="(%m) %B%T%b%(0?,, [exit %?])")
+ifelse(SYS_LAB,{{UGCS}},RRPROMPT="(%2m) ugcs %B%T%b%(0?,, [exit %?])",
+SYS_LAB,{{DABNEY}},RRPROMPT="(%2m) dabney %B%T%b%(0?,, [exit %?])",
+RRPROMPT="(%2m) %B%T%b%(0?,, [exit %?])")
 ifelse(SYS_HOST,{{castor.mongers.ml.org}},setopt NO_BEEP NO_HIST_BEEP NO_LIST_BEEP)
 GALE_SYS_DIR=ifelse(SYS_LAB,{{UGCS}},{{/home/egnor/etc/gale}},
                     SYS_LAB,{{CS}},{{/home/jtr/etc/gale}},
