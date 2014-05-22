@@ -406,7 +406,9 @@ for i in "$@"; do
    else
       case "$i" in
          file://*|https://*|http://*|ftp://*|www.*|*.com|*.org|*.net)
-            if hasprog gnome-moz-remote; then
+            if hasprog xdg-open; then
+               xdg-open "$i" > /dev/null
+            elif hasprog gnome-moz-remote; then 
                gnome-moz-remote "$i"
             else
                netscape -noraise -remote "openURL($i)" || \
