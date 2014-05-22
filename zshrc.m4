@@ -96,6 +96,8 @@ bindkey "\eOD" backward-char
 bindkey "\eOC" forward-char
 bindkey " " magic-space
 
+zstyle ':completion:*' expand prefix suffix
+
 #compctl -x 'c[-1,-e]' -g "$GALE_SYS_DIR"'/auth/(cache|local)/*@*(:t)' -- gsend
 compctl -ug "$GALE_SYS_DIR"'/auth/(cache|local)/*@*(:t)' gsend
 compctl -ug "$GALE_SYS_DIR"'/auth/(cache|local)/*(:t)' gkinfo
