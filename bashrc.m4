@@ -193,7 +193,7 @@ if which vim > /dev/null 2>&1; then
 export VISUAL=vim
 fi
 
-export WWW_HOME="http://mili.eu.org/~wtanaka/"
+export WWW_HOME="http://wtanaka.com/"
 export TEXEDIT='vim +%d %s'
 
 alias pu="pushd"
