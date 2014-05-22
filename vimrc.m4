@@ -21,6 +21,7 @@ set visualbell
 set ttyscroll=3
 set nohlsearch
 set suffixes=".bak,~,.o,.h,.info,.swp,.class"
+set maxmemtot=16384
 
 :if version >= 500
 :autocmd!
