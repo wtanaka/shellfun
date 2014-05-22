@@ -26,10 +26,12 @@ m4 --version || {
    exit 1
 }
 
-cd "$HOME"
+TEMP="`mktemp -d /tmp/shellfun.XXXXXX`"
+cd "$TEMP"
 wget -O - https://github.com/wtanaka/shellfun/archive/master.tar.gz |
    gzip -dc |
    tar xf -
-
 cd shellfun-master
-exec ./install.sh
+./install.sh
+cd /tmp
+/bin/rm -r "$TEMP"
