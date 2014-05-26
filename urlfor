@@ -25,6 +25,9 @@ for i; do
     /*)
       echo "file://$dirname/$filename"
       ;;
+    .)
+      echo "file://`pwd`/$filename"
+      ;;
     *)
       echo "file://`pwd`/$dirname/$filename"
       ;;
