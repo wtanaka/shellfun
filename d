@@ -295,7 +295,7 @@ for i in "$@"; do
          # xwd, bmp, png, jpg, jpeg, gif, xpm, tga
          *.[Xx][Ww][Dd]|*.[xX][pP][mM]|*.[bB][mM][pP]|*.[pP][nN][gG]|*.[jJ][pP][eE][gG]|*.[jJ][pP][gG]|*.[gG][iI][fF]|*.[Tt][Gg][Aa])
             if [ -n "$DISPLAY" ]; then
-               ee "$i"  || xv "$i"
+               eog "$i" || ee "$i"  || xv "$i"
             elif [ "$TERM" = "linux" ]; then
                zgv "$i"
             else
