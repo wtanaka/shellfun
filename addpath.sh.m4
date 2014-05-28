@@ -34,6 +34,9 @@ addpath /usr/X11R6/bin
 addpath /usr/local/X11/bin
 addpath /usr/local/bin/X11
 
+# Mac OSX
+addpath /opt/local/bin
+
 addpath $HOME/bin
 addpath $HOME/dl/android-sdk-linux/platform-tools
 addpath $HOME/dl/android-sdk-linux/tools
