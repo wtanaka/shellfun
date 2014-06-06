@@ -7,10 +7,8 @@ dnl -----------------------------------------------------------------------
 
 {{s()
 {
-   gsub -K
-   screen -A -fn -r `screen -ls | grep Detached | head -1 \
-         | cut -d. -f1` "$@" \
-      || screen -fn "$@"
+   which gsub > /dev/null && gsub -K
+   screen -A -x -fn -RR "$@"
 }
 
 addclasspath()
