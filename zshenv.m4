@@ -238,6 +238,10 @@ READNULLCMD=""
 
 . $HOME/.addpath.sh
 
+if [ -f $HOME/.localenv.sh ]; then
+  . $HOME/.localenv.sh
+fi
+
 dnl -----------------------------------------------------------------------
 dnl - Host specific stuff
 dnl -----------------------------------------------------------------------

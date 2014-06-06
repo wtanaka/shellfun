@@ -209,3 +209,8 @@ resetterminaltitle
 set show-all-if-ambiguous On
 
 . $HOME/.addpath.sh
+
+if [ -f $HOME/.localenv.sh ]; then
+  . $HOME/.localenv.sh
+fi
+
