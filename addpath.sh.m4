@@ -36,6 +36,7 @@ addpath /usr/local/bin/X11
 
 # Mac OSX
 addpath /opt/local/bin
+addpath $HOME/Library/Python/2.7/bin
 
 addpath $HOME/bin
 addpath $HOME/dl/android-sdk-linux/platform-tools
