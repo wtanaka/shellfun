@@ -86,6 +86,7 @@ chmod a+x "$HOME/bin/urlencode"
 catkill urlfor "$HOME/bin/urlfor"
 chmod a+x "$HOME/bin/urlfor"
 catkill indent.pro "$HOME/.indent.pro"
+catkill pydistutils.cfg "$HOME/.pydistutils.cfg"
 (cd $HOME/etc ; 2>&1 strfile -r dalifonts dalifonts.dat) > /dev/null
 (cd $HOME/etc ; 2>&1 strfile -r quotes quotes.dat) > /dev/null
 
