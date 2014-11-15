@@ -115,4 +115,6 @@ au winenter,bufread,bufnewfile,bufenter *lab?,*hw? set comments=n:### formatopti
 :  endif
 :endif
 
-syntax on
+:if has("syntax")
+:  syntax on
+:endif
