@@ -196,6 +196,7 @@ export PAGER="less -ieXw"
 export VISUAL=vim
 export WWW_HOME="http://wtanaka.com/"
 export TEXEDIT='vim +%d %s'
+export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES="1024x768"
 fpath=($fpath $HOME/bin/zshf)
 if [ -d "$HOME/bin/zshf" ]; then
    if [ -n "`ls $HOME/bin/zshf`" ]; then
