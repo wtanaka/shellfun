@@ -75,6 +75,7 @@ if [ ! -e "$HOME/.wgetrc" ]; then
   m4kill wgetrc.m4 "$HOME/.wgetrc"
 fi
 catkill screenrc "$HOME/.screenrc"
+catkill tmux.conf "$HOME/.tmux.conf"
 catkill dalifonts "$HOME/etc/dalifonts"
 catkill quotes "$HOME/etc/quotes"
 catkill d "$HOME/bin/d"
