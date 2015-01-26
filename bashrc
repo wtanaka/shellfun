@@ -1,6 +1,3 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-changequote({{, }})dnl
 if [ -n "$PS1" ]; then
 PS1='(\h) \t \w \$ '
 fi
@@ -196,13 +193,13 @@ alias gzip="gzip -9"
 alias U="cvs update -dP"
 alias C="cvs commit"
 
-{{eval 'resetterminaltitle()
+eval 'resetterminaltitle()
 {
 if [ -z "$NOSETTERMINALNAME" -a -n "$PS1" ];
 then terminalname "'`uname -n`!`whoami`'";
 terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')";
 fi
-}'}}
+}'
 
 resetterminaltitle
 

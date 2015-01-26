@@ -1,6 +1,3 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-changequote({{, }})dnl
 addpath $HOME/.toast/bin
 addpath /usr/ug/bin
 addpath /dei/share/bin

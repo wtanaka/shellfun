@@ -58,11 +58,11 @@ if [ ! -d "$HOME/etc" ]; then
   mkdir "$HOME/etc"
 fi
 
-m4kill addpath.sh.m4 "$HOME/.addpath.sh"
+catkill addpath.sh "$HOME/.addpath.sh"
 # non-login interactive shells
-m4kill bashrc.m4 "$HOME/.bashrc"
+catkill bashrc "$HOME/.bashrc"
 # login interactive shells
-m4kill bashrc.m4 "$HOME/.bash_profile"
+catkill bashrc "$HOME/.bash_profile"
 m4kill zshenv.m4 "$HOME/.zshenv"
 m4kill zshrc.m4 "$HOME/.zshrc"
 m4kill zlogin.m4 "$HOME/.zlogin"
@@ -72,7 +72,7 @@ m4kill xresources.m4 "$HOME/.Xresources"
 m4kill xdefaults.m4 "$HOME/.Xdefaults"
 m4kill vimrc.m4 "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
-  m4kill wgetrc.m4 "$HOME/.wgetrc"
+  catkill wgetrc "$HOME/.wgetrc"
 fi
 catkill screenrc "$HOME/.screenrc"
 catkill tmux.conf "$HOME/.tmux.conf"
