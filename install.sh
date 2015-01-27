@@ -70,6 +70,7 @@ m4kill zlogout.m4 "$HOME/.zlogout"
 m4kill xsession.m4 "$HOME/.xsession"
 m4kill xresources.m4 "$HOME/.Xresources"
 m4kill xdefaults.m4 "$HOME/.Xdefaults"
+catkill gitconfig "$HOME/.gitconfig"
 m4kill vimrc.m4 "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
   catkill wgetrc "$HOME/.wgetrc"

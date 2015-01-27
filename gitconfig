@@ -1,0 +1,6 @@
+[user]
+	email = wtanaka@yahoo.com
+	name = Wesley Tanaka
+[alias]
+	lg = log --graph --date=short --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset'
+	lga = log --graph --date=short --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset' --all
