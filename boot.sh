@@ -28,7 +28,7 @@ m4 --version || {
 
 download()
 {
-  wget -O - "$@" || curl "$@"
+  wget -O - "$@" || curl -L "$@"
 }
 
 TEMP="`mktemp -d /tmp/shellfun.XXXXXX`"
