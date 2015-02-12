@@ -26,9 +26,14 @@ m4 --version || {
    exit 1
 }
 
+download()
+{
+  wget -O - "$@" || curl "$@"
+}
+
 TEMP="`mktemp -d /tmp/shellfun.XXXXXX`"
 cd "$TEMP"
-wget -O - https://github.com/wtanaka/shellfun/archive/master.tar.gz |
+download https://github.com/wtanaka/shellfun/archive/master.tar.gz |
    gzip -dc |
    tar xf -
 cd shellfun-master
