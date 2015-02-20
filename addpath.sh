@@ -39,6 +39,7 @@ addpath $HOME/bin
 addpath $HOME/dl/android-sdk-linux/platform-tools
 addpath $HOME/dl/android-sdk-linux/tools
 addpath $HOME/dl/appengine-java-sdk/bin
+addpath $HOME/.local/bin
 
 addpath /usr/ucb
 addpath /usr/local/cad/bin
