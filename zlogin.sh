@@ -1,11 +1,14 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-changequote({{, }})dnl
+#!/bin/sh
+cat <<\TEMPLATEQUOTE
 SETTERMINALNAME=true
 if [ "$TERM" = "linux" -o "$XTERMTYPE" = "utility" ]; then
    SETTERMINALNAME=false
 fi
-ifelse(SYS_LAB, {{UGCS}}, {{if [[ -o interactive ]]; then
+TEMPLATEQUOTE
+
+if [ "$SYS_LAB" = 'UGCS' ]; then
+  cat <<\TEMPLATEQUOTE
+if [[ -o interactive ]]; then
    if [ -z "`echo /ug/adm/login/current/\`hostname\`.\`whoami\`.$$*(N)`" ]; then
       exec login -q -q -f -p -h $DISPLAY wtanaka -c "$SHELL -l"
    fi
@@ -16,9 +19,11 @@ ifelse(SYS_LAB, {{UGCS}}, {{if [[ -o interactive ]]; then
    sortm -limit 0 -textfield subject +todo
    scan +todo | head
    gsub 
-fi}})
+fi
+TEMPLATEQUOTE
+fi
 
-{{
+cat <<\TEMPLATEQUOTE
 TMOUT=60
 TRAPALRM()
 {
@@ -46,4 +51,4 @@ if [[ -o interactive ]]; then
    fi
 fi
 :
-}}
+TEMPLATEQUOTE

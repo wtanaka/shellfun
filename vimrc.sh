@@ -1,17 +1,24 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-include(shells.m4)dnl
-changequote({{, }})dnl
+cat <<\TEMPLATEQUOTE
 version 4.0
 " set wrapmargin=4
 set modeline
 set ignorecase
-define({{TAB}},ifelse(SYS_HOST,{{dragontail.infospheres.com}},2,
-SYS_HOST,{{monarch.infospheres.com}},2,
-SYS_LAB,{{CS}},2,3))dnl
-set tabstop=TAB
 " set expandtab
-set shiftwidth=TAB
+TEMPLATEQUOTE
+
+if [ "$SYS_LAB" = 'minted' ]; then
+   cat <<\TEMPLATEQUOTE
+set tabstop=2
+set shiftwidth=2
+TEMPLATEQUOTE
+else
+   cat <<\TEMPLATEQUOTE
+set tabstop=3
+set shiftwidth=3
+TEMPLATEQUOTE
+fi
+
+cat <<\TEMPLATEQUOTE
 set showmode
 set ruler
 set backup
@@ -118,3 +125,4 @@ au winenter,bufread,bufnewfile,bufenter *lab?,*hw? set comments=n:### formatopti
 :if has("syntax")
 :  syntax on
 :endif
+TEMPLATEQUOTE

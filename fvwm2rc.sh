@@ -1,17 +1,59 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-include(shells.m4)dnl
-changequote({{, }})dnl
-define({{LOGIN}},
-   ifelse(SYS_HOST, {{smonger}}, {{SSHXTERM}},
-          SYS_HOST, {{castor.mili.eu.org}}, {{RXVTSSH}},
-                                 {{XTERMSSH}}))dnl
-define({{MENUFONT}}, {{xft:STXihei:size=10:iso10646-1;-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-*}})dnl
+LOGIN='XTERMSSH'
+if [ "$SYS_HOST" = 'smonger' ]; then
+   LOGIN='SSHXTERM'
+elif [ "$SYS_HOST" = 'smonger' ]; then
+   LOGIN='RXVTSSH'
+fi
+
+MAGIC='M'
+MAGIC_K='CM'
+case "$SYS_HOST" in
+   spica.mili.eu.org)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   spica.mili.eu.org)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   fruity.dabney.caltech.edu)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   castor.mili.eu.org)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   altair.mili.eu.org)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   dragontail.i)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   monarch.infospheres.com)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   socrates.cs.caltech.edu)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   lenin.dabney.caltech.edu)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+   capella)
+      MAGIC='4'
+      MAGIC_K='4'
+      ;;
+esac
+
+cat <<TEMPLATEQUOTE
 # Samples at ftp://ftp.best.com/pub/tdgilman/Fvwmrcs
 ModulePath /usr/libexec/fvwm/2.5.21:/usr/libexec/fvwm/2.2:/usr/lib/X11/fvwm2:/usr/X11/lib/X11/fvwm2:/usr/ug/arch/fvwm-2.2/libexec/fvwm/2.2:/usr/X11R6/lib/X11/fvwm/2.2.5
-#PixmapPath PIXMAPPATH
-#IconPath ICONPATH 
-ImagePath PIXMAPPATH:ICONPATH
+ImagePath /usr/include/X11/pixmaps:/usr/include/X11/bitmaps:/home/wtanaka/pixmaps
 
 EdgeResistance 0 10
 EdgeScroll 100 100
@@ -20,21 +62,17 @@ ClickTime 50
 OpaqueMoveSize 10
 
 # make sure these fonts exist on your system:
-WindowFont ifelse(SYS_HOST, {{castor.mili.eu.org}},
-{{"xft:STXihei:size=10:iso10646-1;-*-fixed-*-*-*-*-7-*-*-*-*-*-*-*"}},
-{{"xft:STXihei:size=10:iso10646-1;-*-luxi sans-medium-r-*-*-12-*-*-*-*-*-*-*"}})
+WindowFont "xft:STXihei:size=10:iso10646-1;-*-luxi sans-medium-r-*-*-12-*-*-*-*-*-*-*"
 IconFont xft:STXihei:size=10:iso10646-1;-*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
 
 HilightColor black lightSteelBlue
 DeskTopSize 4x3
-MenuStyle black grey60 grey40 MENUFONT fvwm anim
+MenuStyle black grey60 grey40 xft:STXihei:size=10:iso10646-1;-*-lucidabright-medium-r-*-*-12-*-*-*-*-*-*-* fvwm anim
 
 ColormapFocus FollowsFocus
 
 # default Styles:
-Style "*"           BorderWidth 0, HandleWidth ifelse(
-SYS_HOST, {{castor.mili.eu.org}}, {{3}}, 
-{{4}})
+Style "*"           BorderWidth 0, HandleWidth 4
 Style "*"           Icon rndunkwn.xpm, Color LightSteelBlue/#002244
 Style "*"           MWMFunctions, MWMDecor, HintOverride
 #Style "*"           NoPPosition
@@ -182,65 +220,38 @@ Style "LimeWire*"           Icon rndlime.xpm
 Style "Up2date"             Icon rndredhat.xpm
 Style "Evolution"           Icon rndevol.xpm
 
-define({{MAGIC}},
-   ifelse(
-      SYS_HOST, {{spica.mili.eu.org}}, {{4}},
-      SYS_HOST, {{fruity.dabney.caltech.edu}}, {{4}},
-      SYS_HOST, {{castor.mili.eu.org}}, {{4}},
-      SYS_HOST, {{altair.mili.eu.org}}, {{4}},
-      SYS_HOST, {{dragontail.i}}, {{4}},
-      SYS_HOST, {{monarch.infospheres.com}}, {{4}},
-      SYS_HOST, {{socrates.cs.caltech.edu}}, {{4}},
-      SYS_HOST, {{lenin.dabney.caltech.edu}}, {{4}},
-      SYS_HOST, {{capella}}, {{4}},
-                                 {{M}}))dnl
-
-define({{MAGIC_K}},
-   ifelse(
-      SYS_HOST, {{fruity.dabney.caltech.edu}}, {{4}},
-      SYS_HOST, {{spica.mili.eu.org}}, {{4}},
-      SYS_HOST, {{castor.mili.eu.org}}, {{4}},
-      SYS_HOST, {{altair.mili.eu.org}}, {{4}},
-      SYS_HOST, {{dragontail.i}}, {{4}},
-      SYS_HOST, {{monarch.infospheres.com}}, {{4}},
-      SYS_HOST, {{socrates.cs.caltech.edu}}, {{4}},
-      SYS_HOST, {{lenin.dabney.caltech.edu}}, {{4}},
-      SYS_HOST, {{capella}}, {{4}},
-                                 {{CM}}))dnl
 
 #   Key     Context  Modifiers   Function
 #   ----------------------------------------------------------------
-Key z       A        MAGIC_K     Restart fvwm2
-Key m       A        MAGIC_K     Move
-dnl Key Tab     A        MAGIC           Next [CurrentScreen CurrentDesk !Sticky] Function FocusRaiseWarp
-dnl Key Tab     A        S{{}}MAGIC          Prev [CurrentScreen CurrentDesk !Sticky] Function FocusRaiseWarp
-Key Tab     A        MAGIC           Next [CurrentDesk CurrentScreen] Function FocusRaiseWarp
-Key Tab     A        S{{}}MAGIC          Prev [CurrentDesk CurrentScreen] Function FocusRaiseWarp
-Key c       ITWFS MAGIC_K     Close
-Key i       ITWFS MAGIC_K     Iconify
-Key h       A        MAGIC_K     CursorMove -1 +0
-Key j       A        MAGIC_K     CursorMove +0 +1
-Key k       A        MAGIC_K     CursorMove +0 -1
-Key l       A        MAGIC_K     CursorMove +1 +0
-Key u       A        MAGIC_K     UtilityFunction
-Key space   ITWFS MAGIC_K     RaiseLower
-Key Return  ITWFS MAGIC_K     Function FocusRaiseWarp
-Key r       A        MAGIC_K     Resize
-Key w       A        MAGIC_K     WindowList
-Key n       A        MAGIC_K     Menu Logins
-Key s       A        MAGIC_K     Stick
-Key F1      A        MAGIC       GotoPage 0 0
-Key F2      A        MAGIC       GotoPage 1 0
-Key F3      A        MAGIC       GotoPage 2 0
-Key F4      A        MAGIC       GotoPage 3 0
-Key F5      A        MAGIC       GotoPage 0 1
-Key F6      A        MAGIC       GotoPage 1 1
-Key F7      A        MAGIC       GotoPage 2 1
-Key F8      A        MAGIC       GotoPage 3 1
-Key F9      A        MAGIC       GotoPage 0 2
-Key F10     A        MAGIC       GotoPage 1 2
-Key F11     A        MAGIC       GotoPage 2 2
-Key F12     A        MAGIC       GotoPage 3 2
+Key z       A        $MAGIC_K     Restart fvwm2
+Key m       A        $MAGIC_K     Move
+Key Tab     A        $MAGIC           Next [CurrentDesk CurrentScreen] Function FocusRaiseWarp
+Key Tab     A        S$MAGIC          Prev [CurrentDesk CurrentScreen] Function FocusRaiseWarp
+Key c       ITWFS $MAGIC_K     Close
+Key i       ITWFS $MAGIC_K     Iconify
+Key h       A        $MAGIC_K     CursorMove -1 +0
+Key j       A        $MAGIC_K     CursorMove +0 +1
+Key k       A        $MAGIC_K     CursorMove +0 -1
+Key l       A        $MAGIC_K     CursorMove +1 +0
+Key u       A        $MAGIC_K     UtilityFunction
+Key space   ITWFS $MAGIC_K     RaiseLower
+Key Return  ITWFS $MAGIC_K     Function FocusRaiseWarp
+Key r       A        $MAGIC_K     Resize
+Key w       A        $MAGIC_K     WindowList
+Key n       A        $MAGIC_K     Menu Logins
+Key s       A        $MAGIC_K     Stick
+Key F1      A        $MAGIC       GotoPage 0 0
+Key F2      A        $MAGIC       GotoPage 1 0
+Key F3      A        $MAGIC       GotoPage 2 0
+Key F4      A        $MAGIC       GotoPage 3 0
+Key F5      A        $MAGIC       GotoPage 0 1
+Key F6      A        $MAGIC       GotoPage 1 1
+Key F7      A        $MAGIC       GotoPage 2 1
+Key F8      A        $MAGIC       GotoPage 3 1
+Key F9      A        $MAGIC       GotoPage 0 2
+Key F10     A        $MAGIC       GotoPage 1 2
+Key F11     A        $MAGIC       GotoPage 2 2
+Key F12     A        $MAGIC       GotoPage 3 2
 Key F1      A        CS          DeskAndPagerAbsolute 0
 Key F2      A        CS          DeskAndPagerAbsolute 1
 Key F3      A        CS          DeskAndPagerAbsolute 2
@@ -265,11 +276,11 @@ Mouse 1     R        C           Menu Logins Nop
 Mouse 1     T        A           Main-Titlebar-Click
 Mouse 1     FS       A           Resize-or-Raise
 Mouse 1     I        N           Iconify
-Mouse 1     ITWFS    MAGIC       Main-Titlebar-Click
+Mouse 1     ITWFS    $MAGIC       Main-Titlebar-Click
 Mouse 2     FST      A           Menu Window-Ops2 Close
-Mouse 2     ITWFS    MAGIC       Menu Window-Ops2 Close
+Mouse 2     ITWFS    $MAGIC       Menu Window-Ops2 Close
 Mouse 3     FST      A           Iconify
-Mouse 3     ITWFS    MAGIC       Iconify
+Mouse 3     ITWFS    $MAGIC       Iconify
 
 AddToFunc Main-Titlebar-Click    "M" Move
 +                                "M" Raise
@@ -280,8 +291,10 @@ AddToFunc Resize-or-Raise	"I" Raise
 +                          "M" Resize
 +                          "D" Lower
 
+TEMPLATEQUOTE
 
 
+cat <<\TEMPLATEQUOTE
 #   for other parts of the window/borders/icons:
 
 ######################## Initialization Functions ############################
@@ -424,54 +437,56 @@ AddToMenu Quit-Verify 	"Really Quit Fvwm?" Title
 +		      	"Start dummy"       Restart xterm
 +		      	""		    Nop	
 +		      	"No, Don't Quit"    Nop	
+TEMPLATEQUOTE
 
-AddToMenu UGHP    "hp"                Function LOGIN hp.ugcs SteelBlue1 HP-UX
-AddToMenu UGSGI   "sgi"               Function LOGIN sgi.ugcs SteelBlue1 IRIX
+cat <<TEMPLATEQUOTE
+AddToMenu UGHP    "hp"                Function $LOGIN hp.ugcs SteelBlue1 HP-UX
+AddToMenu UGSGI   "sgi"               Function $LOGIN sgi.ugcs SteelBlue1 IRIX
 
-AddToMenu CCO     "morocco"          Function LOGIN morocco.cco red2 SunOS
+AddToMenu CCO     "morocco"          Function $LOGIN morocco.cco red2 SunOS
 AddToMenu CS      "fast"             Popup CS-P2
-AddToMenu CS-P2   "cezanne"          Function LOGIN cezanne.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "chagall"          Function LOGIN chagall.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "da-vinci"         Function LOGIN da-vinci.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "gainsborough"     Function LOGIN gainsborough.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "gaugain"          Function LOGIN gaugain.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "michelangelo"     Function LOGIN michelangelo.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "monet"            Function LOGIN monet.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "picasso"          Function LOGIN picasso.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "raphael"          Function LOGIN raphael.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "rembrandt"        Function LOGIN rembrandt.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "renoir"           Function LOGIN renoir.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "rubens"           Function LOGIN rubens.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "toulouse-lautrec" Function LOGIN toulouse-lautrec.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "vangogh"          Function LOGIN vangogh.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "varese"           Function LOGIN varese.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu CS-P2   "velasquez"        Function LOGIN velasquez.cs.caltech.edu. GoldenRod1 BSD
-AddToMenu DABNEY  "lenin"            Function LOGIN dabney.caltech.edu. green2 Linux
-AddToMenu DABNEY  "fruity"           Function LOGIN fruity.dabney.caltech.edu. MediumSpringGreen Linux
-AddToMenu INFO    "info"             Function LOGIN info.cs.caltech.edu. PaleGoldenrod SunOS
-AddToMenu INFO    "sphere"           Function LOGIN sphere.cs.caltech.edu. PaleGoldenrod SunOS
-AddToMenu UGHP    "gluttony"         Function LOGIN gluttony.ugcs.caltech.edu. SteelBlue1 HP-UX
-AddToMenu UGHPS   "mince"            Function LOGIN mince.ugcs.caltech.edu. SteelBlue1 HP-UX
-AddToMenu UGSGI   "auto"             Function LOGIN auto.ugcs.caltech.edu. SteelBlue1 IRIX
-AddToMenu UGSGI   "taphe"            Function LOGIN taphe.ugcs.caltech.edu. SteelBlue1 IRIX
-AddToMenu USGI133 "amatho"           Function LOGIN amatho.ugcs.caltech.edu. SteelBlue1 IRIX
-AddToMenu USGI133 "mono"             Function LOGIN mono.ugcs.caltech.edu. SteelBlue1 IRIX
-AddToMenu USGI133 "necro"            Function LOGIN necro.ugcs.caltech.edu. SteelBlue1 IRIX
-AddToMenu USGI133 "pyro"             Function LOGIN pyro.ugcs.caltech.edu. SteelBlue1 IRIX
+AddToMenu CS-P2   "cezanne"          Function $LOGIN cezanne.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "chagall"          Function $LOGIN chagall.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "da-vinci"         Function $LOGIN da-vinci.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "gainsborough"     Function $LOGIN gainsborough.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "gaugain"          Function $LOGIN gaugain.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "michelangelo"     Function $LOGIN michelangelo.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "monet"            Function $LOGIN monet.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "picasso"          Function $LOGIN picasso.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "raphael"          Function $LOGIN raphael.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "rembrandt"        Function $LOGIN rembrandt.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "renoir"           Function $LOGIN renoir.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "rubens"           Function $LOGIN rubens.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "toulouse-lautrec" Function $LOGIN toulouse-lautrec.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "vangogh"          Function $LOGIN vangogh.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "varese"           Function $LOGIN varese.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu CS-P2   "velasquez"        Function $LOGIN velasquez.cs.caltech.edu. GoldenRod1 BSD
+AddToMenu DABNEY  "lenin"            Function $LOGIN dabney.caltech.edu. green2 Linux
+AddToMenu DABNEY  "fruity"           Function $LOGIN fruity.dabney.caltech.edu. MediumSpringGreen Linux
+AddToMenu INFO    "info"             Function $LOGIN info.cs.caltech.edu. PaleGoldenrod SunOS
+AddToMenu INFO    "sphere"           Function $LOGIN sphere.cs.caltech.edu. PaleGoldenrod SunOS
+AddToMenu UGHP    "gluttony"         Function $LOGIN gluttony.ugcs.caltech.edu. SteelBlue1 HP-UX
+AddToMenu UGHPS   "mince"            Function $LOGIN mince.ugcs.caltech.edu. SteelBlue1 HP-UX
+AddToMenu UGSGI   "auto"             Function $LOGIN auto.ugcs.caltech.edu. SteelBlue1 IRIX
+AddToMenu UGSGI   "taphe"            Function $LOGIN taphe.ugcs.caltech.edu. SteelBlue1 IRIX
+AddToMenu USGI133 "amatho"           Function $LOGIN amatho.ugcs.caltech.edu. SteelBlue1 IRIX
+AddToMenu USGI133 "mono"             Function $LOGIN mono.ugcs.caltech.edu. SteelBlue1 IRIX
+AddToMenu USGI133 "necro"            Function $LOGIN necro.ugcs.caltech.edu. SteelBlue1 IRIX
+AddToMenu USGI133 "pyro"             Function $LOGIN pyro.ugcs.caltech.edu. SteelBlue1 IRIX
 
 AddToMenu UGHP    "Slower"    Popup    UGHPS
 AddToMenu UGSGI   "Slower"    Popup    USGI133
 
-AddToMenu UGCS    "to.ugcs"  Function LOGIN to.ugcs.caltech.edu. SteelBlue1 ?
+AddToMenu UGCS    "to.ugcs"  Function $LOGIN to.ugcs.caltech.edu. SteelBlue1 ?
 +                 "SGI"      Popup    UGSGI
 +                 "HP"       Popup    UGHP
 
-AddToMenu MILIEU  "spica"    Function LOGIN spica.mili.eu.org. thistle2 Linux 
-+                 "smonger"  Function LOGIN smonger.mili.eu.org. thistle2 Linux 
-+                 "fmonger"  Function LOGIN fmonger.mili.eu.org. thistle2 Linux 
-+                 "castor"   Function LOGIN castor.mili.eu.org. thistle2 Linux 
+AddToMenu MILIEU  "spica"    Function $LOGIN spica.mili.eu.org. thistle2 Linux 
++                 "smonger"  Function $LOGIN smonger.mili.eu.org. thistle2 Linux 
++                 "fmonger"  Function $LOGIN fmonger.mili.eu.org. thistle2 Linux 
++                 "castor"   Function $LOGIN castor.mili.eu.org. thistle2 Linux 
 
-AddToMenu Logins  "random"      Exec     RANDOM_SHELL
+AddToMenu Logins  "random"      Exec     $RANDOM_SHELL
 +                 "milieu"      Popup    MILIEU
 +                 "catori"      Exec     x catori
 +                 "Dabney"      Popup    DABNEY
@@ -479,7 +494,9 @@ AddToMenu Logins  "random"      Exec     RANDOM_SHELL
 +                 "CS"          Popup    CS
 +                 "Infospheres" Popup    INFO
 +                 "CCO"         Popup    CCO
+TEMPLATEQUOTE
 
+cat <<\TEMPLATEQUOTE
 ######################## Sample Functions ##########################
 
 AddToFunc DeskAndPagerAbsolute   "I" Desk 0 $0
@@ -559,8 +576,7 @@ AddToFunc ChangeDefaultFocus "I" Style "*" $0
 +                            "I" Recapture
 
 # Turns on Audio
-*FvwmAudioPlayCmd ifelse(SYS_LAB, {{DABNEY}}, {{/home/wtanaka/bin/d}},
-                   {{builtin-rplay}})
+*FvwmAudioPlayCmd builtin-rplay
 *FvwmAudioDir /net/smonger/drop/audio
 *FvwmAudioRplayPriority 0
 *FvwmAudioRplayVolume 127
@@ -582,9 +598,6 @@ AddToFunc ChangeDefaultFocus "I" Style "*" $0
 #*FvwmAudio icon_name I_Want_To_Buy_Some_Cheese.au
 #*FvwmAudio window_name beep.au
 #*FvwmAudio unknown doh.au
-
-ifelse(SYS_LAB,{{DABNEY}},{{Module FvwmAudio}},
-       SYS_HOST,{{smonger}},{{Module FvwmAudio}})
 
 ################## FvwmButtons button-bar ################################
 *FvwmButtonsBack lightsteelblue
@@ -739,4 +752,4 @@ ifelse(SYS_LAB,{{DABNEY}},{{Module FvwmAudio}},
 *QuitVerifyCommand  Quit
 *QuitVerifyButton   quit      "Cancel"
 *QuitVerifyCommand  Nop
-
+TEMPLATEQUOTE

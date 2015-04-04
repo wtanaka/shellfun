@@ -1,6 +1,4 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-changequote({{, }})dnl
+cat <<\TEMPLATEQUOTE
 XDvi.grey: true
 XDvi.reverseVideo: true
 XDvi.expert: true
@@ -88,9 +86,7 @@ Netscape*Composition*XmText.highlightThickness:         1
 rxvt.background: black
 rxvt.foreground: white
 rxvt.geometry: 80x25
-rxvt.font: ifelse(
-SYS_HOST, {{castor.mongers.ml.org}}, {{-*-clean-medium-*-*-*-10-*-*-*-*-*-*-*}},
-{{-*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*}})
+rxvt.font: -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
 rxvt.scrollBar: False
 rxvt.mapAlert: true
 
@@ -420,3 +416,4 @@ XLock.random.delay: 1
 XLock.random.batchcount: 0
 XLock.random.cycles: 0
 XLock.random.saturation: 0
+TEMPLATEQUOTE

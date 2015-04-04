@@ -1,12 +1,26 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-include(shells.m4)dnl
-changequote({{, }})dnl
-define({{LOGIN}},
-   ifelse(SYS_HOST, {{smonger}}, {{SSHXTERM($1,$2,$3,$4)}},
-                                 {{XTERMSSH($1,$2,$3,$4)}}))dnl
-define({{SSHXTERM}}, {{Exec "$1" exec ssh -f $2 xterm -ls -fg $3 -bg black -T wtanaka@$2\\ \\\($4\\\) -n $2}})dnl
-define({{XTERMSSH}}, {{Exec "$1" exec xterm -fg $3 -bg black -T $2!wtanaka\ \($4\) -n $2 -e ssh $2}})dnl
+sshxterm()
+{
+  echo Exec \"$1\" exec ssh -f $2 xterm -ls -fg $3 -bg black -T wtanaka@$2'\\ \\\('$4'\\\)' -n $2
+}
+
+xtermssh()
+{
+  echo Exec \"$1\" exec xterm -fg $3 -bg black -T $2!wtanaka'\ \('$4'\)' -n $2 -e ssh $2
+}
+
+if [ "$SYS_HOST" = 'smonger' ]; then
+   login_menu()
+   {
+      sshxterm "$@"
+   }
+else
+   login_menu()
+   {
+      xtermssh "$@"
+   }
+fi
+
+cat <<\TEMPLATEQUOTE
 # Unfortunately, order does matter in this file
 # The correct order for inserting configurations is:
 # 1. Colors
@@ -163,8 +177,8 @@ NoPPosition
 ModulePath /local/homes/dsp/nation/modules:/usr/lib/X11/fvwm
 
 # Icon paths
-PixmapPath  PIXMAPPATH
-IconPath    ICONPATH
+PixmapPath  /usr/include/X11/pixmaps
+IconPath    /usr/include/X11/bitmaps
 
 ###########################################################################
 # Set up the virtual desktop and pager
@@ -374,49 +388,61 @@ Popup "Main Ops"
 EndPopup
 
 Popup "CCO"
-   LOGIN(morocco, morocco.cco.caltech.edu., red2, SunOS)
-   LOGIN(stucco, stucco.cco.caltech.edu., red2, SunOS)
-   LOGIN(accord, accord.cco.caltech.edu., red2, SunOS)
-   LOGIN(piccolo, piccolo.cco.caltech.edu., red2, SunOS)
-   LOGIN(ccosol, ccosol.cco.caltech.edu., red2, SunOS)
-   LOGIN(ccosun, ccosun.cco.caltech.edu., red2, SunOS)
+TEMPLATEQUOTE
+
+   login_menu 'morocco' 'morocco.cco.caltech.edu.' 'red2' 'SunOS'
+   login_menu 'stucco' 'stucco.cco.caltech.edu.' 'red2' 'SunOS'
+   login_menu 'accord' 'accord.cco.caltech.edu.' 'red2' 'SunOS'
+   login_menu 'piccolo' 'piccolo.cco.caltech.edu.' 'red2' 'SunOS'
+   login_menu 'ccosol' 'ccosol.cco.caltech.edu.' 'red2' 'SunOS'
+   login_menu 'ccosun' 'ccosun.cco.caltech.edu.' 'red2' 'SunOS'
+
+cat <<\TEMPLATEQUOTE
 EndPopup
 
 Popup "INFO"
-   LOGIN(sphere.cs, sphere.cs.caltech.edu., PaleGoldenrod, SunOS)
-   LOGIN(info.cs, info.cs.caltech.edu., PaleGoldenrod, SunOS)
+TEMPLATEQUOTE
+   login_menu 'sphere.cs' 'sphere.cs.caltech.edu.' 'PaleGoldenrod' 'SunOS'
+   login_menu 'info.cs' 'info.cs.caltech.edu.' 'PaleGoldenrod' 'SunOS'
+cat <<\TEMPLATEQUOTE
 EndPopup
 
 Popup "CSSLOWSLOW"
-   LOGIN(stun4t, stun4t.cs.caltech.edu., goldenrod1, SunOS)
+TEMPLATEQUOTE
+   login_menu 'stun4t' 'stun4t.cs.caltech.edu.' 'goldenrod1' 'SunOS'
+cat <<\TEMPLATEQUOTE
 EndPopup
 
 Popup "CSSLOW"
-   LOGIN(cello, cello.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(clarinet, clarinet.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(guitar, guitar.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(harpsichord, harpsichord.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(organ, organ.cs.caltech.edu., goldenrod1, BSD)
+TEMPLATEQUOTE
+   login_menu 'cello' 'cello.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'clarinet' 'clarinet.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'guitar' 'guitar.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'harpsichord' 'harpsichord.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'organ' 'organ.cs.caltech.edu.' 'goldenrod1' 'BSD'
+cat <<\TEMPLATEQUOTE
    Popup "Slower" CSSLOWSLOW
 EndPopup
 
 Popup "CS"
-   LOGIN(cezanne, cezanne.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(chagall, chagall.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(da-vinci, da-vinci.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(gainsborough, gainsborough.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(gaugain, gaugain.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(michelangelo, michelangelo.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(monet, monet.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(picasso, picasso.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(raphael, raphael.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(rembrandt, rembrandt.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(renoir, renoir.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(rubens, rubens.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(toulouse-lautrec, toulouse-lautrec.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(vangogh, vangogh.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(varese, varese.cs.caltech.edu., goldenrod1, BSD)
-   LOGIN(velasquez, velasquez.cs.caltech.edu., goldenrod1, BSD)
+TEMPLATEQUOTE
+   login_menu 'cezanne' 'cezanne.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'chagall' 'chagall.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'da-vinci' 'da-vinci.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'gainsborough' 'gainsborough.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'gaugain' 'gaugain.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'michelangelo' 'michelangelo.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'monet' 'monet.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'picasso' 'picasso.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'raphael' 'raphael.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'rembrandt' 'rembrandt.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'renoir' 'renoir.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'rubens' 'rubens.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'toulouse-lautrec' 'toulouse-lautrec.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'vangogh' 'vangogh.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'varese' 'varese.cs.caltech.edu.' 'goldenrod1' 'BSD'
+   login_menu 'velasquez' 'velasquez.cs.caltech.edu.' 'goldenrod1' 'BSD'
+cat <<\TEMPLATEQUOTE
    Popup "Slower" CSSLOW
 EndPopup
 
@@ -433,71 +459,85 @@ Popup "Other-Logins"
 EndPopup
 
 Popup "UGSGISLOW"
-   LOGIN(acro.ugcs, acro.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(agora.ugcs, agora.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(amatho.ugcs, amatho.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(arachno.ugcs, arachno.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(claustro.ugcs, claustro.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(mono.ugcs, mono.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(myxo.ugcs, myxo.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(necro.ugcs, necro.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(phobo.ugcs, phobo.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(photo.ugcs, photo.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(pyro.ugcs, pyro.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(xeno.ugcs, xeno.ugcs.caltech.edu., SteelBlue1, IRIX)
+TEMPLATEQUOTE
+   login_menu 'acro.ugcs' 'acro.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'agora.ugcs' 'agora.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'amatho.ugcs' 'amatho.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'arachno.ugcs' 'arachno.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'claustro.ugcs' 'claustro.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'mono.ugcs' 'mono.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'myxo.ugcs' 'myxo.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'necro.ugcs' 'necro.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'phobo.ugcs' 'phobo.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'photo.ugcs' 'photo.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'pyro.ugcs' 'pyro.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'xeno.ugcs' 'xeno.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+cat <<\TEMPLATEQUOTE
 EndPopup
 
 Popup "UGSGI"
-	LOGIN(sgi.ugcs, sgi.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(auto.ugcs, auto.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(chaeto.ugcs, chaeto.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(hedono.ugcs, hedono.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(hydro.ugcs, hydro.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(hypno.ugcs, hypno.ugcs.caltech.edu., SteelBlue1, IRIX)
-   LOGIN(taphe.ugcs, taphe.ugcs.caltech.edu., SteelBlue1, IRIX)
+TEMPLATEQUOTE
+	login_menu 'sgi.ugcs' 'sgi.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'auto.ugcs' 'auto.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'chaeto.ugcs' 'chaeto.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'hedono.ugcs' 'hedono.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'hydro.ugcs' 'hydro.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'hypno.ugcs' 'hypno.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+   login_menu 'taphe.ugcs' 'taphe.ugcs.caltech.edu.' 'SteelBlue1' 'IRIX'
+cat <<\TEMPLATEQUOTE
    Popup "Slower" UGSGISLOW
 EndPopup
 
 Popup "UGHPSLOW"
-	LOGIN(beat, beat.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(chop, chop.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(whip, whip.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(crush, crush.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(liquefy, liquefy.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(pulp, pulp.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(puree, puree.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(shred, shred.ugcs.caltech.edu., SteelBlue1, HP-UX)
+TEMPLATEQUOTE
+	login_menu 'beat' 'beat.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'chop' 'chop.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'whip' 'whip.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'crush' 'crush.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'liquefy' 'liquefy.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'pulp' 'pulp.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'puree' 'puree.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'shred' 'shred.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+cat <<\TEMPLATEQUOTE
 EndPopup
 
 Popup "UGHP"
-	LOGIN(hp.ugcs, hp.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(gluttony, gluttony.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(avarice, avarice.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(lust, lust.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(pride, pride.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(sloth, sloth.ugcs.caltech.edu., SteelBlue1, HP-UX)
-	LOGIN(wrath, wrath.ugcs.caltech.edu., SteelBlue1, HP-UX)
+TEMPLATEQUOTE
+	login_menu 'hp.ugcs' 'hp.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'gluttony' 'gluttony.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'avarice' 'avarice.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'lust' 'lust.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'pride' 'pride.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'sloth' 'sloth.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+	login_menu 'wrath' 'wrath.ugcs.caltech.edu.' 'SteelBlue1' 'HP-UX'
+cat <<\TEMPLATEQUOTE
 	Popup "Slower" UGHPSLOW
 EndPopup
 
 Popup "UGCS"
-   LOGIN(to.ugcs, to.ugcs.caltech.edu., SteelBlue1, \?)
+TEMPLATEQUOTE
+   login_menu 'to.ugcs' 'to.ugcs.caltech.edu.' 'SteelBlue1' '\?'
+cat <<\TEMPLATEQUOTE
    Popup "SGI" UGSGI
    Popup "HP" UGHP
 EndPopup
 
 Popup "Dabney"
-   LOGIN(lenin, lenin.dabney.caltech.edu., green2, Linux)
+TEMPLATEQUOTE
+   login_menu 'lenin' 'lenin.dabney.caltech.edu.' 'green2' 'Linux'
+cat <<\TEMPLATEQUOTE
 EndPopup
 
 Popup "Mongers"
-   LOGIN(smonger, smonger.mongers.ml.org., MediumPurple2, Linux)
-   LOGIN(fmonger, fmonger.mongers.ml.org., MediumPurple2, Linux)
-   LOGIN(castor, castor.mongers.ml.org., MediumPurple2, Linux)
+TEMPLATEQUOTE
+   login_menu 'smonger' 'smonger.mongers.ml.org.' 'MediumPurple2' 'Linux'
+   login_menu 'fmonger' 'fmonger.mongers.ml.org.' 'MediumPurple2' 'Linux'
+   login_menu 'castor' 'castor.mongers.ml.org.' 'MediumPurple2' 'Linux'
+cat <<TEMPLATEQUOTE
 EndPopup
 
 Popup "Logins"
-	Exec "Random" exec RANDOM_SHELL &
+	Exec "Random" exec $RANDOM_SHELL &
    Popup "mongers" Mongers
 	Popup "dabney" Dabney
 	Popup "UGCS" UGCS
@@ -671,4 +711,4 @@ Key F12		A	M	GoToPage 0,11
 
 *FvwmPagerGeometry -1-1
 *FvwmPagerColumns 1
-
+TEMPLATEQUOTE

@@ -19,13 +19,6 @@
 #
 # This script downloads and install shellfun in your home directory.
 
-m4 --version || {
-   echo "========================================"
-   echo "You need to install m4 first"
-   echo "========================================"
-   exit 1
-}
-
 download()
 {
   wget -O - "$@" || curl -L "$@"

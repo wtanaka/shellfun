@@ -1,19 +1,25 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-changequote({{,}})dnl
+cat <<\TEMPLATEQUOTE
 PROMPT="%B%3c %#%b "
 signal_names[129]=(`kill -l`)
-ifelse(SYS_LAB,{{UGCS}},RRPROMPT="(%2m) ugcs %B%T%b%(0?,, [exit %?])",
-SYS_LAB,{{DABNEY}},RRPROMPT="(%2m) dabney %B%T%b%(0?,, [exit %?])",
-RRPROMPT="(%2m) %B%T%b%(0?,, [exit %?])")
-ifelse(SYS_HOST,{{castor.mongers.ml.org}},setopt NO_BEEP NO_HIST_BEEP NO_LIST_BEEP)
-GALE_SYS_DIR=ifelse(SYS_LAB,{{UGCS}},{{/home/egnor/etc/gale}},
-                    SYS_LAB,{{CS}},{{/home/jtr/etc/gale}},
-                    SYS_HOST,{{altair.mili.eu.org}},{{/usr/etc/gale}},
-                    SYS_HOST,{{dragontail.i}},{{/home/gale/etc/gale}},
-                             {{/usr/local/etc/gale}})
+TEMPLATEQUOTE
 
-{{
+if [ "$SYS_LAB" = 'UGCS' ]; then
+   cat <<\TEMPLATEQUOTE
+RRPROMPT="(%2m) ugcs %B%T%b%(0?,, [exit %?])"
+TEMPLATEQUOTE
+elif [ "$SYS_LAB" = 'DABNEY' ]; then
+   cat <<\TEMPLATEQUOTE
+RRPROMPT="(%2m) dabney %B%T%b%(0?,, [exit %?])",
+TEMPLATEQUOTE
+else
+   cat <<\TEMPLATEQUOTE
+RRPROMPT="(%2m) %B%T%b%(0?,, [exit %?])"
+TEMPLATEQUOTE
+fi
+
+cat <<\TEMPLATEQUOTE
+GALE_SYS_DIR=/usr/local/etc/gale
+
 precmd()
 {
    EXIT_STATUS=$?
@@ -52,21 +58,27 @@ precmd()
       RPROMPT="${RPROMPT} $signal_names[$EXIT_STATUS]"
    fi
 }
-}}
+TEMPLATEQUOTE
 
-ifelse(SYS_HOST,{{usw-pr-shell1}},praya=/home/groups/p/pr/praya
+if [ "$SYS_HOST" = 'usw-pr-shell1' ]; then
+cat <<\TEMPLATEQUOTE
+praya=/home/groups/p/pr/praya
 wohenchan=/home/groups/w/wo/wohenchan
 cabal=/home/groups/c/ca/cabal
 shellfun=/home/groups/s/sh/shellfun
 bleepie=/home/groups/b/bl/bleepie
-)dnl
-ifelse(SYS_HOST,{{usw-pr-shell2}},praya=/home/groups/p/pr/praya
+TEMPLATEQUOTE
+elif [ "$SYS_HOST" = 'usw-pr-shell2' ]; then
+cat <<\TEMPLATEQUOTE
+praya=/home/groups/p/pr/praya
 wohenchan=/home/groups/w/wo/wohenchan
 cabal=/home/groups/c/ca/cabal
 shellfun=/home/groups/s/sh/shellfun
 bleepie=/home/groups/b/bl/bleepie
-)dnl
+TEMPLATEQUOTE
+fi
 
+cat <<\TEMPLATEQUOTE
 # use compctl to override?
 fignore=(.o .class .u .d \~)
 REPORTTIME=10
@@ -267,3 +279,4 @@ CompctlXDisplays()
 if which biff > /dev/null 2>&1; then
    biff y
 fi
+TEMPLATEQUOTE

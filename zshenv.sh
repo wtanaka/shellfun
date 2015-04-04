@@ -1,11 +1,5 @@
-include(functions.m4)dnl
-include(init.m4)dnl
-changequote({{, }})dnl
-dnl -----------------------------------------------------------------------
-dnl --------------------   Common functions  ------------------------------
-dnl -----------------------------------------------------------------------
-
-{{s()
+cat <<\TEMPLATEQUOTE
+s()
 {
    which gsub > /dev/null && gsub -K
    screen -A -x -fn -RR "$@"
@@ -226,8 +220,7 @@ alias dir="ls -lstr"
 if [ "$OSNAME" = "Linux" ]; then
    alias dir="ls --color=tty -lstr"
 fi
-}}
-{{
+
 alias who="who -iHw"
 alias gzip="gzip -9"
 alias U="cvs update -dP"
@@ -235,7 +228,6 @@ alias C="cvs commit"
 Rd() { cvs -d `cat $@/CVS/Root` release -d $@ }
 
 READNULLCMD=""
-}}
 
 . $HOME/.addpath.sh
 
@@ -243,24 +235,14 @@ if [ -f $HOME/.localenv.sh ]; then
   . $HOME/.localenv.sh
 fi
 
-dnl -----------------------------------------------------------------------
-dnl - Host specific stuff
-dnl -----------------------------------------------------------------------
-ifelse(SYS_HOST, {{spica.mili.eu.org}},
-export MAILDIR="$HOME/Maildir"
-export MAILTMP="$HOME/.maildir-tmp"
-)dnl
-dnl -----------------------------------------------------------------------
-dnl - Lab specific stuff
-dnl -----------------------------------------------------------------------
-
 ### Lab Specific Stuff
 
 export LAB="SYS_LAB"
+TEMPLATEQUOTE
 
-dnl
-ifelse(SYS_LAB, {{UGCS}}, 
-{{   autoload g gale_private gale_public gwrite message message_cleanup z zephyr_private zephyr_public zwe
+if [ "$SYS_LAB" = 'UGCS' ]; then
+  cat <<\TEMPLATEQUOTE
+   autoload g gale_private gale_public gwrite message message_cleanup z zephyr_private zephyr_public zwe
    alias w="uptime; hoo -m `uname -n`"
    alias zwrite="zwe"
    alias zf="zfixed wtanaka"
@@ -296,14 +278,11 @@ ifelse(SYS_LAB, {{UGCS}},
       #alias avida="~wtanaka/tmp/avida/avida-0.1b/avida/avida"
       alias avida="echo Warning, this is avida 0.4b|figlet; sleep 1; /home/cns175/bin/hp9000s700/avida-0.4b"
    fi
-   addpath "/home/cs1/bin/$ARCH" "/home/cs1/bin/scripts" "/usr/X11R6/bin"}})
-dnl
-ifelse(SYS_LAB, {{CS}},
-alias dir="ls -Flstr"
-export ARCH=`uname -m`
-)dnl
+   addpath "/home/cs1/bin/$ARCH" "/home/cs1/bin/scripts" "/usr/X11R6/bin"
+TEMPLATEQUOTE
+fi
 
-{{
+cat <<\TEMPLATEQUOTE
 make_commands_reset_terminal_title()
 {
    for i in "$@"; do
@@ -316,4 +295,5 @@ fi
 
 unfunction make_commands_reset_terminal_title
 
-eval 'resetterminaltitle() { if [[ -z "$NOSETTERMINALNAME" && -o interactive ]]; then terminalname "'`uname -n`!`whoami`'"; terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')"; fi }'}}
+eval 'resetterminaltitle() { if [[ -z "$NOSETTERMINALNAME" && -o interactive ]]; then terminalname "'`uname -n`!`whoami`'"; terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')"; fi }'
+TEMPLATEQUOTE

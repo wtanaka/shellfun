@@ -25,12 +25,15 @@ ifrm()
    #if [ -f "$1" ]; then rm "$1"; fi
 }
 
-m4kill()
+shkill()
 {
    if [ -f "$1" ]; then
-      m4 -DSYS_HOST="$SYS_HOST" -DSYS_OS="$SYS_OS" -DSYS_OSVER="$SYS_OSVER" \
-         -DORIG_SYS_LAB="$LAB" -DSYS_TMP_DOMAINNAME="$SYS_TMP_DOMAINNAME" \
-         "$1" > "$2"
+      env SYS_HOST="$SYS_HOST" SYS_OS="$SYS_OS" SYS_OSVER="$SYS_OSVER" \
+         SYS_TMP_DOMAINNAME="$SYS_TMP_DOMAINNAME" \
+         RANDOM_SHELL="$RANDOM_SHELL" \
+         sh "$1" > "$2"
+   else
+      echo missing "$1"
    fi
    ifrm "$1"
 	ifrm "$1~"
@@ -49,6 +52,7 @@ SYS_HOST="`uname -n`"
 SYS_OS="`uname -s`"
 SYS_OSVER="`uname -r`"
 SYS_TMP_DOMAINNAME="`/bin/domainname`"
+RANDOM_SHELL='xterm'
 
 if [ ! -d "$HOME/bin" ]; then
   mkdir "$HOME/bin"
@@ -63,15 +67,15 @@ catkill addpath.sh "$HOME/.addpath.sh"
 catkill bashrc "$HOME/.bashrc"
 # login interactive shells
 catkill bashrc "$HOME/.bash_profile"
-m4kill zshenv.m4 "$HOME/.zshenv"
-m4kill zshrc.m4 "$HOME/.zshrc"
-m4kill zlogin.m4 "$HOME/.zlogin"
-m4kill zlogout.m4 "$HOME/.zlogout"
-m4kill xsession.m4 "$HOME/.xsession"
-m4kill xresources.m4 "$HOME/.Xresources"
-m4kill xdefaults.m4 "$HOME/.Xdefaults"
+shkill zshenv.sh "$HOME/.zshenv"
+shkill zshrc.sh "$HOME/.zshrc"
+shkill zlogin.sh "$HOME/.zlogin"
+shkill zlogout.sh "$HOME/.zlogout"
+shkill xsession.sh "$HOME/.xsession"
+shkill xresources.sh "$HOME/.Xresources"
+catkill xdefaults "$HOME/.Xdefaults"
 catkill gitconfig "$HOME/.gitconfig"
-m4kill vimrc.m4 "$HOME/.vimrc"
+shkill vimrc.sh "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
   catkill wgetrc "$HOME/.wgetrc"
 fi
@@ -92,35 +96,8 @@ catkill pydistutils.cfg "$HOME/.pydistutils.cfg"
 (cd $HOME/etc ; 2>&1 strfile -r dalifonts dalifonts.dat) > /dev/null
 (cd $HOME/etc ; 2>&1 strfile -r quotes quotes.dat) > /dev/null
 
-fvwm2as1()
-{
-   m4kill fvwm2rc.m4 "$HOME/.fvwmrc"
-}
-
-fvwm2()
-{
-   m4kill fvwm2rc.m4 "$HOME/.fvwm2rc"
-}
-
-fvwm()
-{
-   m4kill fvwmrc.m4 "$HOME/.fvwmrc"
-}
-
-case "$LAB" in
-   UGCS) fvwm2as1 ;;
-   CS) fvwm2; fvwm ;;
-   DABNEY) fvwm2; fvwm ;;
-   *)
-      case "$SYS_HOST" in
-         concombre.*|concombre) fvwm2 ;;
-         lard.*|lard) fvwm ;;
-         *) fvwm2; fvwm ;;
-      esac
-   ;;
-esac
-m4kill fvwmrc.m4 "/dev/null"
-m4kill fvwm2rc.m4 "/dev/null"
+shkill fvwm2rc.sh "$HOME/.fvwm2rc"
+shkill fvwmrc.sh "$HOME/.fvwmrc"
 
 if [ ! -d "$HOME/.ssh" ]; then
    mkdir "$HOME/.ssh"
@@ -132,19 +109,13 @@ crontab crontab
 ifrm crontab
 ifrm crontab~
 
-m4kill x.m4 "$HOME/bin/x"
+shkill x.sh "$HOME/bin/x"
 chmod a+x "$HOME/bin/x"
 catkill genser "$HOME/bin/genser"
 chmod a+x "$HOME/bin/genser"
 
-ifrm functions.m4 
-ifrm init.m4 
 ifrm gen~ 
-ifrm functions.m4~ 
-ifrm init.m4~
 ifrm x~
-ifrm shells.m4
-ifrm shells.m4~
 
 if [ -f "$HOME/.netscape/preferences.js" ]; then
   if 2>&1 grep network.search.url "$HOME/.netscape/preferences.js" >/dev/null; then
