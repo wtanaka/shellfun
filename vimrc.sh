@@ -84,6 +84,15 @@ autocmd BufNewFile *.java normal O/*Copyright$Id$A/
 autocmd BufNewFile *.java normal o/**@author $Autahor$@version $Naame$ $Daate$DA**/j
 autocmd BufNewFile *.java normal o{public static void main (String[] args){}}kk$
 
+autocmd BufNewFile *.py normal O#!/usr/bin/env python
+autocmd BufNewFile *.py normal o# coding=utf-8
+autocmd BufNewFile *.py normal o# Copyright (C)
+autocmd BufNewFile *.py .!date +\%Y
+autocmd BufNewFile *.py normal kJA Wesley Tanaka
+autocmd BufNewFile *.py normal o""""""
+autocmd BufNewFile *.py normal Goif __name__ == "__main__":	pass
+autocmd BufNewFile *.py normal 1G/"""$
+
 set textwidth=70
 
 " autocmd BufNewFile *.java 1a
