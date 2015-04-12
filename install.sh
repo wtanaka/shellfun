@@ -68,6 +68,7 @@ catkill bashrc "$HOME/.bashrc"
 # login interactive shells
 catkill bashrc "$HOME/.bash_profile"
 catkill allenv.sh "$HOME/.allenv.sh"
+catkill aliases.sh "$HOME/.aliases.sh"
 shkill zshenv.sh "$HOME/.zshenv"
 shkill zshrc.sh "$HOME/.zshrc"
 shkill zlogin.sh "$HOME/.zlogin"

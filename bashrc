@@ -173,18 +173,9 @@ if [ -f "$HOME/.allenv.sh" ]; then
   . "$HOME/.allenv.sh"
 fi
 
-alias pu="pushd"
-alias po="popd"
-alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -i"
-alias z="zwrite wtanaka"
-alias less="less -ieXw"
-alias cvs="cvs -q -z6"
-alias who="who -iHw"
-alias gzip="gzip -9"
-alias U="cvs update -dP"
-alias C="cvs commit"
+if [ -f "$HOME/.aliases.sh" ]; then
+  . "$HOME/.aliases.sh"
+fi
 
 eval 'resetterminaltitle()
 {
