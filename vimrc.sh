@@ -93,6 +93,11 @@ autocmd BufNewFile *.py normal o""""""
 autocmd BufNewFile *.py normal Goif __name__ == "__main__":	pass
 autocmd BufNewFile *.py normal 1G/"""$
 
+autocmd BufNewFile *.sh normal O#!/bin/sh
+autocmd BufNewFile *.sh normal o# Copyright (C)
+autocmd BufNewFile *.sh .!date +\%Y
+autocmd BufNewFile *.sh normal kJA Wesley TanakaG
+
 set textwidth=70
 
 " autocmd BufNewFile *.java 1a
