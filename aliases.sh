@@ -10,3 +10,5 @@ alias who="who -iHw"
 alias gzip="gzip -9"
 alias U="cvs update -dP"
 alias C="cvs commit"
+# https://github.com/CenturyLinkLabs/docker-image-graph
+alias dockgraph="if [ -t 1 ]; then echo outputs a png 1>&2; else sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock centurylink/image-graph; fi"
