@@ -83,6 +83,7 @@ fi
 catkill screenrc "$HOME/.screenrc"
 catkill tmux.conf "$HOME/.tmux.conf"
 catkill dalifonts "$HOME/etc/dalifonts"
+catkill quiltrc "$HOME/.quiltrc"
 catkill quotes "$HOME/etc/quotes"
 catkill d "$HOME/bin/d"
 chmod a+x "$HOME/bin/d"
