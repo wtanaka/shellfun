@@ -10,6 +10,8 @@ export WWW_HOME="http://wtanaka.com/"
 export TEXEDIT='vim +%d %s'
 export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES="1024x768"
 # Debian packaging
-export DEBEMAIL="wtanaka"
 export DEBEMAIL="${DEBEMAIL}@yahoo.com"
+export DEBEMAIL="wtanaka"
 export DEBFULLNAME="Wesley Tanaka"
+# Go language external libraries
+export GOPATH="$HOME/dl/gocode"
