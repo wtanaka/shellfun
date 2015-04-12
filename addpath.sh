@@ -1,4 +1,5 @@
 addpath $HOME/.toast/bin
+addpath $HOME/.gem/ruby/1.9.1/bin
 addpath /usr/ug/bin
 addpath /dei/share/bin
 
