@@ -169,16 +169,9 @@ netscape-newwindow()
 
 umask 022
 HISTSIZE=1000
-export CVSROOT="$HOME/cvsroot"
-export CVS_RSH="ssh"
-export PAGER="less -ieXw"
-export VISUAL=vi
-if which vim > /dev/null 2>&1; then
-export VISUAL=vim
+if [ -f "$HOME/.allenv.sh" ]; then
+  . "$HOME/.allenv.sh"
 fi
-
-export WWW_HOME="http://wtanaka.com/"
-export TEXEDIT='vim +%d %s'
 
 alias pu="pushd"
 alias po="popd"
