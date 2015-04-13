@@ -8,8 +8,7 @@ Installation
 ------------
 
 * `wget -O - http://bit.ly/shellfun | /bin/sh`
-* `python3 -c "from urllib.request import urlopen as u
-print(u('http://bit.ly/shellfun').read().decode())" | /bin/sh`
+* `python3 -c "import sys,urllib.request; sys.stdout.buffer.write(urllib.request.urlopen('http://bit.ly/shellfun').read())"`
 
 *WARNING*: this will overwrite files in your home directory, so make
 sure you have a backup.
