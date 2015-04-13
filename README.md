@@ -8,7 +8,7 @@ Installation
 ------------
 
 * `wget -O - http://bit.ly/shellfun | /bin/sh`
-* `python3 -c "import sys,urllib.request; sys.stdout.buffer.write(urllib.request.urlopen('http://bit.ly/shellfun').read())"`
+* `python3 -c "import sys,urllib.request; sys.stdout.buffer.write(urllib.request.urlopen('http://bit.ly/shellfun').read())" | /bin/sh`
 
 *WARNING*: this will overwrite files in your home directory, so make
 sure you have a backup.
