@@ -21,7 +21,9 @@
 
 download()
 {
-  wget -O - "$@" || curl -L "$@"
+  wget -O - "$@" || curl -L "$@" ||
+  python3 -c "from urllib.request import urlopen as u
+print(u('""$@""').read().decode(), end='')"
 }
 
 TEMP="`mktemp -d /tmp/shellfun.XXXXXX`"
