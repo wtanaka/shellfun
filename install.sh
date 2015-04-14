@@ -51,7 +51,10 @@ catkill()
 SYS_HOST="`uname -n`"
 SYS_OS="`uname -s`"
 SYS_OSVER="`uname -r`"
-SYS_TMP_DOMAINNAME="`/bin/domainname`"
+SYS_TMP_DOMAINNAME="(none)"
+if [ -x /bin/domainname ]; then
+   SYS_TMP_DOMAINNAME="`/bin/domainname`"
+fi
 RANDOM_SHELL='xterm'
 
 if [ ! -d "$HOME/bin" ]; then
