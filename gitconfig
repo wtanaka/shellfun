@@ -2,6 +2,6 @@
 	email = wtanaka@yahoo.com
 	name = Wesley Tanaka
 [alias]
-	fa = fetch --all
+	fa = fetch --all --prune
 	lga = log --graph --date=short --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset' --all
 	lg = log --graph --date=short --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset'
