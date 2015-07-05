@@ -1,7 +1,7 @@
 #!/bin/sh
 # Shellfun http://shellfun.sf.net/
 # 
-# Copyright (C) 2000-2014 Wesley Tanaka http://wtanaka.com/
+# Copyright (C) 2000-2015 Wesley Tanaka http://wtanaka.com/
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,6 +72,7 @@ catkill bashrc "$HOME/.bashrc"
 catkill bashrc "$HOME/.bash_profile"
 catkill allenv.sh "$HOME/.allenv.sh"
 catkill aliases.sh "$HOME/.aliases.sh"
+catkill gemrc "$HOME/.gemrc"
 shkill zshenv.sh "$HOME/.zshenv"
 shkill zshrc.sh "$HOME/.zshrc"
 shkill zlogin.sh "$HOME/.zlogin"
