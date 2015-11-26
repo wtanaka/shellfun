@@ -29,7 +29,7 @@ fi
 CODE=`oathtool --totp -b "${SECRET}"`
 
 # Copy to clipboard on Mac OS X
-command -v pbcopy 2>&1 /dev/null && { echo "$CODE" | pbcopy; }
+command -v pbcopy 2>&1 > /dev/null && { echo "$CODE" | pbcopy; }
 
 # Print
 echo "$CODE"
