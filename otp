@@ -5,6 +5,12 @@
 
 SERVICENAME="$1"
 OTPKEYFILE="${HOME}/.otpkeys"
+OATHTOOL="oathtool"
+
+if ! command -v "${OATHTOOL}" 2>&1 > /dev/null; then
+   >&2 echo "${OATHTOOL} must be installed and on your PATH"
+   exit 1
+fi
 
 if [ ! -f $HOME/.otpkeys ]; then
    >&2 echo "Create a ${OTPKEYFILE} with lines like"
@@ -26,7 +32,7 @@ if [ -z "$SECRET" ]; then
    exit 1
 fi
 
-CODE=`oathtool --totp -b "${SECRET}"`
+CODE=`"${OATHTOOL}" --totp -b "${SECRET}"`
 
 # Copy to clipboard on Mac OS X
 command -v pbcopy 2>&1 > /dev/null && { echo "$CODE" | pbcopy; }
