@@ -1,0 +1,35 @@
+#!/bin/sh
+# Copyright 2015 Wesley Tanaka <wtanaka.com>
+# MFA/TFA/2FA command line two-factor, multi-factor virtual
+# authentication device
+
+SERVICENAME="$1"
+OTPKEYFILE="${HOME}/.otpkeys"
+
+if [ ! -f $HOME/.otpkeys ]; then
+   >&2 echo "Create a ${OTPKEYFILE} with lines like"
+   >&2 echo "google=a2b3 c4d5 e6f7 a8b9 c0d1"
+   exit 1
+fi
+
+if [ -z "$SERVICENAME" ]; then
+   >&2 echo "Usage: $0 SERVICENAME"
+   exit 2
+fi
+
+SECRET=`grep '^'"${SERVICENAME}" "${OTPKEYFILE}" |
+   cut -d'=' -f2 |
+   sed -e 's/ //g'`
+
+if [ -z "$SECRET" ]; then
+   >&2 echo "Service '${SERVICENAME}' not found in '${OTPKEYFILE}'"
+   exit 1
+fi
+
+CODE=`oathtool --totp -b "${SECRET}"`
+
+# Copy to clipboard on Mac OS X
+command -v pbcopy && { echo "$CODE" | pbcopy 2>&1 > /dev/null; }
+
+# Print
+echo "$CODE"
