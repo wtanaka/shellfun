@@ -226,6 +226,11 @@ fi
 ### Lab Specific Stuff
 
 export LAB="SYS_LAB"
+
+if [ -f /opt/boxen/env.sh ]; then
+  . /opt/boxen/env.sh
+fi
+
 TEMPLATEQUOTE
 
 if [ "$SYS_LAB" = 'UGCS' ]; then
