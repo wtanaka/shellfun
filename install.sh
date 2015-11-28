@@ -155,3 +155,5 @@ if [ -f "$HOME/.mozilla/wtanaka/"*"/prefs.js" ]; then
   fi
 fi
 #exec rm gen
+
+./karabiner-import.sh
