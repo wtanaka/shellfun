@@ -35,6 +35,7 @@ addpath /usr/local/bin/X11
 
 # Mac OSX
 addpath /opt/local/bin
+addpath /opt/boxen/repo/bin
 addpath $HOME/Library/Python/2.7/bin
 
 addpath $HOME/bin
