@@ -1,4 +1,5 @@
 addpath $HOME/.toast/bin
+addpath $HOME/.gem/ruby/2.0.0/bin
 addpath $HOME/.gem/ruby/1.9.1/bin
 addpath $HOME/dl/gocode/bin
 addpath /usr/ug/bin
