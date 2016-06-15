@@ -231,6 +231,10 @@ if [ -f /opt/boxen/env.sh ]; then
   . /opt/boxen/env.sh
 fi
 
+if [ -f /opt/boxen/nvm/nvm.sh ]; then
+  . /opt/boxen/nvm/nvm.sh
+fi
+
 TEMPLATEQUOTE
 
 if [ "$SYS_LAB" = 'UGCS' ]; then
