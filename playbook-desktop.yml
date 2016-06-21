@@ -1,0 +1,17 @@
+---
+- hosts: all
+  roles:
+    - wtanaka.autofs
+    - wtanaka.bundler
+    - { role: wtanaka.docker, docker_users: ['wtanaka'] }
+    - wtanaka.dropbox
+    - wtanaka.git
+    - wtanaka.gnucash
+    - wtanaka.keepassx
+    - wtanaka.rawtherapee
+    - wtanaka.sshd
+    - wtanaka.teamviewer
+    - wtanaka.tor
+    - wtanaka.vim
+    - wtanaka.virtualenv
+    - wtanaka.zsh

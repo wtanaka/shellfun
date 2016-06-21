@@ -65,6 +65,18 @@ if [ ! -d "$HOME/etc" ]; then
   mkdir "$HOME/etc"
 fi
 
+mkdir -p "$HOME/.shellfun-ansible"
+catkill ansible.cfg "$HOME/.shellfun-ansible/ansible.cfg"
+catkill ansible-requirements.txt "$HOME/.shellfun-ansible/requirements.txt"
+catkill ansible-run.sh "$HOME/.shellfun-ansible/run.sh"
+catkill playbook-desktop.yml "$HOME/.shellfun-ansible/playbook.yml"
+chmod +x "$HOME/.shellfun-ansible/run.sh"
+( cd $HOME/.shellfun-ansible/;
+wget -qO - https://github.com/wtanaka/ansible-roles/archive/master.tar.gz |
+  gzip -dc |
+  tar xf -;
+)
+
 catkill addpath.sh "$HOME/.addpath.sh"
 # non-login interactive shells
 catkill bashrc "$HOME/.bashrc"

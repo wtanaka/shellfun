@@ -1,0 +1,17 @@
+# Install with:
+# cd ~/.shellfun-ansible
+# ansible-galaxy install -r requirements.txt -p roles/
+wtanaka.autofs
+wtanaka.bundler
+wtanaka.docker
+wtanaka.dropbox
+wtanaka.git
+wtanaka.gnucash
+wtanaka.keepassx
+wtanaka.rawtherapee
+wtanaka.sshd
+wtanaka.teamviewer
+wtanaka.tor
+wtanaka.vim
+wtanaka.virtualenv
+wtanaka.zsh
