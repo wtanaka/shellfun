@@ -3,6 +3,7 @@
 # ansible-galaxy install -r requirements.txt -p roles/
 wtanaka.autofs
 wtanaka.bundler
+wtanaka.chrome
 wtanaka.darktable
 wtanaka.docker
 wtanaka.dropbox
