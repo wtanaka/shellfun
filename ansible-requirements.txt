@@ -3,12 +3,14 @@
 # ansible-galaxy install -r requirements.txt -p roles/
 wtanaka.autofs
 wtanaka.bundler
+wtanaka.darktable
 wtanaka.docker
 wtanaka.dropbox
 wtanaka.git
 wtanaka.gnucash
 wtanaka.keepassx
 wtanaka.protobuf-compiler
+wtanaka.python-dev
 wtanaka.rawtherapee
 wtanaka.sshd
 wtanaka.teamviewer
