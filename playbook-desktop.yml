@@ -10,7 +10,9 @@
     - wtanaka.git
     - wtanaka.gnucash
     - wtanaka.keepassx
+    - wtanaka.libffi-devel
     - wtanaka.protobuf-compiler
+    - wtanaka.proxychains
     - wtanaka.python-dev
     - wtanaka.rawtherapee
     - wtanaka.sshd
