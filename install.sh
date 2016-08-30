@@ -169,3 +169,4 @@ fi
 #exec rm gen
 
 ./karabiner-import.sh
+./dconf.sh
