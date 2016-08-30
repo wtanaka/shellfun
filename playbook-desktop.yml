@@ -26,6 +26,7 @@
     - wtanaka.protobuf-compiler
     - wtanaka.proxychains
     - wtanaka.python-dev
+    - wtanaka.python-tk
     - wtanaka.rawtherapee
     - wtanaka.sshd
     - wtanaka.teamviewer
