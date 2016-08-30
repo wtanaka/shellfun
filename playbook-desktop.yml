@@ -1,5 +1,17 @@
 ---
 - hosts: all
+  tasks:
+    - name: add family group
+      group: name=family state=present gid=514
+      sudo: yes
+    - name: add family group
+      user: >
+        name=wtanaka
+        groups=family
+        append=yes
+        shell=/bin/zsh
+        uid=1026
+      sudo: yes
   roles:
     - wtanaka.autofs
     - wtanaka.bundler
