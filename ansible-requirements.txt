@@ -11,6 +11,7 @@ wtanaka.git
 wtanaka.gnucash
 wtanaka.keepassx
 wtanaka.libffi-devel
+wtanaka.libssl-devel
 wtanaka.protobuf-compiler
 wtanaka.proxychains
 wtanaka.python-dev
