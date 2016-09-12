@@ -14,6 +14,7 @@ wtanaka.handbrake
 wtanaka.keepassx
 wtanaka.libffi-devel
 wtanaka.libssl-devel
+wtanaka.oathtool
 wtanaka.protobuf-compiler
 wtanaka.proxychains
 wtanaka.python-dev
