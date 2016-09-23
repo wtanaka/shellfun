@@ -168,5 +168,6 @@ if [ -f "$HOME/.mozilla/wtanaka/"*"/prefs.js" ]; then
 fi
 #exec rm gen
 
-./karabiner-import.sh
+./awscli-config.sh
 ./dconf.sh
+./karabiner-import.sh
