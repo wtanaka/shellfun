@@ -20,6 +20,7 @@
     - { role: wtanaka.docker, docker_users: ['wtanaka'] }
     - wtanaka.dropbox
     - wtanaka.git
+    - wtanaka.gimp
     - wtanaka.gitk
     - wtanaka.gnucash
     - wtanaka.handbrake
@@ -27,6 +28,8 @@
     - wtanaka.libffi-devel
     - wtanaka.libssl-devel
     - wtanaka.oathtool
+    - wtanaka.openvpn
+    - wtanaka.pip
     - wtanaka.protobuf-compiler
     - wtanaka.proxychains
     - wtanaka.python-dev

@@ -7,6 +7,7 @@ wtanaka.chrome
 wtanaka.darktable
 wtanaka.docker
 wtanaka.dropbox
+wtanaka.gimp
 wtanaka.git
 wtanaka.gitk
 wtanaka.gnucash
@@ -15,6 +16,8 @@ wtanaka.keepassx
 wtanaka.libffi-devel
 wtanaka.libssl-devel
 wtanaka.oathtool
+wtanaka.openvpn
+wtanaka.pip
 wtanaka.protobuf-compiler
 wtanaka.proxychains
 wtanaka.python-dev
