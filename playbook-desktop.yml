@@ -13,6 +13,7 @@
         uid=1026
       sudo: yes
   roles:
+    - wtanaka.android-sdk
     - wtanaka.android-studio
     - wtanaka.autofs
     - wtanaka.bundler
@@ -42,4 +43,5 @@
     - wtanaka.tor
     - wtanaka.vim
     - wtanaka.virtualenv
+    - wtanaka.youtube-dl
     - wtanaka.zsh
