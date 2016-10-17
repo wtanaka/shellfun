@@ -9,9 +9,11 @@ wtanaka.chrome
 wtanaka.darktable
 wtanaka.docker
 wtanaka.dropbox
+wtanaka.exiftool
 wtanaka.gimp
 wtanaka.git
 wtanaka.gitk
+wtanaka.gnome-raw-thumbnailer
 wtanaka.gnucash
 wtanaka.handbrake
 wtanaka.jq
