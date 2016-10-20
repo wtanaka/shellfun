@@ -22,6 +22,7 @@ wtanaka.libffi-devel
 wtanaka.libssl-devel
 wtanaka.oathtool
 wtanaka.openvpn
+wtanaka.pbuilder
 wtanaka.pip
 wtanaka.protobuf-compiler
 wtanaka.proxychains
