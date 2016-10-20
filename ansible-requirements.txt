@@ -32,6 +32,7 @@ wtanaka.rawtherapee
 wtanaka.sshd
 wtanaka.teamviewer
 wtanaka.tor
+wtanaka.ubuntu-dev-tools
 wtanaka.vim
 wtanaka.virtualenv
 wtanaka.youtube-dl
