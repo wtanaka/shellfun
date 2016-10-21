@@ -1,6 +1,6 @@
 #!/bin/sh
 # Copyright (C) 2016 Wesley Tanaka
-if command -v dconf > /dev/null; then
+if command -v dconf > /dev/null && [ -n "$DISPLAY" ]; then
   dconf write /com/canonical/indicator/datetime/locations "['UTC UTC', 'America/Los_Angeles San Francisco', 'America/New_York New York']"
   dconf write /com/canonical/indicator/datetime/show-date true
   dconf write /com/canonical/indicator/datetime/show-day true
