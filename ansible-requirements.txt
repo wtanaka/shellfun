@@ -29,6 +29,7 @@ wtanaka.proxychains
 wtanaka.python-dev
 wtanaka.python-tk
 wtanaka.rawtherapee
+wtanaka.screen
 wtanaka.sshd
 wtanaka.teamviewer
 wtanaka.tor
