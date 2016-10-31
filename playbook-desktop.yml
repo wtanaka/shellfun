@@ -32,6 +32,7 @@
     - wtanaka.keepassx
     - wtanaka.libffi-devel
     - wtanaka.libssl-devel
+    - wtanaka.ngrok
     - wtanaka.oathtool
     - wtanaka.openvpn
     - wtanaka.pbuilder
