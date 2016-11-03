@@ -30,6 +30,7 @@ wtanaka.proxychains
 wtanaka.python-dev
 wtanaka.python-tk
 wtanaka.rawtherapee
+wtanaka.ruby-dev
 wtanaka.screen
 wtanaka.slack
 wtanaka.sshd
@@ -38,5 +39,6 @@ wtanaka.tor
 wtanaka.ubuntu-dev-tools
 wtanaka.vim
 wtanaka.virtualenv
+wtanaka.wireshark
 wtanaka.youtube-dl
 wtanaka.zsh
