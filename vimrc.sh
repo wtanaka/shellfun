@@ -90,6 +90,11 @@ autocmd BufNewFile *.py normal o# Copyright (C)
 autocmd BufNewFile *.py .!date +\%Y
 autocmd BufNewFile *.py normal kJA Wesley Tanaka
 autocmd BufNewFile *.py normal o""""""
+autocmd BufNewFile *.py normal o# Per https://docs.python.org/3/howto/pyporting.html
+autocmd BufNewFile *.py normal ofrom __future__ import absolute_import
+autocmd BufNewFile *.py normal ofrom __future__ import division
+autocmd BufNewFile *.py normal ofrom __future__ import print_function
+autocmd BufNewFile *.py normal ofrom __future__ import unicode_literals
 autocmd BufNewFile *.py normal Goif __name__ == "__main__":	pass
 autocmd BufNewFile *.py normal 1G/"""$
 
