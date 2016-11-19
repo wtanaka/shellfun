@@ -5,11 +5,13 @@ wtanaka.android-sdk
 wtanaka.android-studio
 wtanaka.autofs
 wtanaka.bundler
+wtanaka.cabal
 wtanaka.chrome
 wtanaka.darktable
 wtanaka.docker
 wtanaka.dropbox
 wtanaka.exiftool
+wtanaka.ghc
 wtanaka.gimp
 wtanaka.git
 wtanaka.gitk

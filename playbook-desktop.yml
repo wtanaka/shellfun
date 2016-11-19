@@ -17,11 +17,13 @@
     - wtanaka.android-studio
     - wtanaka.autofs
     - wtanaka.bundler
+    - wtanaka.cabal
     - wtanaka.chrome
     - wtanaka.darktable
     - { role: wtanaka.docker, docker_users: ['wtanaka'] }
     - wtanaka.dropbox
     - wtanaka.exiftool
+    - wtanaka.ghc
     - wtanaka.gimp
     - wtanaka.git
     - wtanaka.gitk
