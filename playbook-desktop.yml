@@ -13,6 +13,7 @@
         uid=1026
       sudo: yes
   roles:
+    - wtanaka.alex
     - wtanaka.android-sdk
     - wtanaka.android-studio
     - wtanaka.autofs
@@ -24,17 +25,21 @@
     - wtanaka.dropbox
     - wtanaka.exiftool
     - wtanaka.ghc
+    - wtanaka.ghc-mtl
     - wtanaka.gimp
     - wtanaka.git
     - wtanaka.gitk
     - wtanaka.gnome-raw-thumbnailer
     - wtanaka.gnucash
     - wtanaka.handbrake
+    - wtanaka.happy
+    - wtanaka.hlint
     - wtanaka.jq
     - wtanaka.keepassx
     - wtanaka.libffi-devel
     - wtanaka.libssl-devel
     - wtanaka.ngrok
+    - wtanaka.numpy
     - wtanaka.oathtool
     - wtanaka.openvpn
     - wtanaka.pbuilder
@@ -44,7 +49,9 @@
     - wtanaka.python-dev
     - wtanaka.python-tk
     - wtanaka.rawtherapee
+    - wtanaka.retext
     - wtanaka.ruby-dev
+    - wtanaka.scipy
     - wtanaka.screen
     - wtanaka.slack
     - wtanaka.sshd

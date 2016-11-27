@@ -2,6 +2,7 @@
 # cd ~/.shellfun-ansible
 # ansible-galaxy install -r requirements.txt -p roles/
 wtanaka.android-sdk
+wtanaka.alex
 wtanaka.android-studio
 wtanaka.autofs
 wtanaka.bundler
@@ -12,17 +13,21 @@ wtanaka.docker
 wtanaka.dropbox
 wtanaka.exiftool
 wtanaka.ghc
+wtanaka.ghc-mtl
 wtanaka.gimp
 wtanaka.git
 wtanaka.gitk
 wtanaka.gnome-raw-thumbnailer
 wtanaka.gnucash
 wtanaka.handbrake
+wtanaka.happy
+wtanaka.hlint
 wtanaka.jq
 wtanaka.keepassx
 wtanaka.libffi-devel
 wtanaka.libssl-devel
 wtanaka.ngrok
+wtanaka.numpy
 wtanaka.oathtool
 wtanaka.openvpn
 wtanaka.pbuilder
@@ -32,7 +37,9 @@ wtanaka.proxychains
 wtanaka.python-dev
 wtanaka.python-tk
 wtanaka.rawtherapee
+wtanaka.retext
 wtanaka.ruby-dev
+wtanaka.scipy
 wtanaka.screen
 wtanaka.slack
 wtanaka.sshd
