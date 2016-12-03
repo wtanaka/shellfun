@@ -11,6 +11,7 @@ wtanaka.chrome
 wtanaka.darktable
 wtanaka.docker
 wtanaka.dropbox
+wtanaka.exfat
 wtanaka.exiftool
 wtanaka.ghc
 wtanaka.ghc-mtl

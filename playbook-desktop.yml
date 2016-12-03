@@ -23,6 +23,7 @@
     - wtanaka.darktable
     - { role: wtanaka.docker, docker_users: ['wtanaka'] }
     - wtanaka.dropbox
+    - wtanaka.exfat
     - wtanaka.exiftool
     - wtanaka.ghc
     - wtanaka.ghc-mtl
