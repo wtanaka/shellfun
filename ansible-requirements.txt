@@ -1,8 +1,8 @@
 # Install with:
 # cd ~/.shellfun-ansible
 # ansible-galaxy install -r requirements.txt -p roles/
-wtanaka.android-sdk
 wtanaka.alex
+wtanaka.android-sdk
 wtanaka.android-studio
 wtanaka.autofs
 wtanaka.bundler
@@ -48,6 +48,7 @@ wtanaka.teamviewer
 wtanaka.tor
 wtanaka.ubuntu-dev-tools
 wtanaka.vim
+wtanaka.virtualbox
 wtanaka.virtualenv
 wtanaka.wireshark
 wtanaka.youtube-dl
