@@ -1,6 +1,7 @@
 #!/bin/sh
 # Copyright (C) 2016 Wesley Tanaka
 if command -v dconf > /dev/null && [ -n "$DISPLAY" ]; then
+  . "`dirname $0`"/find_dbus_session.sh
   dconf write /com/canonical/indicator/datetime/locations "['UTC UTC', 'America/Los_Angeles San Francisco', 'America/New_York New York']"
   dconf write /com/canonical/indicator/datetime/show-date true
   dconf write /com/canonical/indicator/datetime/show-day true
