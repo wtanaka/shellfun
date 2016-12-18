@@ -7,8 +7,8 @@
 compatiblePrograms="nautilus kdeinit kded4 pulseaudio trackerd"
 
 # Attempt to get a program pid
-for index in $compatiblePrograms; do
-   PID=`pidof nautilus`
+for program in $compatiblePrograms; do
+   PID=`pidof $program`
    if [ -n "${PID}" ]; then
       break
    fi
@@ -18,7 +18,7 @@ if [ -z "${PID}" ]; then
    return 1
 fi
 
-QUERY_ENVIRON="`tr '\0' '\n' < /proc/11339/environ |
+QUERY_ENVIRON="`tr '\0' '\n' < /proc/${PID}/environ |
    grep DBUS_SESSION_BUS_ADDRESS | cut -d= -f2-`"
 if [ -n "${QUERY_ENVIRON}" ]; then
    export DBUS_SESSION_BUS_ADDRESS="${QUERY_ENVIRON}"
