@@ -44,6 +44,7 @@
     - wtanaka.numpy
     - wtanaka.oathtool
     - wtanaka.openvpn
+    - wtanaka.oracle-java
     - wtanaka.pbuilder
     - wtanaka.pip
     - wtanaka.protobuf-compiler
