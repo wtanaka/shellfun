@@ -19,6 +19,9 @@
 #
 # This script installs files into their proper locations
 
+DIRNAME="`dirname $0`"
+cd "${DIRNAME}"
+
 ifrm()
 {
    :
@@ -171,6 +174,6 @@ if [ -f "$HOME/.mozilla/wtanaka/"*"/prefs.js" ]; then
 fi
 #exec rm gen
 
-./awscli-config.sh
-./dconf.sh
-./karabiner-import.sh
+"${DIRNAME}/awscli-config.sh"
+"${DIRNAME}/dconf.sh"
+"${DIRNAME}/karabiner-import.sh"
