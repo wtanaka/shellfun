@@ -25,6 +25,7 @@
     - wtanaka.dropbox
     - wtanaka.exfat
     - wtanaka.exiftool
+    - wtanaka.fdupes
     - wtanaka.ghc
     - wtanaka.ghc-mtl
     - wtanaka.gimp
@@ -61,6 +62,7 @@
     - wtanaka.teamviewer
     - wtanaka.tor
     - wtanaka.ubuntu-dev-tools
+    - wtanaka.vagrant
     - wtanaka.vim
     - wtanaka.virtualbox
     - wtanaka.virtualenv
