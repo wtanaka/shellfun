@@ -21,6 +21,7 @@ wtanaka.git
 wtanaka.gitk
 wtanaka.gnome-raw-thumbnailer
 wtanaka.gnucash
+wtanaka.graphviz
 wtanaka.handbrake
 wtanaka.happy
 wtanaka.hlint
@@ -46,6 +47,7 @@ wtanaka.ruby-dev
 wtanaka.scipy
 wtanaka.screen
 wtanaka.slack
+wtanaka.sqlite
 wtanaka.sshd
 wtanaka.teamviewer
 wtanaka.tor
