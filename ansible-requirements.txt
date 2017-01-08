@@ -50,6 +50,7 @@ wtanaka.slack
 wtanaka.sqlite
 wtanaka.sshd
 wtanaka.teamviewer
+wtanaka.tig
 wtanaka.tor
 wtanaka.ubuntu-dev-tools
 wtanaka.vagrant
