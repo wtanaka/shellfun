@@ -176,4 +176,5 @@ fi
 
 "${DIRNAME}/awscli-config.sh"
 "${DIRNAME}/dconf.sh"
+"${DIRNAME}/gsettings.sh"
 "${DIRNAME}/karabiner-import.sh"
