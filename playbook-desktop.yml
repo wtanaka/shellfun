@@ -37,6 +37,7 @@
     - wtanaka.handbrake
     - wtanaka.happy
     - wtanaka.hlint
+    - wtanaka.hub
     - wtanaka.jq
     - wtanaka.keepassx
     - wtanaka.libffi-devel
@@ -53,6 +54,7 @@
     - wtanaka.proxychains
     - wtanaka.python-dev
     - wtanaka.python-tk
+    - wtanaka.r
     - wtanaka.rawtherapee
     - wtanaka.retext
     - wtanaka.ruby-dev
