@@ -5,7 +5,17 @@ command -v ansible-playbook > /dev/null 2>&1 ||
   sudo apt-get install ansible
 
 cd "${DIRNAME}"
-ansible-galaxy install --force --ignore-errors -r requirements.txt -p roles/
+
+# https://wtanaka.com/node/8218
+allpids=""
+for i in ansible-requirements/*.txt; do
+  ansible-galaxy install --force --ignore-errors -r "$i" -p roles/ &
+  pid=$!
+  allpids="$allpids $pid"
+done
+for pid in $allpids; do
+  wait $pid
+done
 
 ansible-playbook -K -i "localhost," -c local "${DIRNAME}/playbook.yml"
 

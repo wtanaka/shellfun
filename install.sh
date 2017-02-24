@@ -70,7 +70,10 @@ fi
 
 mkdir -p "$HOME/.shellfun-ansible"
 catkill ansible.cfg "$HOME/.shellfun-ansible/ansible.cfg"
-catkill ansible-requirements.txt "$HOME/.shellfun-ansible/requirements.txt"
+mkdir -p "$HOME/.shellfun-ansible/ansible-requirements"
+for i in ansible-requirements/*.txt; do
+  catkill "$i" "$HOME/.shellfun-ansible/$i"
+done
 catkill ansible-run.sh "$HOME/.shellfun-ansible/run.sh"
 catkill playbook-desktop.yml "$HOME/.shellfun-ansible/playbook.yml"
 chmod +x "$HOME/.shellfun-ansible/run.sh"
