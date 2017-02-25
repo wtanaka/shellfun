@@ -26,6 +26,9 @@
     - wtanaka.exfat
     - wtanaka.exiftool
     - wtanaka.fdupes
+    - role: wtanaka.gcloud-sdk
+      additional_package_names:
+      - google-cloud-sdk-app-engine-python
     - wtanaka.ghc
     - wtanaka.ghc-mtl
     - wtanaka.gimp
