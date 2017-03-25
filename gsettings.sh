@@ -6,6 +6,14 @@ if command -v gsettings > /dev/null && [ -n "$DISPLAY" ]; then
     "['localhost',
       '127.0.0.0/8',
       '::1',
-      'hiratanaka'
+      'adventureprices',
+      'digchinese',
+      'hiratanaka',
+      'jk',
+      'treehouse',
+      'waypoints',
+      'wtanaka'
     ]"
+  # Allow connections from Mac OSX
+  gsettings set org.gnome.Vino require-encryption false
 fi
