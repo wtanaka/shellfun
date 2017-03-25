@@ -25,6 +25,7 @@
     - wtanaka.dropbox
     - wtanaka.exfat
     - wtanaka.exiftool
+    - wtanaka.fbreader
     - wtanaka.fdupes
     - role: wtanaka.gcloud-sdk
       additional_package_names:
