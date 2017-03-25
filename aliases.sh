@@ -18,6 +18,7 @@ alias dkvcontainer='if [ -t 1 ]; then echo outputs a png 1>&2; else echo -e "GET
 alias dkvc='echo -e "GET /containers/json?all=1 HTTP/1.0\r\n" | nc -U /var/run/docker.sock | tail -n +5 | dockviz containers --dot | dot -Tpng -o /tmp/docker-containers.png && eog /tmp/docker-containers.png'
 # Garbage collect containers and untagged images
 alias dkgc='docker ps -a -q | xargs docker rm; docker images | grep "^<none>" | awk "{print \$3}" | xargs docker rmi'
+alias kitchen='bundle exec kitchen'
 dkrsh()
 {
   docker run -it --rm=true "$@" sh
