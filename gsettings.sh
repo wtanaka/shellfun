@@ -12,6 +12,7 @@ if command -v gsettings > /dev/null && [ -n "$DISPLAY" ]; then
       'jk',
       'treehouse',
       'waypoints',
+      'web.kitchen.wtanaka',
       'wtanaka'
     ]"
   # Allow connections from Mac OSX
