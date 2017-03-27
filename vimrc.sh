@@ -145,5 +145,7 @@ au winenter,bufread,bufnewfile,bufenter *lab?,*hw? set comments=n:### formatopti
 :  syntax on
 :endif
 
-execute pathogen#infect()
+:if has("execute")
+:  execute pathogen#infect()
+:endif
 TEMPLATEQUOTE
