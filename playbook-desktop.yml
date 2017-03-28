@@ -45,6 +45,7 @@
     - wtanaka.inkscape
     - wtanaka.jq
     - wtanaka.keepassx
+    - wtanaka.latex
     - wtanaka.libffi-devel
     - wtanaka.libssl-devel
     - wtanaka.maven
