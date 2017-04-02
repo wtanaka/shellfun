@@ -19,4 +19,6 @@ if command -v dconf > /dev/null && [ -n "$DISPLAY" ]; then
   dconf write /org/gnome/desktop/wm/preferences/focus-mode '"sloppy"'
   # Use locally integrated menus
   dconf write /com/canonical/unity/integrated-menus true
+  # Switch lock from Control-Alt-L to Super-L
+  dconf write /org/gnome/settings-daemon/plugins/media-keys/screensaver "'<Super>l'"
 fi
