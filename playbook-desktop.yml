@@ -30,6 +30,7 @@
     - role: wtanaka.gcloud-sdk
       additional_package_names:
       - google-cloud-sdk-app-engine-python
+    - wtanaka.gephi
     - wtanaka.ghc
     - wtanaka.ghc-mtl
     - wtanaka.gimp
@@ -79,6 +80,7 @@
     - wtanaka.vim
     - wtanaka.virtualbox
     - wtanaka.virtualenv
+    - wtanaka.whois
     - wtanaka.wireshark
     - wtanaka.youtube-dl
     - wtanaka.zsh
