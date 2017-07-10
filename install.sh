@@ -22,6 +22,13 @@
 DIRNAME="`dirname $0`"
 cd "${DIRNAME}"
 
+download()
+{
+  wget -O - "$@" || curl -L "$@" ||
+  python3 -c "import sys; from urllib.request import urlopen as u
+sys.stdout.buffer.write(u('""$@""').read())"
+}
+
 ifrm()
 {
    :
@@ -78,7 +85,7 @@ catkill ansible-run.sh "$HOME/.shellfun-ansible/run.sh"
 catkill playbook-desktop.yml "$HOME/.shellfun-ansible/playbook.yml"
 chmod +x "$HOME/.shellfun-ansible/run.sh"
 ( cd $HOME/.shellfun-ansible/;
-wget -qO - https://github.com/wtanaka/ansible-roles/archive/master.tar.gz |
+download https://github.com/wtanaka/ansible-roles/archive/master.tar.gz |
   gzip -dc |
   tar xf -;
 )
