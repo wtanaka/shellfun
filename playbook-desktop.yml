@@ -58,6 +58,8 @@
     - wtanaka.oracle-java
     - wtanaka.pbuilder
     - wtanaka.pip
+    - wtanaka.pngcrush
+    - wtanaka.pngnq
     - wtanaka.protobuf-compiler
     - wtanaka.proxychains
     - wtanaka.python-dev
