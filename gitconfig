@@ -1,5 +1,5 @@
 [user]
-	email = wtanaka@yahoo.com
+	email = wtanaka@users.noreply.github.com
 	name = wtanaka.com
 [alias]
 	fa = fetch --all --prune
