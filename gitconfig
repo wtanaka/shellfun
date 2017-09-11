@@ -6,4 +6,6 @@
 	lga = log --graph --date=short --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset' --all
 	lg = log --graph --date=short --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset'
 	rum = rebase upstream/master
+	rom = rebase origin/master
 	chum = checkout upstream/master
+	chom = checkout origin/master
