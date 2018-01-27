@@ -45,6 +45,7 @@
     - wtanaka.hlint
     - wtanaka.hub
     - wtanaka.inkscape
+    - wtanaka.intellij
     - wtanaka.jq
     - wtanaka.keepassx
     - wtanaka.latex
@@ -71,6 +72,7 @@
     - wtanaka.ruby-dev
     - wtanaka.scipy
     - wtanaka.screen
+    - wtanaka.screenruler
     - wtanaka.slack
     - wtanaka.sqlite
     - wtanaka.sshd
