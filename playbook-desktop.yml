@@ -31,6 +31,7 @@
     - role: wtanaka.gcloud-sdk
       additional_package_names:
       - google-cloud-sdk-app-engine-python
+      - google-cloud-sdk-app-engine-java
     - wtanaka.gephi
     - wtanaka.ghc
     - wtanaka.ghc-mtl
