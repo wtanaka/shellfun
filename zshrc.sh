@@ -79,6 +79,11 @@ TEMPLATEQUOTE
 fi
 
 cat <<\TEMPLATEQUOTE
+
+# Some installs of zsh (like Mac OSX) do not run compinit by default
+autoload -U compinit
+compinit
+
 # use compctl to override?
 fignore=(.o .class .u .d \~)
 REPORTTIME=10
