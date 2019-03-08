@@ -1,1 +1,1 @@
-wtanaka.ghc-mtl
+wtanaka.ghc_mtl

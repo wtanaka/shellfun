@@ -1,1 +1,1 @@
-wtanaka.ubuntu-dev-tools
+wtanaka.ubuntu_dev_tools

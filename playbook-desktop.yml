@@ -14,8 +14,8 @@
       sudo: yes
   roles:
     - wtanaka.alex
-    - wtanaka.android-sdk
-    - wtanaka.android-studio
+    - wtanaka.android_sdk
+    - wtanaka.android_studio
     - wtanaka.autofs
     - wtanaka.bluegriffon
     - wtanaka.bundler
@@ -28,13 +28,13 @@
     - wtanaka.exiftool
     - wtanaka.fbreader
     - wtanaka.fdupes
-    - role: wtanaka.gcloud-sdk
+    - role: wtanaka.gcloud_sdk
       additional_package_names:
       - google-cloud-sdk-app-engine-python
       - google-cloud-sdk-app-engine-java
     - wtanaka.gephi
     - wtanaka.ghc
-    - wtanaka.ghc-mtl
+    - wtanaka.ghc_mtl
     - wtanaka.gimp
     - wtanaka.git
     - wtanaka.gitk
@@ -50,8 +50,8 @@
     - wtanaka.jq
     - wtanaka.keepassx
     - wtanaka.latex
-    - wtanaka.libffi-devel
-    - wtanaka.libssl-devel
+    - wtanaka.libffi_devel
+    - wtanaka.libssl_devel
     - wtanaka.maven
     - wtanaka.ngrok
     - wtanaka.numpy
@@ -64,13 +64,13 @@
     - wtanaka.pngnq
     - wtanaka.protobuf-compiler
     - wtanaka.proxychains
-    - wtanaka.python-dev
-    - wtanaka.python-tk
+    - wtanaka.python_dev
+    - wtanaka.python_tk
     - wtanaka.qemu
     - wtanaka.r
     - wtanaka.rawtherapee
     - wtanaka.retext
-    - wtanaka.ruby-dev
+    - wtanaka.ruby_dev
     - wtanaka.scipy
     - wtanaka.screen
     - wtanaka.screenruler
@@ -80,7 +80,7 @@
     - wtanaka.teamviewer
     - wtanaka.tig
     - wtanaka.tor
-    - wtanaka.ubuntu-dev-tools
+    - wtanaka.ubuntu_dev_tools
     - wtanaka.ufraw
     - wtanaka.vagrant
     - wtanaka.vim
@@ -88,5 +88,5 @@
     - wtanaka.virtualenv
     - wtanaka.whois
     - wtanaka.wireshark
-    - wtanaka.youtube-dl
+    - wtanaka.youtube_dl
     - wtanaka.zsh

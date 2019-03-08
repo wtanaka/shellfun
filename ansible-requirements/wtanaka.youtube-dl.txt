@@ -1,1 +1,1 @@
-wtanaka.youtube-dl
+wtanaka.youtube_dl

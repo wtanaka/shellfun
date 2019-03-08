@@ -1,1 +1,1 @@
-wtanaka.gcloud-sdk
+wtanaka.gcloud_sdk

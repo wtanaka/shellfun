@@ -1,1 +1,1 @@
-wtanaka.ruby-dev
+wtanaka.ruby_dev

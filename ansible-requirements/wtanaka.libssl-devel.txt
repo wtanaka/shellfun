@@ -1,1 +1,1 @@
-wtanaka.libssl-devel
+wtanaka.libssl_devel

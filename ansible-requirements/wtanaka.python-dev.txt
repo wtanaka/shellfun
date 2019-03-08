@@ -1,1 +1,1 @@
-wtanaka.python-dev
+wtanaka.python_dev

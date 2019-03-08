@@ -1,1 +1,1 @@
-wtanaka.python-tk
+wtanaka.python_tk

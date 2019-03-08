@@ -1,1 +1,1 @@
-wtanaka.android-sdk
+wtanaka.android_sdk

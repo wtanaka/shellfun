@@ -1,1 +1,1 @@
-wtanaka.libffi-devel
+wtanaka.libffi_devel
