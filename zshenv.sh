@@ -223,6 +223,14 @@ if [ -f $HOME/.localenv.sh ]; then
   . $HOME/.localenv.sh
 fi
 
+# Mac OSX /etc/zprofile messes up the path after .zshenv runs, so we
+# need to do this in zshrc instead of zshenv.  However, if we only do
+# it there, $HOME/.pyenv/shims does not even end up in the path, so we
+# do it here too.
+if command -v pyenv 1>/dev/null 2>&1; then
+   eval "$(pyenv init -)"
+fi
+
 ### Lab Specific Stuff
 
 export LAB="SYS_LAB"

@@ -281,6 +281,12 @@ CompctlXDisplays()
    reply=(`xauth list | cut -d\  -f 1` $DISPLAY)
 }
 
+# Mac OSX /etc/zprofile messes up the path after .zshenv runs, so we
+# need to do this in zshrc instead of zshenv
+if command -v pyenv 1>/dev/null 2>&1; then
+   eval "$(pyenv init -)"
+fi
+
 if which biff > /dev/null 2>&1; then
    biff y
 fi
