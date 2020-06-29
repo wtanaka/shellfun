@@ -19,6 +19,7 @@ alias dkvc='echo -e "GET /containers/json?all=1 HTTP/1.0\r\n" | nc -U /var/run/d
 # Garbage collect containers and untagged images
 alias dkgc='docker ps -a -q | xargs docker rm; docker images | grep "^<none>" | awk "{print \$3}" | xargs docker rmi'
 alias kitchen='bundle exec kitchen'
+alias hpr='hub pull-request'
 dkrsh()
 {
   docker run -it --rm=true "$@" sh
