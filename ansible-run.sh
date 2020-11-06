@@ -8,7 +8,7 @@ cd "${DIRNAME}"
 
 # https://wtanaka.com/node/8218
 allpids=""
-for i in ansible-requirements/*.txt; do
+for i in ansible-requirements/*.yml; do
   ansible-galaxy install --force --ignore-errors -r "$i" -p roles/ &
   pid=$!
   allpids="$allpids $pid"
