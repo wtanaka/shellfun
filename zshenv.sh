@@ -243,6 +243,9 @@ if [ -f /opt/boxen/nvm/nvm.sh ]; then
   . /opt/boxen/nvm/nvm.sh
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 TEMPLATEQUOTE
 
 if [ "$SYS_LAB" = 'UGCS' ]; then
