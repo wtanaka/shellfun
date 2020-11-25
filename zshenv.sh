@@ -231,6 +231,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
    eval "$(pyenv init -)"
 fi
 
+if [ -x $HOME/.rbenv/bin/rbenv ]; then
+   eval "$($HOME/.rbenv/bin/rbenv init -)"
+fi
+
 ### Lab Specific Stuff
 
 export LAB="SYS_LAB"

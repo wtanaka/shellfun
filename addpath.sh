@@ -1,3 +1,4 @@
+addpath $HOME/.rbenv/bin
 addpath $HOME/.toast/bin
 addpath $HOME/.gem/ruby/2.3.0/bin
 addpath $HOME/.gem/ruby/2.0.0/bin
