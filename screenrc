@@ -1,6 +1,6 @@
 #term vt100
 defscrollback 1000
-escape "^gg"
+escape "^]]"
 msgwait 1
 startup_message off
 defflow off
