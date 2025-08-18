@@ -1,3 +1,4 @@
+unsetenv COLORTERM
 #term vt100
 defscrollback 1000
 escape "^]]"
