@@ -1,47 +1,43 @@
 #!/bin/sh
-BASE_SESSION="main"
 
-# 0. Define Cleanup Function
-cleanup() {
-    # Reset the terminal (fixes staircase/alignment issues)
-    stty sane 2>/dev/null
-    
-    # Cleanup grouped session if it was auto-generated
-    case "$TAB_ID" in
-        auto_*) tmux kill-session -t "$TAB_ID" 2>/dev/null ;;
-    esac
-}
+# 1. Configuration
+GROUP_NAME="main"  # The shared pool of windows
 
-# Register trap: run cleanup on EXIT (normal) and INT/TERM (interrupts)
-# Note: In POSIX sh, trap EXIT might not catch signals like INT, 
-# so we list them explicitly.
-trap cleanup EXIT INT TERM
-
-# 1. Prevent nesting
+# 2. Prevent nesting
 if [ -n "$TMUX" ]; then
     echo "Error: Already inside a tmux session."
     exit 1
 fi
 
-# 2. Ensure base session exists
-if ! tmux has-session -t "$BASE_SESSION" 2>/dev/null; then
-    tmux new-session -d -s "$BASE_SESSION"
+# 3. Get the Portal ID (e.g., "1", "2", "3")
+if [ -z "$1" ]; then
+    echo "Usage: tm [number]"
+    exit 1
+fi
+PORTAL_ID="$1"
+VIEW_NAME="view_${PORTAL_ID}"
+TARGET_DIR="${HOME}"
+
+# 4. Ensure the Main Group exists
+if ! tmux has-session -t "$GROUP_NAME" 2>/dev/null; then
+    # Create the group and the first window
+    tmux new-session -d -s "$GROUP_NAME" -n "temp"
 fi
 
-# 3. Handle ID Selection
-if [ -n "$1" ]; then
-    TAB_ID="$1"
-else
-    echo "Active views for '$BASE_SESSION':"
-    tmux list-sessions -F '#{session_name} #{?session_grouped,(group #{session_group}),}' 2>/dev/null | grep "(group $BASE_SESSION)" || echo "  (none)"
-    printf "\nEnter view name (or press enter for auto): "
-    read -r input
-    TAB_ID="${input:-auto_$(date +%s)_$$}"
+# 5. Ensure the specific Window for this clone exists in the Group
+if ! tmux list-windows -t "$GROUP_NAME" | grep -q "^${PORTAL_ID}:"; then
+    # Create the window, name it by ID, and set the starting directory
+    tmux new-window -t "$GROUP_NAME:${PORTAL_ID}" -n "${PORTAL_ID}" -c "$TARGET_DIR"
 fi
 
-# 4. Attach to grouped session
-# This is where the script "blocks" until you exit tmux.
-tmux new-session -t "$BASE_SESSION" -s "$TAB_ID" -A
+# 6. Handle the Portal Session (The View)
+# If the view session doesn't exist, create it linked to the group.
+if ! tmux has-session -t "$VIEW_NAME" 2>/dev/null; then
+    tmux new-session -d -s "$VIEW_NAME" -t "$GROUP_NAME"
+fi
 
-# Note: stty sane and session killing are now handled by the trap above.
+# 7. Force this specific view to look at the correct window
+tmux select-window -t "${VIEW_NAME}:${PORTAL_ID}"
 
+# 8. Attach to the portal session
+tmux attach-session -t "$VIEW_NAME"
