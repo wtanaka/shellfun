@@ -34,6 +34,8 @@ fi
 # If the view session doesn't exist, create it linked to the group.
 if ! tmux has-session -t "$VIEW_NAME" 2>/dev/null; then
     tmux new-session -d -s "$VIEW_NAME" -t "$GROUP_NAME"
+    # Restrict bells to only the session currently viewing the active window
+    tmux set-option -t "$VIEW_NAME" bell-action current
 fi
 
 # 7. Force this specific view to look at the correct window
