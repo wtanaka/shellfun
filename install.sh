@@ -106,6 +106,8 @@ shkill xsession.sh "$HOME/.xsession"
 shkill xresources.sh "$HOME/.Xresources"
 catkill xdefaults "$HOME/.Xdefaults"
 catkill gitconfig "$HOME/.gitconfig"
+mkdir -p "$HOME/.config/jj"
+catkill jj-config.toml "$HOME/.config/jj/config.toml"
 shkill vimrc.sh "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
   catkill wgetrc "$HOME/.wgetrc"
