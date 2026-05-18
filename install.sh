@@ -196,3 +196,4 @@ fi
 "${DIRNAME}/dconf.sh"
 "${DIRNAME}/gsettings.sh"
 "${DIRNAME}/karabiner-import.sh"
+"${DIRNAME}/gemini-config.sh"
