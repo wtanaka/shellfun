@@ -3,3 +3,6 @@
 [user]
 name = "wtanaka.com"
 email = "wtanaka@users.noreply.github.com"
+
+[aliases]
+bam = ["bookmark", "advance", "main", "--to", "@-"]
