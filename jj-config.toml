@@ -6,3 +6,5 @@ email = "wtanaka@users.noreply.github.com"
 
 [aliases]
 bam = ["bookmark", "advance", "main", "--to", "@-"]
+gf = ["git", "fetch"]
+gfa = ["git", "fetch", "--all-remotes"]
