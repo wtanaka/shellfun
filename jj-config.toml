@@ -4,6 +4,9 @@
 name = "wtanaka.com"
 email = "wtanaka@users.noreply.github.com"
 
+[ui]
+diff-formatter = ":git"
+
 [aliases]
 bam = ["bookmark", "advance", "main", "--to", "@-"]
 gf = ["git", "fetch"]
