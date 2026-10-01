@@ -21,7 +21,7 @@ addpath /usr/jdk1.2/bin
 addpath /usr/local/java/bin
 
 ## rust
-addpath $HOME/.cargo/bin
+addpath "${CARGO_HOME:-$HOME/.cargo}/bin"
 
 ## generic
 addpath /bin
