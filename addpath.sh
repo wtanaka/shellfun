@@ -48,6 +48,8 @@ addpath $HOME/Library/Python/2.7/bin
 addpath $HOME/bin
 addpath $HOME/dl/android-sdk-linux/platform-tools
 addpath $HOME/dl/android-sdk-linux/tools
+addpath "$ANDROID_HOME/platform-tools"
+addpath "$PNPM_HOME" "$BUN_INSTALL/bin"
 addpath $HOME/dl/appengine-java-sdk/bin
 addpath $HOME/.local/bin
 
