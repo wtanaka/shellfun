@@ -96,6 +96,7 @@ catkill bashrc "$HOME/.bashrc"
 # login interactive shells
 catkill bashrc "$HOME/.bash_profile"
 catkill allenv.sh "$HOME/.allenv.sh"
+catkill claude-env.sh "$HOME/.claude-env.sh"
 catkill aliases.sh "$HOME/.aliases.sh"
 catkill gemrc "$HOME/.gemrc"
 shkill zshenv.sh "$HOME/.zshenv"
@@ -199,3 +200,4 @@ fi
 "${DIRNAME}/gsettings.sh"
 "${DIRNAME}/karabiner-import.sh"
 "${DIRNAME}/gemini-config.sh"
+"${DIRNAME}/claude-config.sh"
