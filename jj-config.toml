@@ -7,7 +7,120 @@ email = "wtanaka@users.noreply.github.com"
 [ui]
 diff-formatter = ":git"
 
+[merge-tools.difft]
+diff-args = [
+    "--background=light", 
+    "--color=always", 
+#    "--display=inline", 
+    "$left", 
+    "$right"
+]
+
 [aliases]
-bam = ["bookmark", "advance", "main", "--to", "@-"]
+bam = ["bookmark", "advance", "main"]
+"bam@-" = ["bookmark", "advance", "main", "--to", "@-"]
+diffdelta = ["diff", "--config", "ui.diff-formatter=':git'",
+     "--config",
+     "ui.pager='DELTA_FEATURES=\"light-mode --no-side-by-side\" delta'"]
+showdelta = ["show", "--config", "ui.diff-formatter=':git'",
+     "--config",
+     "ui.pager='DELTA_FEATURES=\"light-mode --no-side-by-side\" delta'"]
+difft = ["difftastic"]
+difftastic = ["diff",
+     "--tool", "difft"
+]
+showt = ["showtastic"]
+showtastic = ["show",
+     "--tool", "difft"]
 gf = ["git", "fetch"]
 gfa = ["git", "fetch", "--all-remotes"]
+ghpr = [
+    "util", "exec", "--", 
+    "sh", "-c", 
+    '''
+    set -e
+    subcommand="$1"
+    shift 1  # Only shift the subcommand safely
+
+    # Selector: number, #number, URL, or (first arg only) branch name.
+    # -R/--repo is kept in "$@" and also remembered for our own lookup.
+    pr_sel=""
+    repo=""
+    first=1
+    n=$#
+    while [ "$n" -gt 0 ]; do
+        a="$1"; shift; n=$((n - 1))
+        if [ "$subcommand" = "create" ]; then
+            set -- "$@" "$a"; continue
+        fi
+        case "$a" in
+            -R|--repo)
+                set -- "$@" "$a"
+                if [ "$n" -gt 0 ]; then
+                    repo="$1"; set -- "$@" "$1"; shift; n=$((n - 1))
+                fi ;;
+            --repo=*) repo="${a#--repo=}"; set -- "$@" "$a" ;;
+            ''|-*) set -- "$@" "$a" ;;
+            \#[0-9]*) pr_sel="${a#\#}" ;;
+            http://*|https://*) pr_sel="$a" ;;
+            *[!0-9]*)
+                if [ "$first" = 1 ]; then pr_sel="$a"
+                else set -- "$@" "$a"; fi ;;
+            *) pr_sel="$a" ;;
+        esac
+        first=0
+    done
+
+    if [ -n "$pr_sel" ]; then
+        bookmark=""
+        selector="$pr_sel"
+    else
+        # Find the nearest bookmark in current ancestry using latest()
+        revset="latest(ancestors(@) & bookmarks())"
+        raw_bm=$(jj bookmark list -r "$revset" --color never 2>/dev/null)
+        bookmark=$(echo "$raw_bm" | head -n 1 | sed 's/[: ].*//')
+
+        if [ -z "$bookmark" ]; then
+            echo "ghpr: no bookmark in ancestry" >&2
+            exit 1
+        fi
+        selector="$bookmark"
+    fi
+
+    # Fetch the pull request URL from GitHub
+    pr_url=$(gh pr view "$selector" ${repo:+--repo "$repo"} --json url \
+        --template '{{.url}}' 2>/dev/null || echo "Unknown")
+
+    echo "ghpr: ${bookmark:-$pr_sel} $pr_url" >&2
+
+    if [ "$subcommand" = "create" ]; then
+        exec gh pr create --head "$bookmark" "$@"
+    else
+        # This works for check
+        exec gh pr "$subcommand" "$selector" "$@"
+    fi
+    ''',
+    "ghpr" # This acts as $0 so $1 correctly maps to the subcommand
+]
+
+# Quick shorthand mapping to your internal alias
+ghprc = ["ghpr", "checks"]
+ghprcw = ["ghpr", "checks", "--watch"]
+ghprcmfr = [
+    "util", "exec", "--", 
+    "sh", "-c", 
+    '''
+    jj ghprcw "$@" && jj ghprmrd "$@" && jj gfa && jj rrm
+    ''',
+    "ghprcmfr" # $0, so extra args (e.g. a PR number) land in "$@"
+]
+ghprcwq = [
+    "util", "exec", "--", "sh", "-c",
+    """
+    jj ghpr checks --watch "$@" >/dev/null 2>&1
+    """,
+    "ghprcwq" # $0, so extra args (e.g. a PR number) land in "$@"
+]
+ghprmrd = ["ghpr", "merge", "--rebase", "--delete-branch"]
+rrm = ["rebase", "-b", "roots(main..@)", "-d", "main"]
+wus = ["workspace", "update-stale"]
