@@ -91,7 +91,12 @@ ghpr = [
     pr_url=$(gh pr view "$selector" ${repo:+--repo "$repo"} --json url \
         --template '{{.url}}' 2>/dev/null || echo "Unknown")
 
-    echo "ghpr: ${bookmark:-$pr_sel} $pr_url" >&2
+    label="${bookmark:-$pr_sel}"
+    if [ "$label" = "$pr_url" ]; then
+        echo "ghpr: $pr_url" >&2
+    else
+        echo "ghpr: $label $pr_url" >&2
+    fi
 
     if [ "$subcommand" = "create" ]; then
         exec gh pr create --head "$bookmark" "$@"
