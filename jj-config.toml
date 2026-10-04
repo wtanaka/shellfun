@@ -115,16 +115,23 @@ ghprcmfr = [
     "util", "exec", "--", 
     "sh", "-c", 
     '''
-    jj ghprcw "$@" && jj ghprmrd "$@" && jj gfa && jj rrm
+    jj ghprcw --fail-fast "$@" && jj ghprmrd "$@" && jj gfa && jj rrm
     ''',
     "ghprcmfr" # $0, so extra args (e.g. a PR number) land in "$@"
 ]
 ghprcwq = [
     "util", "exec", "--", "sh", "-c",
     """
-    jj ghpr checks --watch "$@" >/dev/null 2>&1
+    jj ghpr checks --watch --fail-fast "$@" >/dev/null 2>&1
     """,
     "ghprcwq" # $0, so extra args (e.g. a PR number) land in "$@"
+]
+ghprcqmfr = [
+    "util", "exec", "--", "sh", "-c",
+    '''
+    jj ghpr checks --watch --fail-fast "$@" >/dev/null && jj ghprmrd "$@" && jj gfa && jj rrm
+    ''',
+    "ghprcqmfr" # $0, so extra args (e.g. a PR number) land in "$@"
 ]
 ghprmrd = ["ghpr", "merge", "--rebase", "--delete-branch"]
 rrm = ["rebase", "-b", "roots(main..@)", "-d", "main"]
