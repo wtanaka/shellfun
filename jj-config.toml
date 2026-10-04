@@ -68,7 +68,8 @@ ghpr = [
                 else set -- "$@" "$a"; fi ;;
             *) pr_sel="$a" ;;
         esac
-        first=0
+        # Only a positional arg uses up "first"; flags like --watch don't
+        case "$a" in ''|-*) ;; *) first=0 ;; esac
     done
 
     if [ -n "$pr_sel" ]; then
