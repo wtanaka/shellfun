@@ -50,6 +50,7 @@ addpath $HOME/dl/android-sdk-linux/platform-tools
 addpath $HOME/dl/android-sdk-linux/tools
 addpath "$ANDROID_HOME/platform-tools"
 addpath "$PNPM_HOME" "$BUN_INSTALL/bin"
+[ -n "$npm_config_prefix" ] && addpath "$npm_config_prefix/bin"
 addpath $HOME/dl/appengine-java-sdk/bin
 addpath $HOME/.local/bin
 

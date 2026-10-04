@@ -96,6 +96,22 @@ catkill bashrc "$HOME/.bashrc"
 # login interactive shells
 catkill bashrc "$HOME/.bash_profile"
 catkill allenv.sh "$HOME/.allenv.sh"
+# pnpm settings can't go in npm_config_* env vars (npm warns), so write
+# pnpm's global config.yaml with paths derived from PNPM_HOME
+if [ "`uname -s`" = Darwin ]; then
+  PNPM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/Library/Preferences}/pnpm"
+else
+  PNPM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pnpm"
+fi
+PNPM_HOME="`sh -c '. ./allenv.sh; echo "$PNPM_HOME"'`"
+mkdir -p "$PNPM_CONFIG_DIR"
+cat > "$PNPM_CONFIG_DIR/config.yaml" <<EOF
+storeDir: $PNPM_HOME/store
+cacheDir: $PNPM_HOME/cache
+stateDir: $PNPM_HOME/state
+globalDir: $PNPM_HOME/global
+globalBinDir: $PNPM_HOME
+EOF
 catkill claude-env.sh "$HOME/.claude-env.sh"
 catkill aliases.sh "$HOME/.aliases.sh"
 catkill gemrc "$HOME/.gemrc"

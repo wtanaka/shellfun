@@ -30,9 +30,16 @@ export ELM_HOME="$_tool_cache/elm"
 export npm_config_cache="$_tool_cache/npm"
 export YARN_CACHE_FOLDER="$_tool_cache/yarn"
 export PNPM_HOME="$_tool_cache/pnpm"
+# pnpm's store/cache/state/global dirs live in its config.yaml (written by
+# install.sh); npm_config_* env vars would make npm warn about unknown config
 export BUN_INSTALL="$_tool_cache/bun"
 export BUN_INSTALL_CACHE_DIR="$_tool_cache/bun/install/cache"
 export NVM_DIR="$_tool_cache/nvm"
+# nvm refuses to run if npm_config_prefix is set; with nvm, globals already
+# go under $NVM_DIR/versions/node/<version>/
+if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+  export npm_config_prefix="$_tool_cache/npm-global"
+fi
 # JVM (MAVEN_ARGS needs Maven 3.9+)
 export MAVEN_ARGS="-Dmaven.repo.local=$_tool_cache/m2/repository"
 export GRADLE_USER_HOME="$_tool_cache/gradle"
