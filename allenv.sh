@@ -21,6 +21,12 @@ case "$TMPDIR" in
   /var/folders/*/T/) _tool_cache="${TMPDIR%T/}C" ;;
   *) _tool_cache="${XDG_CACHE_HOME:-$HOME/.cache}" ;;
 esac
+# Resolve symlinks (macOS /var -> /private/var): some Rust crates, e.g. askama
+# via uniffi_bindgen, compute relative paths against the canonical spelling
+# and fail to find files when CARGO_HOME goes through the symlink
+_tool_cache_real="$(cd -P "$_tool_cache" 2>/dev/null && pwd -P)" &&
+  _tool_cache="$_tool_cache_real"
+unset _tool_cache_real
 
 export CARGO_HOME="$_tool_cache/cargo"
 export RUSTUP_HOME="$_tool_cache/rustup"
