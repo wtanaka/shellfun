@@ -82,7 +82,17 @@ cat <<\TEMPLATEQUOTE
 
 # Some installs of zsh (like Mac OSX) do not run compinit by default
 autoload -U compinit
-compinit
+# full compinit only if dump missing or >1 day old
+_zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+_zcompdump_fresh=($_zcompdump(N.mh-24))
+if (( $#_zcompdump_fresh )); then
+   compinit -C
+else
+   compinit
+   # compinit won't bump an unchanged dump
+   touch "$_zcompdump"
+fi
+unset _zcompdump _zcompdump_fresh
 
 # use compctl to override?
 fignore=(.o .class .u .d \~)
