@@ -23,6 +23,9 @@ addpath /usr/local/java/bin
 ## rust
 addpath "${CARGO_HOME:-$HOME/.cargo}/bin"
 
+## webassembly
+[ -n "$EMSDK" ] && addpath "$EMSDK/upstream/emscripten"
+
 ## generic
 addpath /bin
 addpath /usr/bin

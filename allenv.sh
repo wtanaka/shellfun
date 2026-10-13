@@ -32,6 +32,10 @@ export CARGO_HOME="$_tool_cache/cargo"
 export RUSTUP_HOME="$_tool_cache/rustup"
 export CARGO_TARGET_DIR="$_tool_cache/cargo-target"
 export ELM_HOME="$_tool_cache/elm"
+# WebAssembly
+export EMSDK="$_tool_cache/emsdk"
+export EM_CACHE="$_tool_cache/emscripten-cache"
+export EM_CONFIG="$EMSDK/.emscripten"
 # JavaScript
 export npm_config_cache="$_tool_cache/npm"
 export YARN_CACHE_FOLDER="$_tool_cache/yarn"
