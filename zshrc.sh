@@ -1,6 +1,6 @@
 cat <<\TEMPLATEQUOTE
 PROMPT="%B%3c %#%b "
-signal_names[129]=(`kill -l`)
+signal_names[129]=(${signals[2,-1]:#(ZERR|DEBUG)})   # signals[1] is EXIT
 TEMPLATEQUOTE
 
 if [ "$SYS_LAB" = 'UGCS' ]; then
