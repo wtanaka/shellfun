@@ -197,12 +197,19 @@ if [ -d "$HOME/bin/zshf" ]; then
    fi
 fi
 
-if [ -n "`which arch | grep -v not\ found`" ]; then
-   export ARCH=`arch`
-fi
-if [ -n "`which uname | grep -v not\ found`" ]; then
-   export OSNAME=`uname -s`
-fi
+# no-fork fast path for common OSes
+case "$OSTYPE" in
+   darwin*) export OSNAME=Darwin ARCH="$CPUTYPE" ;;
+   linux*) export OSNAME=Linux ARCH="$CPUTYPE" ;;
+   *)
+      if [ -n "`which arch | grep -v not\ found`" ]; then
+         export ARCH=`arch`
+      fi
+      if [ -n "`which uname | grep -v not\ found`" ]; then
+         export OSNAME=`uname -s`
+      fi
+      ;;
+esac
 
 if [ -f "$HOME/.aliases.sh" ]; then
   . "$HOME/.aliases.sh"
