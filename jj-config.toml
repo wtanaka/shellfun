@@ -11,6 +11,7 @@ diff-formatter = ":git"
 diff-args = [
     "--background=light", 
     "--color=always", 
+    "--override=zsh*.sh:Text",
 #    "--display=inline", 
     "$left", 
     "$right"
