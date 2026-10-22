@@ -314,5 +314,11 @@ fi
 
 unfunction make_commands_reset_terminal_title
 
-eval 'resetterminaltitle() { if [[ -z "$NOSETTERMINALNAME" && -o interactive ]]; then terminalname "'`uname -n`!`whoami`'"; terminaltitle "'`uname -n`!`whoami` '('`uname -s` `uname -r`') ('`tty`')"; fi }'
+resetterminaltitle()
+{
+   [[ -z $NOSETTERMINALNAME && -o interactive ]] || return
+   : ${_osrel:=`uname -sr`}   # one fork, cached
+   terminalname "$HOST!$USERNAME"
+   terminaltitle "$HOST!$USERNAME ($_osrel) ($TTY)"
+}
 TEMPLATEQUOTE
