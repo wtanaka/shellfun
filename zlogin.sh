@@ -36,18 +36,20 @@ if [[ -o interactive ]]; then
          resetterminaltitle
       fi
    fi           
-   if [ -n "`ssh-add -l 2>&1 | grep -i \"could not.*connect\"`" ]; then
+   ssh-add -l >/dev/null 2>&1   # exit 2: no agent
+   if (( $? == 2 )); then
       TMPFILE="/tmp/ssh-agent-list$$"
       eval `ssh-agent` 2>&1 > "$TMPFILE"
       cat "$TMPFILE" |& cut -d\  -f3 | sed -e "s/$/ $$/" \
          >>! $HOME/.ssh/agentlist-`hostname`
       /bin/rm "$TMPFILE"
+      ssh-add -l >/dev/null 2>&1
+      if (( $? == 2 )); then
+         echo Agent not found, trying again
+         exec ssh-agent "$SHELL" -l
+      fi
    else
       export SSH_AGENT_PID=""
-   fi
-   if [ -n "`ssh-add -l 2>&1 | grep -i \"could not.*connect\"`" ]; then
-      echo Agent not found, trying again
-      exec ssh-agent "$SHELL" -l
    fi
 fi
 :
