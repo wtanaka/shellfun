@@ -69,7 +69,8 @@ if [ -x /usr/local/bin/ccoarch ]; then
    addpath /ccovol/gnu/bin.`/usr/local/bin/ccoarch`
    addpath /ccovol/X11R5/bin.`/usr/local/bin/ccoarch`
 fi
-addpath "/ufs/info/bin/`uname -s``uname -r`/jdk1.1.3/bin"
+[ -d /ufs/info/bin ] &&
+   addpath "/ufs/info/bin/`uname -s``uname -r`/jdk1.1.3/bin"
 addpath /ofb/bin
 addpath /home/contrib/bin
 
