@@ -35,8 +35,15 @@ showtastic = ["show",
      "--tool", "difft"]
 gf = ["git", "fetch"]
 gfa = ["git", "fetch", "--all-remotes"]
+# ghpr naming: ghpr<abbr> mirrors `gh pr <sub>` 1:1 (checks=c, merge=m,
+# list=l, status=s, view=v, diff=d, edit=e, ready=r, checkout=co, close=cl,
+# comment=cm, reopen=ro, revert=rv, review=rw, lock=lk, unlock=ul,
+# update-branch=ub). Compound workflows use the initials of their steps
+# (cqmfr = checks, quiet, merge, fetch, rebase). Non-mirror: ghprp =
+# bookmark + push + create-or-update PR. Before adding an alias, grep for
+# the new name as both a full name and a prefix.
 ghpr = [
-    "util", "exec", "--", 
+    "util", "exec", "--",
     "sh", "-c", 
     '''
     set -e
@@ -108,6 +115,127 @@ ghpr = [
     fi
     ''',
     "ghpr" # This acts as $0 so $1 correctly maps to the subcommand
+]
+
+# Bookmark the current commit, push it to origin, and open a PR against main
+# (or just re-push if an open PR for the bookmark already exists).
+# Usage: jj ghprp [bookmark-name] [gh pr create flags...]
+# - Commit is @, or @- if @ is empty; it must be exactly one commit past both
+#   main and main@origin, and must have a description.
+# - 1 bookmark on the commit: use it. 2+: use the one with an open PR, else
+#   require bookmark-name. A given bookmark-name must be one of them.
+# - 0 bookmarks: create one named bookmark-name, or pr-N (first free N),
+#   which contains nothing derived from the commit or the user.
+# - Fails if an open PR already has this exact commit on another branch.
+ghprp = [
+    "util", "exec", "--", "sh", "-c",
+    '''
+    set -e
+    die() { echo "ghprp: $*" >&2; exit 1; }
+    count() { grep -c . || true; }
+    valid_name() {
+        case "$1" in
+            -*|.*|/*|*/|*//*|*..*|*.lock|*[!A-Za-z0-9._/-]*) return 1 ;;
+        esac
+    }
+
+    # owner/repo of origin, so gh works even in a non-colocated workspace
+    remote_url=$(jj git remote list | awk '$1 == "origin" { print $2 }')
+    repo=$(printf '%s' "$remote_url" | sed -E \
+        's#^(git@[^:]+:|ssh://git@[^/]+/|https?://([^@/]+@)?[^/]+/)##; s#\.git$##; s#/$##')
+    case "$repo" in */*) ;; *) die "cannot derive owner/repo from origin '$remote_url'" ;; esac
+
+    rev=@
+    if [ "$(jj log -r @ --no-graph -T empty)" = true ]; then rev='@-'; fi
+
+    for base in main main@origin; do
+        n=$(jj log -r "$base..$rev" --no-graph -T 'change_id ++ "\n"' | count)
+        [ "$n" = 1 ] || die "$rev is $n commits past $base, need exactly 1 (try: jj gf)"
+    done
+
+    [ -n "$(jj log -r "$rev" --no-graph -T 'description.first_line()')" ] \
+        || die "$rev has no description"
+
+    name=""
+    case "${1:-}" in ''|-*) ;; *) name="$1"; shift ;; esac
+    if [ -n "$name" ]; then
+        valid_name "$name" || die "invalid bookmark name '$name'"
+    fi
+
+    cands=$(jj bookmark list -r "$rev" --color never \
+        -T 'if(remote, "", name ++ "\n")' | grep -vx main || true)
+    ncand=$(printf '%s\n' "$cands" | count)
+    names=$(printf '%s' "$cands" | tr '\n' ' ')
+
+    chosen=""
+    if [ "$ncand" -ge 1 ] && [ -n "$name" ]; then
+        printf '%s\n' "$cands" | grep -qxF -- "$name" \
+            || die "$rev has bookmark(s) $names but not '$name'"
+        chosen="$name"
+    elif [ "$ncand" = 1 ]; then
+        chosen="$cands"
+    elif [ "$ncand" -ge 2 ]; then
+        open=$(gh pr list -R "$repo" --state open --limit 200 \
+            --json headRefName,isCrossRepository,url \
+            -q '.[] | select(.isCrossRepository | not) | .headRefName + " " + .url')
+        matches=""
+        for b in $cands; do
+            m=$(printf '%s\n' "$open" | awk -v b="$b" '$1 == b')
+            if [ -n "$m" ]; then matches="$matches$m
+"; fi
+        done
+        nm=$(printf '%s' "$matches" | count)
+        if [ "$nm" = 0 ]; then
+            die "$rev has bookmarks $names, none with an open PR; pass one"
+        elif [ "$nm" -ge 2 ]; then
+            printf '%s' "$matches" >&2
+            die "$rev has bookmarks $names with several open PRs; pass one"
+        fi
+        chosen="${matches%% *}"
+        echo "ghprp: using '$chosen' (open PR ${matches#* }); bookmarks: $names" >&2
+    fi
+
+    create=""
+    if [ -n "$chosen" ]; then
+        name="$chosen"
+    else
+        taken() { [ -n "$(jj bookmark list -a --color never -T 'name ++ "\n"' "exact:$1" 2>/dev/null)" ]; }
+        if [ -z "$name" ]; then
+            # Generic by construction: only a fixed prefix and digits.
+            i=1
+            name="pr-$i"
+            while taken "$name"; do i=$((i + 1)); name="pr-$i"; done
+        fi
+        if taken "$name"; then die "bookmark name '$name' is taken; pass another"; fi
+        create=1
+    fi
+
+    # Fail if an open PR already carries this exact commit on another branch.
+    sha=$(jj log -r "$rev" --no-graph -T commit_id)
+    dups=$(gh pr list -R "$repo" --state open --limit 200 \
+        --json headRefName,headRefOid,isCrossRepository,url \
+        -q ".[] | select((.isCrossRepository | not) and .headRefOid == \"$sha\") | .headRefName + \" \" + .url")
+    bad=$(printf '%s\n' "$dups" | awk -v n="$name" 'NF && $1 != n' | head -n 1)
+    if [ -n "$bad" ]; then
+        die "open PR ${bad#* } already has this commit on '${bad%% *}', not '$name'"
+    fi
+
+    if [ -n "$create" ]; then jj bookmark create "$name" -r "$rev"; fi
+
+    if ! jj git push --remote origin --bookmark "$name"; then
+        die "push failed; if the remote branch moved (e.g. a reviewer's commit), run 'jj gf', rebase, retry"
+    fi
+
+    url=$(gh pr list -R "$repo" --head "$name" --state open \
+        --json url,isCrossRepository \
+        -q '[.[] | select(.isCrossRepository | not)][0].url // empty')
+    if [ -n "$url" ]; then
+        echo "ghprp: updated $url" >&2
+    else
+        exec gh pr create -R "$repo" --head "$name" --base main --fill "$@"
+    fi
+    ''',
+    "ghprp" # $0, so a leading bookmark name and gh flags land in "$@"
 ]
 
 # Quick shorthand mapping to your internal alias
