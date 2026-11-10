@@ -142,15 +142,19 @@ ghprp = [
     # owner/repo of origin, so gh works even in a non-colocated workspace
     remote_url=$(jj git remote list | awk '$1 == "origin" { print $2 }')
     repo=$(printf '%s' "$remote_url" | sed -E \
-        's#^(git@[^:]+:|ssh://git@[^/]+/|https?://([^@/]+@)?[^/]+/)##; s#\.git$##; s#/$##')
-    case "$repo" in */*) ;; *) die "cannot derive owner/repo from origin '$remote_url'" ;; esac
+        's#^(git@[^:]+:|ssh://git@[^/]+/|https?://([^@/]+@)?[^/]+/)##;
+         s#\.git$##; s#/$##')
+    case "$repo" in */*) ;; *)
+        die "cannot derive owner/repo from origin '$remote_url'" ;;
+    esac
 
     rev=@
     if [ "$(jj log -r @ --no-graph -T empty)" = true ]; then rev='@-'; fi
 
     for base in main main@origin; do
         n=$(jj log -r "$base..$rev" --no-graph -T 'change_id ++ "\n"' | count)
-        [ "$n" = 1 ] || die "$rev is $n commits past $base, need exactly 1 (try: jj gf)"
+        [ "$n" = 1 ] \
+            || die "$rev is $n commits past $base, need exactly 1 (jj gf?)"
     done
 
     [ -n "$(jj log -r "$rev" --no-graph -T 'description.first_line()')" ] \
@@ -177,7 +181,8 @@ ghprp = [
     elif [ "$ncand" -ge 2 ]; then
         open=$(gh pr list -R "$repo" --state open --limit 200 \
             --json headRefName,isCrossRepository,url \
-            -q '.[] | select(.isCrossRepository | not) | .headRefName + " " + .url')
+            -q '.[] | select(.isCrossRepository | not)
+                | .headRefName + " " + .url')
         matches=""
         for b in $cands; do
             m=$(printf '%s\n' "$open" | awk -v b="$b" '$1 == b')
@@ -192,21 +197,27 @@ ghprp = [
             die "$rev has bookmarks $names with several open PRs; pass one"
         fi
         chosen="${matches%% *}"
-        echo "ghprp: using '$chosen' (open PR ${matches#* }); bookmarks: $names" >&2
+        echo "ghprp: using '$chosen' (open PR ${matches#* });" \
+            "bookmarks: $names" >&2
     fi
 
     create=""
     if [ -n "$chosen" ]; then
         name="$chosen"
     else
-        taken() { [ -n "$(jj bookmark list -a --color never -T 'name ++ "\n"' "exact:$1" 2>/dev/null)" ]; }
+        taken() {
+            [ -n "$(jj bookmark list -a --color never -T 'name ++ "\n"' \
+                "exact:$1" 2>/dev/null)" ]
+        }
         if [ -z "$name" ]; then
             # Generic by construction: only a fixed prefix and digits.
             i=1
             name="pr-$i"
             while taken "$name"; do i=$((i + 1)); name="pr-$i"; done
         fi
-        if taken "$name"; then die "bookmark name '$name' is taken; pass another"; fi
+        if taken "$name"; then
+            die "bookmark name '$name' is taken; pass another"
+        fi
         create=1
     fi
 
@@ -214,16 +225,20 @@ ghprp = [
     sha=$(jj log -r "$rev" --no-graph -T commit_id)
     dups=$(gh pr list -R "$repo" --state open --limit 200 \
         --json headRefName,headRefOid,isCrossRepository,url \
-        -q ".[] | select((.isCrossRepository | not) and .headRefOid == \"$sha\") | .headRefName + \" \" + .url")
+        -q ".[] | select((.isCrossRepository | not)
+            and .headRefOid == \"$sha\")
+            | .headRefName + \" \" + .url")
     bad=$(printf '%s\n' "$dups" | awk -v n="$name" 'NF && $1 != n' | head -n 1)
     if [ -n "$bad" ]; then
-        die "open PR ${bad#* } already has this commit on '${bad%% *}', not '$name'"
+        die "open PR ${bad#* } already has this commit on" \
+            "'${bad%% *}', not '$name'"
     fi
 
     if [ -n "$create" ]; then jj bookmark create "$name" -r "$rev"; fi
 
     if ! jj git push --remote origin --bookmark "$name"; then
-        die "push failed; if the remote branch moved (e.g. a reviewer's commit), run 'jj gf', rebase, retry"
+        die "push failed; if the remote branch moved (e.g. a reviewer's" \
+            "commit), run 'jj gf', rebase, retry"
     fi
 
     url=$(gh pr list -R "$repo" --head "$name" --state open \
@@ -241,27 +256,24 @@ ghprp = [
 # Quick shorthand mapping to your internal alias
 ghprc = ["ghpr", "checks"]
 ghprcw = ["ghpr", "checks", "--watch"]
+# CI-aware wait/merge: the logic is in ghpr-ci.sh (installed next to this
+# config), which waits for every workflow run of the PR's head commit.
+# ghprcwq = wait only (exit status is the verdict); ghprcmfr/ghprcqmfr = wait,
+# merge, fetch, rebase. The q variants hide only `gh run watch` output.
 ghprcmfr = [
-    "util", "exec", "--", 
-    "sh", "-c", 
-    '''
-    jj ghprcw --fail-fast "$@" && jj ghprmrd "$@" && jj gfa && jj rrm
-    ''',
-    "ghprcmfr" # $0, so extra args (e.g. a PR number) land in "$@"
+    "util", "exec", "--", "sh", "-c",
+    'exec sh "$HOME/.config/jj/ghpr-ci.sh" merge "$@"',
+    "ghprcmfr"
 ]
 ghprcwq = [
     "util", "exec", "--", "sh", "-c",
-    """
-    jj ghpr checks --watch --fail-fast "$@" >/dev/null 2>&1
-    """,
-    "ghprcwq" # $0, so extra args (e.g. a PR number) land in "$@"
+    'exec sh "$HOME/.config/jj/ghpr-ci.sh" wait -q "$@"',
+    "ghprcwq"
 ]
 ghprcqmfr = [
     "util", "exec", "--", "sh", "-c",
-    '''
-    jj ghpr checks --watch --fail-fast "$@" >/dev/null && jj ghprmrd "$@" && jj gfa && jj rrm
-    ''',
-    "ghprcqmfr" # $0, so extra args (e.g. a PR number) land in "$@"
+    'exec sh "$HOME/.config/jj/ghpr-ci.sh" merge -q "$@"',
+    "ghprcqmfr"
 ]
 ghprmrd = ["ghpr", "merge", "--rebase", "--delete-branch"]
 rrm = ["rebase", "-b", "roots(main..@)", "-d", "main"]
