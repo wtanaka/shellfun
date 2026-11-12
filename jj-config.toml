@@ -275,6 +275,13 @@ ghprcqmfr = [
     'exec sh "$HOME/.config/jj/ghpr-ci.sh" merge -q "$@"',
     "ghprcqmfr"
 ]
+# prune: trim the op log to clamp(ops in last 7 days, 64, 256), then gc and
+# rebuild the commit index. Logic is in jj-prune.sh; `jj prune -n` is a dry run.
+prune = [
+    "util", "exec", "--", "sh", "-c",
+    'exec sh "$HOME/.config/jj/jj-prune.sh" "$@"',
+    "prune"
+]
 ghprmrd = ["ghpr", "merge", "--rebase", "--delete-branch"]
 rrm = ["rebase", "-b", "roots(main..@)", "-d", "main"]
 wus = ["workspace", "update-stale"]

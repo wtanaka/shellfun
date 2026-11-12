@@ -126,6 +126,7 @@ catkill gitconfig "$HOME/.gitconfig"
 mkdir -p "$HOME/.config/jj"
 catkill jj-config.toml "$HOME/.config/jj/config.toml"
 catkill ghpr-ci.sh "$HOME/.config/jj/ghpr-ci.sh"
+catkill jj-prune.sh "$HOME/.config/jj/jj-prune.sh"
 shkill vimrc.sh "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
   catkill wgetrc "$HOME/.wgetrc"
