@@ -104,14 +104,18 @@ else
   PNPM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pnpm"
 fi
 PNPM_HOME="`sh -c '. ./allenv.sh; echo "$PNPM_HOME"'`"
-mkdir -p "$PNPM_CONFIG_DIR"
-cat > "$PNPM_CONFIG_DIR/config.yaml" <<EOF
+# allenv.sh leaves PNPM_HOME empty when it finds no safe tool dir; writing the
+# config then would point pnpm at /store and similar root-level paths
+if [ -n "$PNPM_HOME" ]; then
+  mkdir -p "$PNPM_CONFIG_DIR"
+  cat > "$PNPM_CONFIG_DIR/config.yaml" <<EOF
 storeDir: $PNPM_HOME/store
 cacheDir: $PNPM_HOME/cache
 stateDir: $PNPM_HOME/state
 globalDir: $PNPM_HOME/global
 globalBinDir: $PNPM_HOME
 EOF
+fi
 catkill claude-env.sh "$HOME/.claude-env.sh"
 catkill aliases.sh "$HOME/.aliases.sh"
 catkill gemrc "$HOME/.gemrc"
