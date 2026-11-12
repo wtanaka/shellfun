@@ -52,7 +52,7 @@ addpath $HOME/bin
 addpath $HOME/dl/android-sdk-linux/platform-tools
 addpath $HOME/dl/android-sdk-linux/tools
 addpath "$ANDROID_HOME/platform-tools"
-addpath "$PNPM_HOME" "$BUN_INSTALL/bin"
+addpath "$PNPM_HOME" "$BUN_INSTALL/bin" "$PIPX_BIN_DIR"
 [ -n "$npm_config_prefix" ] && addpath "$npm_config_prefix/bin"
 addpath $HOME/dl/appengine-java-sdk/bin
 addpath $HOME/.local/bin

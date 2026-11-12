@@ -57,6 +57,10 @@ export GRADLE_USER_HOME="$_tool_cache/gradle"
 export PIP_CACHE_DIR="$_tool_cache/pip"
 export UV_CACHE_DIR="$_tool_cache/uv"
 export POETRY_CACHE_DIR="$_tool_cache/poetry"
+# pipx: venvs under PIPX_HOME, command shims in PIPX_BIN_DIR (on PATH via
+# addpath.sh)
+export PIPX_HOME="$_tool_cache/pipx"
+export PIPX_BIN_DIR="$PIPX_HOME/bin"
 # Go
 export GOCACHE="$_tool_cache/go-build"
 export GOMODCACHE="$_tool_cache/go-mod"
