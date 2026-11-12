@@ -13,7 +13,9 @@
 #   PR  number, #number, URL or branch; default: nearest bookmark above @
 #   -q  hide `gh run watch` output (phase lines and errors still print)
 # Env (whole seconds):
-#   GHPR_CI_POLL           between polls (default 5)
+#   GHPR_CI_POLL           between polls (default 10)
+#   GHPR_CI_WATCH_INTERVAL `gh run watch` refresh (default 15; gh's own
+#                          default of 3 burns ~2400 REST calls/hour per run)
 #   GHPR_CI_RUN_TIMEOUT    wait for a first Actions run to appear when some
 #                          workflow must run (default 300)
 #   GHPR_CI_SOFT_TIMEOUT   same, when every workflow is path-filtered, so a
@@ -53,15 +55,17 @@ while [ $# -gt 0 ]; do
     esac
     shift
 done
-poll=${GHPR_CI_POLL:-5}
+poll=${GHPR_CI_POLL:-10}
+wint=${GHPR_CI_WATCH_INTERVAL:-15}
 timeout=${GHPR_CI_RUN_TIMEOUT:-300}
 ctimeout=${GHPR_CI_CHECK_TIMEOUT:-1800}
 soft=${GHPR_CI_SOFT_TIMEOUT:-60}
 rtimeout=${GHPR_CI_REQ_TIMEOUT:-120}
-case "$poll$timeout$ctimeout$soft$rtimeout" in
+case "$poll$wint$timeout$ctimeout$soft$rtimeout" in
     *[!0-9]*) fail 64 "GHPR_CI_* timeouts must be whole seconds" ;;
 esac
 [ "$poll" -ge 1 ] || fail 64 "GHPR_CI_POLL must be at least 1"
+[ "$wint" -ge 1 ] || fail 64 "GHPR_CI_WATCH_INTERVAL must be at least 1"
 
 if [ -z "$sel" ]; then   # jj has no current branch: use the nearest bookmark
     out=$(jj bookmark list --color never \
@@ -270,10 +274,10 @@ EOF
     for id in $incomplete; do
         say "watching run $id"
         if [ -n "$quiet" ]; then
-            if gh_ run watch "$id" --exit-status >/dev/null
+            if gh_ run watch "$id" --exit-status -i "$wint" >/dev/null
             then rc=0; else rc=$?; fi
         else
-            if gh_ run watch "$id" --exit-status
+            if gh_ run watch "$id" --exit-status -i "$wint"
             then rc=0; else rc=$?; fi
         fi
         # the verdict is the run's recorded state, never watch's exit code
