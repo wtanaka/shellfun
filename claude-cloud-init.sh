@@ -89,11 +89,11 @@ done
 # --- new login/interactive shells start in the checkout, if it exists ---
 # (a script can't change its caller's cwd, so this is done via shell startup)
 cat > /etc/profile.d/repo-cd.sh <<'PROFILE'
-# only when starting in $HOME, so an explicit cwd is never overridden
-if [ "$PWD" = "$HOME" ] && [ -n "${CLONE_REMOTES:-}" ]; then
+# cccinit clones into the current directory; start shells inside the checkout
+if [ -n "${CLONE_REMOTES:-}" ]; then
   # shellcheck disable=SC2086
   set -- $CLONE_REMOTES
-  d=${2##*/}; d="$HOME/${d%.git}"
+  d=${2##*/}; d="$PWD/${d%.git}"
   [ -d "$d" ] && cd "$d"
 fi
 PROFILE

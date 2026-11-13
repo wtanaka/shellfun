@@ -7,7 +7,8 @@
 set -eu
 
 # --- step: clone remotes (CLONE_REMOTES="NAME URL [NAME URL]...") ---
-# Result: a jj repo colocated with git in $HOME/<repo name>, with every remote.
+# Result: a jj repo colocated with git in ./<repo name> (the current directory),
+# with every remote.
 if [ -n "${CLONE_REMOTES:-}" ]; then
   # shellcheck disable=SC2086
   set -- $CLONE_REMOTES
@@ -15,7 +16,7 @@ if [ -n "${CLONE_REMOTES:-}" ]; then
     { echo "CLONE_REMOTES: odd word count" >&2; exit 1; }
   first_name=$1; first_url=$2
   name=${first_url##*/}; name=${name%.git}
-  DEST="$HOME/$name"
+  DEST="$PWD/$name"
   helper=/usr/local/bin/git-credential-envtoken
   hostof() { r=${1#*://}; r=${r#*@}; echo "${r%%/*}"; }
   export GIT_TERMINAL_PROMPT=0
