@@ -117,6 +117,8 @@ globalBinDir: $PNPM_HOME
 EOF
 fi
 catkill claude-env.sh "$HOME/.claude-env.sh"
+catkill cccinit.sh "$HOME/.cccinit.sh"
+chmod +x "$HOME/.cccinit.sh"
 catkill aliases.sh "$HOME/.aliases.sh"
 catkill gemrc "$HOME/.gemrc"
 shkill zshenv.sh "$HOME/.zshenv"

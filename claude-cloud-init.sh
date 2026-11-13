@@ -79,66 +79,12 @@ HELPER
 chmod 755 /usr/local/bin/git-credential-envtoken
 
 # system-wide so it survives any HOME. Scoped per host so a token never goes to
-# an unlisted host; repo-clone adds any other host from CLONE_REMOTES.
+# an unlisted host; cccinit adds any other host from CLONE_REMOTES.
 for host in github.com gitlab.com; do
   git config --system "credential.https://$host.helper" \
     /usr/local/bin/git-credential-envtoken
   git config --system "credential.https://$host.useHttpPath" false
 done
-
-# --- session-time clone script (needs env vars, so it runs later, not here) ---
-# Quoted heredoc: nothing is expanded now; $HOME and the variables resolve when
-# the script runs.
-cat > /usr/local/bin/repo-clone <<'CLONE'
-#!/bin/sh
-# Run inside a session (or from a SessionStart hook). Reads CLONE_REMOTES.
-# Result: $DEST is a jj repo colocated with git, with every configured remote.
-set -eu
-[ -n "${CLONE_REMOTES:-}" ] || { echo "CLONE_REMOTES unset" >&2; exit 1; }
-# shellcheck disable=SC2086
-set -- $CLONE_REMOTES
-[ $(( $# % 2 )) -eq 0 ] || { echo "CLONE_REMOTES: odd word count" >&2; exit 1; }
-first_name=$1; first_url=$2
-name=${first_url##*/}; name=${name%.git}
-DEST="$HOME/$name"
-helper=/usr/local/bin/git-credential-envtoken
-hostof() { r=${1#*://}; r=${r#*@}; echo "${r%%/*}"; }
-export GIT_TERMINAL_PROMPT=0
-all="$*"
-while [ $# -gt 0 ]; do
-  h=$(hostof "$2")
-  git config --global "credential.https://$h.helper" "$helper"
-  git config --global "credential.https://$h.useHttpPath" false
-  shift 2
-done
-# shellcheck disable=SC2086
-set -- $all
-h=$(hostof "$first_url")
-if ! printf 'host=%s\n\n' "$h" | "$helper" get | grep -q .; then
-  echo "no token for $h in the environment" >&2; exit 1
-fi
-if [ -d "$DEST/.jj" ]; then
-  :
-elif [ -d "$DEST/.git" ]; then
-  # existing plain-git clone: convert to colocated jj
-  (cd "$DEST" && jj git init --colocate)
-else
-  jj git clone --colocate --remote "$first_name" "$first_url" "$DEST"
-fi
-# make every configured remote exist with the right URL
-while [ $# -gt 0 ]; do
-  if jj -R "$DEST" git remote list | grep -q "^$1 "; then
-    jj -R "$DEST" git remote set-url "$1" "$2"
-  else
-    jj -R "$DEST" git remote add "$1" "$2"
-  fi
-  shift 2
-done
-jj -R "$DEST" git fetch --all-remotes
-jj -R "$DEST" git remote list
-jj -R "$DEST" log -r '@ | trunk()' --limit 3
-CLONE
-chmod 755 /usr/local/bin/repo-clone
 
 # --- new login/interactive shells start in the checkout, if it exists ---
 # (a script can't change its caller's cwd, so this is done via shell startup)
@@ -170,11 +116,18 @@ else
 fi
 rm -f "$SHELLFUN"
 
+# --- session-time init script, installed into $HOME by install.sh ---
+# Copied to a fixed path so a session with a different $HOME can still run it.
+if [ -f "$HOME/.cccinit.sh" ]; then
+  install -m 755 "$HOME/.cccinit.sh" \
+    /usr/local/bin/cccinit
+fi
+
 # --- clone now if a token happens to be present (usually it isn't yet) ---
 if [ -n "${CLONE_REMOTES:-}" ]; then
   # non-fatal: a clone failure must not break the cached environment setup
-  repo-clone ||
-    echo "repo-clone did not run at setup; rerun it in the session" >&2
+  command -v cccinit >/dev/null 2>&1 && cccinit ||
+    echo "cccinit did not run; rerun it in the session" >&2
 fi
 
 echo "setup done"
