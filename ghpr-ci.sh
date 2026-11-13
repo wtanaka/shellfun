@@ -1,6 +1,6 @@
 #!/bin/sh
 # ghpr-ci.sh -- wait for ALL CI on a PR's head commit; `merge` then merges
-# (rebase, delete branch), fetches and rebases @ onto main.
+# (rebase by default, or squash with --squash; delete branch), fetches and rebases @ onto main.
 #
 # Why not `gh pr checks --watch`: it exits as soon as every check registered
 # so far has finished, but later jobs register only after earlier ones end, so
@@ -9,9 +9,10 @@
 # every item in the PR's status rollup (this also covers checks that are not
 # Actions runs, e.g. an external build service) to be complete and green.
 #
-# Usage: ghpr-ci.sh wait|merge [-q] [-R owner/repo] [PR]
+# Usage: ghpr-ci.sh wait|merge [-q] [--squash] [-R owner/repo] [PR]
 #   PR  number, #number, URL or branch; default: nearest bookmark above @
 #   -q  hide `gh run watch` output (phase lines and errors still print)
+#   --squash  merge: squash into one commit instead of rebasing every commit
 # Env (whole seconds):
 #   GHPR_CI_POLL           between polls (default 10)
 #   GHPR_CI_WATCH_INTERVAL `gh run watch` refresh (default 15; gh's own
@@ -35,19 +36,20 @@
 #             64 usage error
 set -eu
 
-repo=""; quiet=""; sel=""
+repo=""; quiet=""; sel=""; method="--rebase"
 die() { echo "ghpr-ci: $*" >&2; exit 1; }
 fail() { code=$1; shift; echo "ghpr-ci: $*" >&2; exit "$code"; }
 say() { echo "ghpr-ci: $*" >&2; }
 gh_() { if [ -n "$repo" ]; then gh "$@" -R "$repo"; else gh "$@"; fi; }
 good() { case "$1" in success|skipped|neutral) return 0 ;; esac; return 1; }
 
-[ $# -ge 1 ] || fail 64 "usage: ghpr-ci.sh wait|merge [-q] [-R owner/repo] [PR]"
+[ $# -ge 1 ] || fail 64 "usage: ghpr-ci.sh wait|merge [-q] [--squash] [-R owner/repo] [PR]"
 mode=$1; shift
 case "$mode" in wait|merge) ;; *) fail 64 "unknown mode '$mode'" ;; esac
 while [ $# -gt 0 ]; do
     case "$1" in
         -q) quiet=1 ;;
+        --squash) method="--squash" ;;
         -R|--repo) [ $# -ge 2 ] || fail 64 "$1 needs a value"; repo=$2; shift ;;
         --repo=*) repo=${1#--repo=} ;;
         -*) fail 64 "unknown option '$1'" ;;
@@ -361,7 +363,7 @@ case "$mstate" in   # BLOCKED = required checks pending, UNSTABLE = a check
 esac
 
 say "merging PR $number ($url)"
-if ! gh_ pr merge "$number" --rebase --delete-branch \
+if ! gh_ pr merge "$number" "$method" --delete-branch \
         --match-head-commit "$sha"; then
     # --match-head-commit refuses if the head moved: report that distinctly
     now=$(gh_ pr view "$sel" --json headRefOid -q .headRefOid) || now=""
