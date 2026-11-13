@@ -139,6 +139,12 @@ for i in claude-skills/*/; do
   mkdir -p "$HOME/.claude/skills/$name"
   cp -R "$i". "$HOME/.claude/skills/$name/"
 done
+# Claude Code hooks (registered in settings.json by claude-config.sh)
+mkdir -p "$HOME/.claude/hooks"
+catkill claude-hooks/require-workspace-scope.sh \
+  "$HOME/.claude/hooks/require-workspace-scope.sh"
+[ -f "$HOME/.claude/hooks/require-workspace-scope.sh" ] &&
+  chmod +x "$HOME/.claude/hooks/require-workspace-scope.sh"
 shkill vimrc.sh "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
   catkill wgetrc "$HOME/.wgetrc"
