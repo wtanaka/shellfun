@@ -21,6 +21,9 @@ Haiku worker does. The skill never opens a PR and never merges.
    target, the skill never pushes and never fetches.
 4. **Base:** `main`. With a push target, the remote is the source of
    `main@<remote>`.
+5. **Verification checkout:** `main checkout` (default) or `throwaway
+   workspace`. Never ask the user about this input. Use the default unless
+   "Choosing the verification checkout" below selects the other value.
 
 Ask every missing input in one message. Afterward, decide by sensible default
 and record the decision in the commit description.
@@ -58,7 +61,9 @@ and record the decision in the commit description.
 2. **Brief the worker.** Write a self-contained task description: goal, exact
    files and functions, constraints, what NOT to touch, the acceptance
    criteria and the commit description wanted. Load the `code-design-bias`
-   skill and include the skill's rules in every brief.
+   skill and include the skill's rules in every brief. End every brief, and
+   every amend-round brief, with the self-check footer from "Worker
+   self-check footer" below.
 3. **Run the work.** Load the `spawn-haiku-amend-commit` skill and follow
    `spawn-haiku-amend-commit` with the change ID from step 1 and the brief. The
    worker edits files inside the empty commit and runs no jj mutation. Ignore
@@ -69,16 +74,44 @@ and record the decision in the commit description.
    the repository rules and the design bias. Check that the new tests assert
    behavior and do not repeat the implementation. Verify claims directly; the
    worker's summary is not evidence.
-5. **Run the CI script** in the commit. Record the commit ID, then:
+5. **Run the CI script** in the commit, in the checkout that the
+   verification checkout input names.
+
+   **Main checkout (default).** Record the commit ID, then:
    ```bash
    jj edit <change-id>
    <CI script>
-   jj --ignore-working-copy log -r @ --no-graph -T commit_id
+   jj log -r @ --no-graph -T commit_id
    ```
-   Compare the two commit IDs. A change between the IDs means the CI script
+   Run the last `jj log` without `--ignore-working-copy`: the command snapshots
+   the files that the CI script wrote, so the second commit ID reflects them.
+   Afterward, move the main checkout to the parking commit (see "Parking the
+   main checkout").
+
+   **Throwaway workspace.** The main checkout never moves. Create a workspace
+   from the parking commit and copy the printed `WORKSPACE_DIR` literally:
+   ```bash
+   sh ~/.claude/skills/jj-worker-workspace/workspace.sh new verify-<task-id> <parking-commit>
+   jj --repository "<WORKSPACE_DIR>" edit <change-id>
+   jj --repository "<WORKSPACE_DIR>" log -r @ --no-graph -T commit_id
+   (cd "<WORKSPACE_DIR>" && <install command>)
+   (cd "<WORKSPACE_DIR>" && <CI script>)
+   jj --repository "<WORKSPACE_DIR>" log -r @ --no-graph -T commit_id
+   ```
+   The install command is the one from the self-check footer: a fresh
+   workspace holds no ignored files such as `node_modules`. Tear the workspace
+   down as the next command, whether CI passed or failed, and also when
+   `edit` or the install failed:
+   ```bash
+   sh ~/.claude/skills/jj-worker-workspace/workspace.sh teardown --amended <change-id> verify-<task-id>
+   ```
+   Never run `jj workspace forget` or `rm` by hand. After teardown,
+   `jj workspace list` shows no `verify-*` workspace; when one remains, rerun
+   the teardown command.
+
+   **Both variants.** Compare the two commit IDs. A change means the CI script
    rewrote files: treat the run as a failure and list the changed files in the
-   feedback. Afterward, move the main checkout to the parking commit (see
-   "Parking the main checkout").
+   feedback. The CI script must not depend on the path of the main checkout.
 6. **Iterate.** For every defect, CI failure or doubt, write precise feedback
    (file, what is wrong, what is wanted, how to verify, and the failing log
    excerpt for a CI failure) and run another amend round through
@@ -121,19 +154,96 @@ has a commit is not in the backlog: the orchestrator asks the user how to
 treat the commit and does not abandon the commit on the orchestrator's own
 judgment.
 
+## Choosing the verification checkout
+
+Pick the value in this order, and state the winner in one line when the run
+starts (for example "verification checkout: throwaway workspace, from
+CLAUDE.md"):
+
+1. An explicit instruction from the user in the conversation.
+2. A line in the repository's agent-context file (`CLAUDE.md`), such as
+   `chain verification: throwaway workspace`.
+3. The environment variable `CHAIN_VERIFY_CHECKOUT`: the value `workspace`
+   selects `throwaway workspace`, and any other value or no value selects
+   `main checkout`.
+4. Otherwise `main checkout`.
+
+Choose `throwaway workspace` when the main checkout must stay clean: for
+example, a Stop hook that blocks whenever the main checkout holds uncommitted
+files fires during every CI run, because the checked-out commit's files look
+uncommitted to git.
+
+The default stays `main checkout`, so such an environment needs an explicit
+choice. The cheapest choice that sticks is `CHAIN_VERIFY_CHECKOUT=workspace` in
+the environment settings, which changes no repository file; a `CLAUDE.md` line
+must be copied into every agent-context file that a repository keeps identical.
+
 ## Parking the main checkout
 
-Review and CI need `jj edit <change-id>` in the main checkout. A commit checked
-out in the main checkout and edited by a worker's workspace makes the working
-copy stale. Create one empty parking commit at the start, off the base:
+Review needs no checkout: `jj show <change-id>` reads the commit. Only
+`main checkout` verification needs `jj edit <change-id>` in the main checkout.
+A commit checked out in the main checkout and edited by a worker's workspace
+makes the working copy stale. Create one empty parking commit at the start, off
+the base:
 
 ```bash
 jj new --no-edit <base> -m "parking, never push"
 ```
 
-After every review or CI run, run `jj edit <parking-change-id>`. The parking
-commit stays outside the chain, and the push step never touches the parking
-commit.
+With `main checkout` verification, run `jj edit <parking-change-id>` after
+every CI run. With `throwaway workspace` verification, no command moves the
+main checkout, and the parking commit serves only as the base of each
+verification workspace. In both variants, the parking commit stays outside the
+chain, and the push step never touches the parking commit.
+
+The workspace-scope guard acts only on `haiku-worker` agents. The orchestrator's
+own `jj --repository` commands, the CI script and the verification workspace
+need no registration. A worker's `(cd "<WORKSPACE_DIR>" && npm ci)` names the
+registered workspace and passes the guard.
+
+## Worker self-check footer
+
+Workers run in a fresh workspace without installed dependencies, so a worker
+cannot run the formatter, the type checker or the tests until the worker
+installs them. A commit that fails CI on a formatting error costs a full CI run,
+an amend round and a worker launch. Before the first task, read the repository's
+agent-context file and the CI script, and record the exact install command and
+the exact fast checks: the formatter in fix mode on the changed files, then lint
+and type check, then the tests that cover the change. End every brief and
+every amend-round brief with:
+
+```
+Before editing: install the dependencies inside your own workspace only:
+(cd "<WORKSPACE_DIR>" && <install command>)
+The install directory is gitignored and never enters the commit.
+
+After editing, run these checks in order, each as
+(cd "<WORKSPACE_DIR>" && <command>): <formatter fix command>, then
+<lint and type check commands>, then <test commands for the change>. Never
+hand-format. Fix every failure in the same commit and rerun until every check
+passes.
+
+Finish with jj --repository "<WORKSPACE_DIR>" diff --stat. The output must list
+only the intended files.
+
+Report the commands you ran and the exit code of each.
+```
+
+The footer cuts avoidable CI failures and replaces no verification: the
+orchestrator still reads the diff (step 4) and runs the CI script (step 5), and
+a worker's report is not evidence. An amend round gets the footer too, because
+a fix can introduce a new defect.
+
+An install that takes several minutes per worker still costs less than a failed
+CI run plus an amend round. When one install takes longer than one CI run, skip
+the install: run the formatter once in the verification checkout and pass the
+output to the worker in the brief.
+
+Every amend round runs in a new workspace, so every round installs again. When
+the repository's package manager documents a setting for a shared cache
+directory (read the package manager's documentation; never guess the setting's
+name), name that setting and one shared directory in the footer, so repeat
+installs read from the cache.
 
 ## Push the chain
 
