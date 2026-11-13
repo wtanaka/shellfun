@@ -145,6 +145,11 @@ catkill claude-hooks/require-workspace-scope.sh \
   "$HOME/.claude/hooks/require-workspace-scope.sh"
 [ -f "$HOME/.claude/hooks/require-workspace-scope.sh" ] &&
   chmod +x "$HOME/.claude/hooks/require-workspace-scope.sh"
+# Claude Code subagent definitions
+mkdir -p "$HOME/.claude/agents"
+for i in claude-agents/*.md; do
+  catkill "$i" "$HOME/.claude/agents/`basename "$i"`"
+done
 shkill vimrc.sh "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
   catkill wgetrc "$HOME/.wgetrc"
