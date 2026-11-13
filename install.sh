@@ -131,6 +131,14 @@ mkdir -p "$HOME/.config/jj"
 catkill jj-config.toml "$HOME/.config/jj/config.toml"
 catkill ghpr-ci.sh "$HOME/.config/jj/ghpr-ci.sh"
 catkill jj-prune.sh "$HOME/.config/jj/jj-prune.sh"
+# Claude Code skills: copy (not symlink) each claude-skills/<name>/ directory;
+# existing skills not in the repo are left alone
+mkdir -p "$HOME/.claude/skills"
+for i in claude-skills/*/; do
+  name="`basename "$i"`"
+  mkdir -p "$HOME/.claude/skills/$name"
+  cp -R "$i". "$HOME/.claude/skills/$name/"
+done
 shkill vimrc.sh "$HOME/.vimrc"
 if [ ! -e "$HOME/.wgetrc" ]; then
   catkill wgetrc "$HOME/.wgetrc"
