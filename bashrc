@@ -173,6 +173,10 @@ if [ -f "$HOME/.allenv.sh" ]; then
   . "$HOME/.allenv.sh"
 fi
 
+if [ -f "$HOME/.nodelazy.sh" ]; then
+  . "$HOME/.nodelazy.sh"
+fi
+
 if [ -f "$HOME/.aliases.sh" ]; then
   . "$HOME/.aliases.sh"
 fi

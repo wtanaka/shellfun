@@ -297,7 +297,11 @@ if command -v pyenv 1>/dev/null 2>&1; then
    eval "$(pyenv init -)"
 fi
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# lazy nvm and fnm: only defines functions; nodelazy.sh asks before it installs
+# anything and sources the nvm bash_completion itself
+if [ -f "$HOME/.nodelazy.sh" ]; then
+  . "$HOME/.nodelazy.sh"
+fi
 
 if which biff > /dev/null 2>&1; then
    biff y

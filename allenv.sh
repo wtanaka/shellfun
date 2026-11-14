@@ -70,11 +70,11 @@ export PNPM_HOME="$_tool_cache/pnpm"
 export BUN_INSTALL="$_tool_cache/bun"
 export BUN_INSTALL_CACHE_DIR="$_tool_cache/bun/install/cache"
 export NVM_DIR="$_tool_cache/nvm"
-# nvm refuses to run if npm_config_prefix is set; with nvm, globals already
-# go under $NVM_DIR/versions/node/<version>/
-if [ ! -s "$NVM_DIR/nvm.sh" ]; then
-  export npm_config_prefix="$_tool_cache/npm-global"
-fi
+export FNM_DIR="$_tool_cache/fnm"
+# nvm refuses to run (nvm use, nvm alias default) when npm_config_prefix points
+# outside $NVM_DIR, so the shared global prefix lives inside $NVM_DIR. nvm and
+# fnm both use it, so global packages are shared across Node versions.
+export npm_config_prefix="$NVM_DIR/npm-global"
 # JVM (MAVEN_ARGS needs Maven 3.9+)
 export MAVEN_ARGS="-Dmaven.repo.local=$_tool_cache/m2/repository"
 export GRADLE_USER_HOME="$_tool_cache/gradle"

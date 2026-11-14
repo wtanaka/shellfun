@@ -96,6 +96,7 @@ catkill bashrc "$HOME/.bashrc"
 # login interactive shells
 catkill bashrc "$HOME/.bash_profile"
 catkill allenv.sh "$HOME/.allenv.sh"
+catkill nodelazy.sh "$HOME/.nodelazy.sh"
 # pnpm settings can't go in npm_config_* env vars (npm warns), so write
 # pnpm's global config.yaml with paths derived from PNPM_HOME
 if [ "`uname -s`" = Darwin ]; then
@@ -165,6 +166,10 @@ catkill d "$HOME/bin/d"
 chmod a+x "$HOME/bin/d"
 catkill newmoz "$HOME/bin/newmoz"
 chmod a+x "$HOME/bin/newmoz"
+for i in node npm npx; do
+  catkill node-shim.sh "$HOME/bin/$i"
+  chmod a+x "$HOME/bin/$i"
+done
 catkill otp "$HOME/bin/otp"
 chmod a+x "$HOME/bin/otp"
 catkill t "$HOME/bin/t"
