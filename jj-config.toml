@@ -17,6 +17,9 @@ diff-args = [
     "$right"
 ]
 
+[revset-aliases]
+'rb()' = 'remote_bookmarks()'
+
 [aliases]
 bam = ["bookmark", "advance", "main"]
 "bam@-" = ["bookmark", "advance", "main", "--to", "@-"]
@@ -285,3 +288,6 @@ prune = [
 ghprmrd = ["ghpr", "merge", "--rebase", "--delete-branch"]
 rrm = ["rebase", "-b", "roots(main..@)", "-d", "main"]
 wus = ["workspace", "update-stale"]
+# lrb: log of remote bookmarks; compose with `jj log -r 'rb() & mine()'`
+# (a second -r on lrb is unioned, not intersected)
+lrb = ["log", "-r", "rb()"]
