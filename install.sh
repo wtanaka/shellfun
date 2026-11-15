@@ -166,6 +166,8 @@ catkill d "$HOME/bin/d"
 chmod a+x "$HOME/bin/d"
 catkill newmoz "$HOME/bin/newmoz"
 chmod a+x "$HOME/bin/newmoz"
+catkill adb-shim.sh "$HOME/bin/adb"
+chmod a+x "$HOME/bin/adb"
 for i in node npm npx; do
   catkill node-shim.sh "$HOME/bin/$i"
   chmod a+x "$HOME/bin/$i"
