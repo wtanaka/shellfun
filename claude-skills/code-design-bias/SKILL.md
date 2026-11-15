@@ -38,6 +38,20 @@ send back, not a style nit.
   that differs on purpose.
 - **Test the pure core thoroughly,** including edge cases and empty inputs.
   Test the adapter only for the translation the adapter uniquely does.
+- **Modules form an acyclic layer graph.** Each module declares which modules
+  it may use. Dependencies point downward only: pure modules at the bottom,
+  I/O, UI and orchestration at the top. There is no catch-all shared module; a
+  helper used by several modules becomes its own small module. When a file is
+  used from many modules, check that it lives in the right one.
+- **Tests obey the same rules as the code.** A test lives in its module and
+  depends only on what that module may depend on.
+- **Make every dependency explicit.** No runtime file reads, string-built
+  paths or hidden globals that a dependency analysis cannot see. Only a test
+  whose job is to inspect the source tree reads the source tree, and that test
+  stays separate from the rest.
+- **Keep heavy tests small and separate, with deterministic seeds.**
+- **Never grandfather a violation.** Fix the dependency instead of adding an
+  exception to an allow-list.
 - When the surrounding code is not shaped for these principles, say so (in the
   PR body, for a worker) instead of bending the design. Then decide whether to
   refactor first, as a separate earlier change, or to accept the shape.
