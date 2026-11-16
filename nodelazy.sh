@@ -1,11 +1,13 @@
 # Lazy nvm and fnm for bash and zsh. Source this file from the shell startup
 # script; it only defines functions, so shell startup stays fast. The first
-# call of nvm, node, npm or npx (nvm) or of fnm (fnm) does the real work:
+# call of nvm, or of node, npm, npx (nvm) or fnm (fnm) through the $HOME/bin
+# shims (node-shim.sh, which calls _nvm_lazy_load and _fnm_lazy_load), does
+# the real work:
 #   1. tool missing: explain, ask, and install into its directory only on "y".
 #   2. no default Node version: ask, then install the latest LTS release.
 #   3. default version damaged or reclaimed by the OS: reinstall it.
 #   4. load the tool, select the default version, run the original command.
-# After step 4 the stubs are gone and the commands run natively.
+# After step 4 the nvm stub is gone and the commands run natively.
 #
 # The OS reclaims files in the tool cache by access time, one file at a time,
 # so a Node version in daily use can still lose rarely read files. A marker
@@ -28,10 +30,11 @@
 # wrapped), and a lock directory keeps shells that start together from
 # changing the same version at once.
 #
-# The stubs are functions, not aliases, because they need logic. The shell
-# startup file edits that the installers would make are skipped. Node is not on
-# PATH before the first call, so a program started outside the shell (an
-# editor, for example) does not see it.
+# Only nvm is a stub function, because `nvm use` must change the PATH of the
+# current shell. node, npm, npx and fnm are programs in $HOME/bin, so no
+# function shadows a real node on PATH, and a program started outside the
+# shell (an editor, for example) finds them too. The shell startup file edits
+# that the installers would make are skipped.
 
 # Alias expansion is off while this file is read (restored at the end): an
 # alias such as mv="mv -i" or rm="rm -i" would otherwise be expanded inside the
@@ -386,10 +389,7 @@ _nl_save_fn() {   # _nl_save_fn NAME NEWNAME
 # --------------------------------------------------------------------- nvm
 
 _nvm_lazy_stubs() {
-  local c
-  for c in nvm node npm npx; do
-    eval "$c() { _nvm_lazy_load $c \"\$@\"; }"
-  done
+  nvm() { _nvm_lazy_load nvm "$@"; }
 }
 
 # Install nvm under the lock. Another shell may have installed it while this
@@ -463,7 +463,7 @@ EOF
 
   # Real nvm replaces the stubs. --no-use: pick the version below, after the
   # damage check.
-  unset -f nvm node npm npx
+  unset -f nvm
   . "$NVM_DIR/nvm.sh" --no-use || { _nvm_lazy_stubs; return 1; }
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
@@ -648,8 +648,8 @@ EOF
   fnm "$@"
 }
 
-_nvm_lazy_stubs
-fnm() { _fnm_lazy_load fnm "$@"; }
+# keep an nvm that already exists (a loaded function or a program on PATH)
+command -v nvm >/dev/null 2>&1 || _nvm_lazy_stubs
 
 # restore alias expansion
 if [ -n "${ZSH_VERSION:-}" ]; then
