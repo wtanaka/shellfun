@@ -416,6 +416,10 @@ _nvm_install_tool() {   # _nvm_install_tool CMD
       return 1
       ;;
   esac
+  # nvm.sh is missing, so the OS reclaimed part of an earlier install. Its
+  # leftover .git makes the installer take the "update using git" path and
+  # fail; versions and aliases stay.
+  rm -rf "$NVM_DIR/.git"
   echo "$1: installing nvm $ver" >&2
   curl -fsSL -o "$tmp" \
     "https://raw.githubusercontent.com/nvm-sh/nvm/$ver/install.sh" &&
